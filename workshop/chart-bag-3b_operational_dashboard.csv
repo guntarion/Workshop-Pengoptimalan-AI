@@ -1,0 +1,5 @@
+timestamp,unit,load,fuel_consumption,efficiency,status,fuel_type
+2025-01-07 23:00:00,Unit 1,437.3,40.2,31.83,maintenance,coal
+2025-01-07 23:00:00,Unit 2,450.8,40.8,32.51,running,coal
+2025-01-07 23:00:00,Unit 3,468.0,42.1,32.52,running,coal
+2025-01-07 23:00:00,Unit 4,443.9,40.2,32.37,running,coal

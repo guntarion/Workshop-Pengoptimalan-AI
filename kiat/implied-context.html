@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- File: kiat/implied-context.html -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Implied Context in AI Instructions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      /* Same styles as before, updating only hover opacities */
+      :root {
+        --primary: #2563eb;
+        --secondary: #3b82f6;
+        --background: #ffffff;
+        --text: #1e293b;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(120deg, #e0f2fe, #dbeafe);
+        color: var(--text);
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .slide-container {
+        max-width: 1200px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .pattern {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle at 25px 25px, rgba(37, 99, 235, 0.05) 2%, transparent 0%),
+          radial-gradient(circle at 75px 75px, rgba(37, 99, 235, 0.05) 2%, transparent 0%);
+        background-size: 100px 100px;
+        animation: patternMove 60s linear infinite;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      .content-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        padding: 3rem;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slide-title {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 1rem;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .slide-title:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .slide-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), transparent);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        color: #334155;
+        text-align: center;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .subtitle:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .example-case {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        opacity: 0.5;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .example-case:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .example-title {
+        font-size: 1.3rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        opacity: 0.4;
+        transition: all 0.3s ease;
+      }
+
+      .example-case:hover .example-title {
+        opacity: 1;
+      }
+
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .comparison-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0.5;
+        cursor: pointer;
+      }
+
+      .comparison-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .comparison-title {
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 0.3;
+        transition: all 0.3s ease;
+      }
+
+      .comparison-card:hover .comparison-title {
+        opacity: 1;
+      }
+
+      .context-list {
+        opacity: 1;
+        transition: all 0.3s ease;
+        list-style: none;
+      }
+
+      .comparison-card:hover .context-list {
+        opacity: 1;
+      }
+
+      .context-list li {
+        margin: 0.5rem 0;
+        padding-left: 1rem;
+        position: relative;
+      }
+
+      .context-list li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+      }
+
+      .key-points {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .key-point-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0.5;
+        cursor: pointer;
+      }
+
+      .key-point-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .icon-container {
+        width: 2.5rem;
+        height: 2.5rem;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        opacity: 0.4;
+        transition: all 0.3s ease;
+      }
+
+      .key-point-card:hover .icon-container {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+
+      .key-point-title {
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 0.75rem;
+        opacity: 0.4;
+        transition: all 0.3s ease;
+      }
+
+      .key-point-card:hover .key-point-title {
+        opacity: 1;
+      }
+
+      .key-point-description {
+        opacity: 0.4;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+      }
+
+      .key-point-card:hover .key-point-description {
+        opacity: 1;
+      }
+
+      @keyframes patternMove {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100px 100px;
+        }
+      }
+
+      .slide-number {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        background: white;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+        font-size: 0.9rem;
+        opacity: 0.4;
+        transition: opacity 0.3s ease;
+      }
+
+      .slide-number:hover {
+        opacity: 1;
+      }
+
+      .hover-element {
+        opacity: 0.4;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .hover-element:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .case-section {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        opacity: 0.4;
+        transition: all 0.3s ease;
+      }
+
+      .case-section:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .step-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        opacity: 0.4;
+        transition: all 0.3s ease;
+      }
+
+      .step-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .benefits-section {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 0.4;
+        transition: all 0.3s ease;
+      }
+
+      .benefits-section:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .benefit-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .benefit-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .bullet-point {
+        width: 24px;
+        height: 24px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 12px;
+      }
+
+      .context-list {
+        list-style: none;
+        padding-left: 1rem;
+      }
+
+      .context-list li {
+        margin: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .context-list li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+      }
+
+      @media (max-width: 768px) {
+        .comparison-grid {
+          grid-template-columns: 1fr;
+        }
+        .key-points {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pattern"></div>
+
+    <div class="slide-container">
+      <div class="content-card">
+        <h1 class="slide-title">Pentingnya Implied Context</h1>
+        <p class="subtitle">Meningkatkan kualitas instruksi AI dengan informasi kontekstual</p>
+        <p style="text-align: center; margin-bottom: 2rem">
+          Workshop Pengoptimalan AI | 18-21 Februari 2025 | Nusantara Power Services | Akhmad Guntar
+        </p>
+
+        <div class="example-case">
+          <h2 class="example-title">
+            <div class="icon-container">💼</div>
+            Studi Kasus: Negosiasi Kenaikan Gaji
+          </h2>
+          <div class="comparison-grid">
+            <div class="comparison-card">
+              <h3 class="comparison-title">
+                <div class="icon-container">❌</div>
+                Tanpa Context
+              </h3>
+              <p>"Saya ingin meminta kenaikan gaji sebesar 15%"</p>
+            </div>
+            <div class="comparison-card">
+              <h3 class="comparison-title">
+                <div class="icon-container">✅</div>
+                Dengan Context
+              </h3>
+              <ul class="context-list">
+                <li>Tahun lalu dapat kenaikan 10%</li>
+                <li>Performer terbaik di tim</li>
+                <li>Rata-rata industri naik 12%</li>
+                <li>Target kenaikan 15%</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <div class="key-point-card">
+            <div class="icon-container">🎯</div>
+            <h3 class="key-point-title">Keputusan Lebih Tepat</h3>
+            <p class="key-point-description">Context membantu AI memahami situasi secara menyeluruh untuk memberikan saran yang lebih akurat</p>
+          </div>
+
+          <div class="key-point-card">
+            <div class="icon-container">💡</div>
+            <h3 class="key-point-title">Analisis Mendalam</h3>
+            <p class="key-point-description">Informasi tambahan memungkinkan AI mempertimbangkan berbagai faktor dalam analisisnya</p>
+          </div>
+
+          <div class="key-point-card">
+            <div class="icon-container">📊</div>
+            <h3 class="key-point-title">Data-Driven Response</h3>
+            <p class="key-point-description">Context berupa data kuantitatif membantu AI memberikan respon berbasis fakta</p>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h2 class="section-title">
+            <div class="icon-container">🏭</div>
+            Studi Kasus: Optimasi Combustion Control System
+          </h2>
+          <div class="comparison-grid">
+            <div class="step-card">
+              <h3 class="comparison-title">
+                <div class="icon-container">❌</div>
+                Tanpa Context
+              </h3>
+              <p>"Tolong berikan rekomendasi setting parameter untuk combustion control system"</p>
+            </div>
+            <div class="step-card">
+              <h3 class="comparison-title">
+                <div class="icon-container">✅</div>
+                Dengan Context Lengkap
+              </h3>
+              <p class="role-scope">"Saya adalah control engineer di PLTU batubara 2x300MW."</p>
+              <ul class="context-list">
+                <li>Unit beroperasi di base load 250-270MW</li>
+                <li>Coal quality bervariasi (CV: 4200-4500 kcal/kg)</li>
+                <li>Target efficiency: min 37%</li>
+                <li>Sering terjadi slagging di furnace</li>
+                <li>Excess O2 saat ini: 3-4%</li>
+                <li>NOx emission constraint: max 450mg/Nm3</li>
+                <li>Auxiliary power consumption target: max 9.5%</li>
+                <li>DCS platform: Yokogawa Centum VP R6</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <h3 class="step-title">
+              <div class="icon-container">1️⃣</div>
+              Identifikasi Informasi Kunci
+            </h3>
+            <ul class="context-list">
+              <li>Plant/equipment specifications</li>
+              <li>Operating conditions</li>
+              <li>Constraints & limitations</li>
+              <li>Historical issues</li>
+              <li>Performance targets</li>
+              <li>System/platform yang digunakan</li>
+            </ul>
+          </div>
+
+          <div class="step-card">
+            <h3 class="step-title">
+              <div class="icon-container">2️⃣</div>
+              Strukturkan Context
+            </h3>
+            <ul class="context-list">
+              <li>Role & Scope</li>
+              <li>Current Situation</li>
+              <li>Objectives</li>
+              <li>Technical Environment</li>
+            </ul>
+          </div>
+
+          <div class="step-card">
+            <h3 class="step-title">
+              <div class="icon-container">3️⃣</div>
+              Best Practices Penyampaian
+            </h3>
+            <ul class="context-list">
+              <li>Mulai dari informasi umum ke spesifik</li>
+              <li>Gunakan data kuantitatif</li>
+              <li>Sebutkan constraints critical</li>
+              <li>Tambahkan historical context</li>
+              <li>Jelaskan interdependencies</li>
+            </ul>
+          </div>
+
+          <div class="step-card">
+            <h3 class="step-title">
+              <div class="icon-container">4️⃣</div>
+              Review & Validasi
+            </h3>
+            <ul class="context-list">
+              <li>Pastikan critical information tersampaikan</li>
+              <li>Cek missing context</li>
+              <li>Verifikasi accuracy data</li>
+              <li>Konfirmasi relevance context</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="benefits-section">
+          <h3 class="benefits-title">
+            <div class="icon-container">🎯</div>
+            Hasil Rekomendasi dengan Context Lengkap
+          </h3>
+          <ul class="benefit-list">
+            <li class="benefit-item">
+              <div class="bullet-point">✓</div>
+              <span>Lebih precise dan applicable</span>
+            </li>
+            <li class="benefit-item">
+              <div class="bullet-point">✓</div>
+              <span>Mempertimbangkan plant-specific constraints</span>
+            </li>
+            <li class="benefit-item">
+              <div class="bullet-point">✓</div>
+              <span>Sesuai dengan kapabilitas existing system</span>
+            </li>
+            <li class="benefit-item">
+              <div class="bullet-point">✓</div>
+              <span>Memenuhi performance & compliance targets</span>
+            </li>
+            <li class="benefit-item">
+              <div class="bullet-point">✓</div>
+              <span>Mempertimbangkan operational limitations</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-number">1/1</div>
+  </body>
+</html>

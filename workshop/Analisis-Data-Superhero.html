@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop: Mengoptimalkan AI untuk Analisis Data Superhero</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --accent: #06b6d4;
+        --background: #f8fafc;
+        --text: #1e293b;
+        --border: #e2e8f0;
+        --success: #059669;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background);
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: var(--text);
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: white;
+        transition: transform 0.2s;
+      }
+
+      .section:hover {
+        transform: translateY(-2px);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-number {
+        background: var(--primary);
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-weight: bold;
+      }
+
+      h2 {
+        color: var(--secondary);
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .prompt-container {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      .prompt {
+        font-family: 'Consolas', monospace;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        display: block;
+        line-height: 1.5;
+        max-width: 100%;
+      }
+
+      .expected-output {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 0.5rem;
+      }
+
+      .tip {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #ecfdf5;
+        border-radius: 0.5rem;
+        color: var(--success);
+      }
+
+      .tip::before {
+        content: '💡 Tips: ';
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Analisis Data Superhero</h1>
+        <div style="
+  text-align: center;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  max-width: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+">
+  <p style="
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    color: #1e293b;
+    font-weight: 600;
+  ">Workshop Pengoptimalan AI</p>
+  <p style="
+    margin: 8px 0;
+    padding: 0;
+    font-size: 1rem;
+    color: #2563eb;
+    font-weight: 500;
+  ">18-21 Februari 2025</p>
+  <div style="
+    width: 40px;
+    height: 2px;
+    background: #e2e8f0;
+    margin: 12px auto;
+  "></div>
+  <p style="
+    margin: 0;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #64748b;
+  ">Nusantara Power Services | Akhmad Guntar</p>
+</div>
+
+        <p style="text-align: center; margin-bottom: 2rem">
+          <a href="Analisis-Data-Superhero_SuperHeroes.csv" download>Unduh resource studi kasus</a>
+        </p>
+      </header>
+
+              <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>Eksplorasi Data Awal</h2>
+            </div>
+            <p>Mulai dengan memahami struktur dan isi dataset.</p>
+            <div class="prompt-container">
+                <div class="prompt">Tolong analisis file SuperHeroes.csv. Berikan ringkasan tentang:
+1. Jumlah total karakter
+2. Distribusi gender
+3. Distribusi publisher
+4. Distribusi alignment (baik/jahat/netral)
+5. Statistik dasar untuk tinggi dan berat
+
+Tampilkan hasilnya dalam format yang terstruktur dan mudah dibaca.</div>
+            </div>
+            <div class="tip">
+                Perhatikan bagaimana AI mengorganisir informasi dan menyajikan statistik dasar. Ini akan membantu Anda memahami cakupan dataset.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>Visualisasi Data Dasar</h2>
+            </div>
+            <p>Meminta AI untuk membuat visualisasi yang informatif.</p>
+            <div class="prompt-container">
+                <div class="prompt">Buatkan visualisasi interaktif untuk data superhero dengan:
+1. Pie chart untuk distribusi gender
+2. Bar chart untuk top 5 publisher
+3. Pie chart untuk alignment
+4. Bar chart untuk distribusi ras (top 10)
+
+Gunakan warna yang menarik dan tambahkan label yang informatif. Pastikan chart bisa menampilkan detail saat di-hover.</div>
+            </div>
+            <div class="tip">
+                Spesifikkan detail visual yang Anda inginkan, seperti warna, label, dan interaktivitas.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>Analisis Korelasi</h2>
+            </div>
+            <p>Menyelidiki hubungan antar variabel dalam dataset.</p>
+            <div class="prompt-container">
+                <div class="prompt">Analisis hubungan antara berbagai karakteristik superhero:
+1. Korelasi antara tinggi dan berat
+2. Distribusi kekuatan berdasarkan gender
+3. Hubungan antara alignment dan publisher
+4. Pola karakteristik fisik berdasarkan ras
+
+Visualisasikan temuan dengan scatter plot atau heatmap yang sesuai.</div>
+            </div>
+            <div class="tip">
+                Minta AI untuk menjelaskan interpretasi dari setiap korelasi yang ditemukan.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>Analisis Statistik Lanjutan</h2>
+            </div>
+            <p>Melakukan pengujian statistik untuk mendapatkan insight lebih dalam.</p>
+            <div class="prompt-container">
+                <div class="prompt">Lakukan analisis statistik lanjutan untuk dataset superhero:
+1. Uji chi-square untuk independensi antara gender dan alignment
+2. Analisis varians (ANOVA) untuk membandingkan karakteristik fisik antar publisher
+3. Identifikasi outlier dalam data tinggi dan berat
+4. Analisis cluster untuk mengelompokkan superhero berdasarkan karakteristik mereka
+
+Berikan interpretasi hasil dan visualisasi yang relevan.</div>
+            </div>
+            <div class="tip">
+                Pastikan untuk meminta penjelasan statistik dalam bahasa yang mudah dipahami.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>Dashboard Interaktif</h2>
+            </div>
+            <p>Membuat dashboard komprehensif untuk eksplorasi data.</p>
+            <div class="prompt-container">
+                <div class="prompt">Buatkan dashboard interaktif dengan fitur berikut:
+1. Filter berdasarkan publisher, gender, dan alignment
+2. Grafik distribusi karakteristik yang bisa diupdate berdasarkan filter
+3. Tabel data dengan kemampuan sorting
+4. Statistik ringkasan yang update sesuai filter
+5. Visualisasi perbandingan antar kelompok
+
+Pastikan dashboard responsif dan mudah dinavigasi.</div>
+            </div>
+            <div class="tip">
+                Spesifikkan kebutuhan interaktivitas dan responsivitas dalam prompt Anda.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2>Insight dan Rekomendasi</h2>
+            </div>
+            <p>Meminta AI untuk memberikan insight mendalam dan rekomendasi.</p>
+            <div class="prompt-container">
+                <div class="prompt">Berdasarkan semua analisis yang telah dilakukan:
+1. Identifikasi 5 insight paling menarik dari dataset
+2. Berikan rekomendasi untuk:
+   - Keseimbangan karakteristik dalam universe superhero
+   - Pengembangan karakter baru yang unik
+   - Area yang butuh diversifikasi
+3. Bandingkan strategi berbagai publisher dalam pengembangan karakter
+4. Identifikasi tren dan pola yang bisa digunakan untuk storytelling</div>
+            </div>
+            <div class="tip">
+                Minta AI untuk menjelaskan bagaimana insight ini bisa diaplikasikan dalam konteks praktis.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2>Dokumentasi dan Pelaporan</h2>
+            </div>
+            <p>Menghasilkan laporan komprehensif dari analisis.</p>
+            <div class="prompt-container">
+                <div class="prompt">Buatkan laporan analisis komprehensif yang mencakup:
+1. Ringkasan eksekutif
+2. Metodologi analisis
+3. Temuan utama dengan visualisasi
+4. Interpretasi statistik
+5. Rekomendasi
+6. Lampiran dengan detail teknis
+
+Format laporan dalam struktur yang profesional dengan referensi ke semua visualisasi dan analisis yang telah dilakukan.</div>
+            </div>
+            <div class="tip">
+                Minta format spesifik dan gaya penulisan yang sesuai dengan kebutuhan Anda.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

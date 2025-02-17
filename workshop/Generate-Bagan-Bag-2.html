@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Prompt Mermaid - Bagian 2</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --accent: #06b6d4;
+        --background: #f8fafc;
+        --text: #1e293b;
+        --border: #e2e8f0;
+        --success: #059669;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background);
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: var(--text);
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: white;
+        transition: transform 0.2s;
+      }
+
+      .section:hover {
+        transform: translateY(-2px);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-number {
+        background: var(--primary);
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-weight: bold;
+      }
+
+      h2 {
+        color: var(--secondary);
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .prompt-container {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      .prompt {
+        font-family: 'Consolas', monospace;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        display: block;
+        line-height: 1.5;
+        max-width: 100%;
+      }
+
+      .structure {
+        margin-top: 1rem;
+        padding: 2rem;
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 0.5rem;
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .tip {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #ecfdf5;
+        border-radius: 0.5rem;
+        color: var(--success);
+      }
+
+      .tip::before {
+        content: '💡 Tips: ';
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Bagian 2: State Diagram dan ERD</h1>
+        <div style="
+          text-align: center;
+          margin: 2rem 0;
+          padding: 1.5rem;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          border-radius: 8px;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          background: white;
+        ">
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+            color: #1e293b;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+          ">Workshop Pengoptimalan AI</p>
+          <p style="
+            margin: 4px 0;
+            padding: 0;
+            font-size: 1rem;
+            color: #2563eb;
+            font-weight: 500;
+          ">18-21 Februari 2025</p>
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 0.95rem;
+            color: #64748b;
+          ">Nusantara Power Services | Akhmad Guntar</p>
+        </div>
+        <p class="subtitle">Workshop Pengoptimalan AI | 18-21 Februari 2025 | Nusantara Power Services | Akhmad Guntar</p>
+      </header>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <h2>State Diagram: Siklus Hidup Work Order</h2>
+        </div>
+        <p>Membuat diagram status untuk menggambarkan siklus hidup work order pemeliharaan.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan state diagram untuk siklus hidup work order menggunakan Mermaid dengan spesifikasi berikut:
+
+States:
+- Draft (initial state)
+- Submitted
+- Approved
+- In Progress
+- On Hold
+- Completed
+- Closed
+- Rejected
+- Cancelled
+
+Transitions:
+- Draft -> Submitted: setelah input lengkap
+- Submitted -> Approved/Rejected: review supervisor
+- Approved -> In Progress: mulai pengerjaan
+- In Progress -> On Hold: menunggu part/approval
+- In Progress -> Completed: pekerjaan selesai
+- Completed -> Closed: verifikasi final
+- Any State -> Cancelled: pembatalan
+
+Tambahan:
+- Notes untuk setiap state
+- Composite states jika ada sub-status
+- Parallel states untuk concurrent activities
+- Entry dan exit actions
+
+Gunakan format:
+stateDiagram-v2
+dengan:
+- State descriptions
+- Transition conditions
+- Nested states where applicable
+- Concurrent states if needed</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Definisi semua states</li>
+            <li>Spesifikasi transitions</li>
+            <li>Kondisi khusus (composite/parallel states)</li>
+            <li>Actions dan events</li>
+            <li>Notes dan descriptions</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan dengan workflow approval dan prosedur dokumentasi di organisasi Anda.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <h2>ERD: Sistem Manajemen Aset Pembangkit</h2>
+        </div>
+        <p>Membuat Entity Relationship Diagram untuk sistem manajemen aset yang akan dikembangkan.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan ERD untuk sistem manajemen aset pembangkit menggunakan Mermaid dengan spesifikasi berikut:
+
+Entities:
+1. Asset
+   - AssetID (PK)
+   - Name
+   - Type
+   - Location
+   - InstallationDate
+   - Status
+   
+2. Maintenance
+   - MaintenanceID (PK)
+   - AssetID (FK)
+   - Type
+   - ScheduledDate
+   - Status
+   
+3. Spare_Parts
+   - PartID (PK)
+   - Name
+   - Specification
+   - Stock
+   - MinimumStock
+   
+4. Work_Orders
+   - WOID (PK)
+   - AssetID (FK)
+   - MaintenanceID (FK)
+   - Status
+   - Priority
+   
+5. Personnel
+   - PersonnelID (PK)
+   - Name
+   - Role
+   - Certification
+
+Relationships:
+- Asset 1--* Maintenance
+- Asset 1--* Work_Orders
+- Maintenance 1--1 Work_Orders
+- Spare_Parts *--* Work_Orders
+- Personnel *--* Work_Orders
+
+Gunakan format:
+erDiagram
+dengan:
+- Proper relationship notations
+- Attribute lists
+- Key indicators
+- Relationship descriptions</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Definisi entitas dengan atribut</li>
+            <li>Spesifikasi primary dan foreign keys</li>
+            <li>Definisi relationships</li>
+            <li>Kardinalitas relationships</li>
+            <li>Deskripsi tambahan bila diperlukan</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan dengan kebutuhan sistem dan tambahkan entitas spesifik yang relevan dengan operasional pembangkit Anda.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom AI Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #3b82f6;
+        --background: #ffffff;
+        --text: #1e293b;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(120deg, #f0f9ff, #dbeafe);
+        color: var(--text);
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .slide-container {
+        max-width: 1200px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .pattern {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle at 25px 25px, rgba(37, 99, 235, 0.05) 2%, transparent 0%),
+          radial-gradient(circle at 75px 75px, rgba(37, 99, 235, 0.05) 2%, transparent 0%);
+        background-size: 100px 100px;
+        animation: patternMove 60s linear infinite;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      .content-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        padding: 3rem;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slide-title {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 1rem;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .slide-title:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .slide-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), transparent);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        color: #334155;
+        text-align: center;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .subtitle:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .section {
+        margin-bottom: 4rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 2rem;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .section-title:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .examples-grid,
+      .characteristics-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .example-card,
+      .characteristic-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 2rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+        opacity: 0.5;
+      }
+
+      .example-card:hover,
+      .characteristic-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .icon-container {
+        min-width: 3rem;
+        height: 3rem;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+        font-size: 1.5rem;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .example-card:hover .icon-container,
+      .characteristic-card:hover .icon-container {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+
+      .example-content,
+      .characteristic-content {
+        flex: 1;
+      }
+
+      .example-title,
+      .characteristic-title {
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .example-card:hover .example-title,
+      .characteristic-card:hover .characteristic-title {
+        opacity: 1;
+      }
+
+      .example-description,
+      .characteristic-description {
+        color: #475569;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .example-card:hover .example-description,
+      .characteristic-card:hover .characteristic-description {
+        opacity: 1;
+      }
+
+      .slide-number {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        background: white;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+        font-size: 0.9rem;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+
+      .slide-number:hover {
+        opacity: 1;
+      }
+
+      @keyframes patternMove {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100px 100px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .examples-grid,
+        .characteristics-list {
+          grid-template-columns: 1fr;
+        }
+
+        .content-card {
+          padding: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pattern"></div>
+
+    <div class="slide-container">
+      <div class="content-card">
+        <h1 class="slide-title">Custom AI Solutions</h1>
+        <p style="text-align: center; margin-bottom: 2rem">
+          Workshop Pengoptimalan AI | 18-21 Februari 2025 | Nusantara Power Services | Akhmad Guntar
+        </p>
+        <p class="subtitle">Solusi AI yang dirancang dan dibangun khusus untuk memenuhi kebutuhan spesifik suatu bisnis atau industri</p>
+
+        <div class="section">
+          <h2 class="section-title">Contoh Implementasi</h2>
+          <div class="examples-grid">
+            <div class="example-card">
+              <div class="icon-container">🛍️</div>
+              <div class="example-content">
+                <h3 class="example-title">E-commerce Recommendation</h3>
+                <p class="example-description">
+                  Sistem rekomendasi produk yang dipersonalisasi berdasarkan perilaku pelanggan dan data historis pembelian
+                </p>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="icon-container">🏭</div>
+              <div class="example-content">
+                <h3 class="example-title">Quality Control AI</h3>
+                <p class="example-description">Sistem AI untuk mendeteksi defect dan menjaga kualitas produk dalam lini produksi manufaktur</p>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="icon-container">💬</div>
+              <div class="example-content">
+                <h3 class="example-title">Enterprise Chatbot</h3>
+                <p class="example-description">Chatbot yang dilatih dengan knowledge base perusahaan untuk customer service dan internal support</p>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="icon-container">⚙️</div>
+              <div class="example-content">
+                <h3 class="example-title">Predictive Maintenance</h3>
+                <p class="example-description">Sistem prediksi untuk maintenance mesin industri berdasarkan data sensor dan historical performance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Karakteristik Utama</h2>
+          <div class="characteristics-list">
+            <div class="characteristic-card">
+              <div class="icon-container">🔄</div>
+              <div class="characteristic-content">
+                <h3 class="characteristic-title">Business Process Alignment</h3>
+                <p class="characteristic-description">
+                  Disesuaikan dengan proses bisnis yang spesifik, mengikuti workflow dan kebutuhan unik organisasi
+                </p>
+              </div>
+            </div>
+
+            <div class="characteristic-card">
+              <div class="icon-container">⚙️</div>
+              <div class="characteristic-content">
+                <h3 class="characteristic-title">Development Effort</h3>
+                <p class="characteristic-description">
+                  Memerlukan effort pengembangan yang signifikan, mulai dari analisis kebutuhan hingga implementasi
+                </p>
+              </div>
+            </div>
+
+            <div class="characteristic-card">
+              <div class="icon-container">🔗</div>
+              <div class="characteristic-content">
+                <h3 class="characteristic-title">System Integration</h3>
+                <p class="characteristic-description">Dapat diintegrasikan dengan sistem dan infrastruktur yang sudah ada dalam organisasi</p>
+              </div>
+            </div>
+
+            <div class="characteristic-card">
+              <div class="icon-container">🎯</div>
+              <div class="characteristic-content">
+                <h3 class="characteristic-title">Use Case Specificity</h3>
+                <p class="characteristic-description">
+                  Solusi yang sangat spesifik untuk use case tertentu, dirancang untuk memenuhi kebutuhan khusus
+                </p>
+              </div>
+            </div>
+
+            <div class="characteristic-card">
+              <div class="icon-container">🔧</div>
+              <div class="characteristic-content">
+                <h3 class="characteristic-title">Regular Maintenance</h3>
+                <p class="characteristic-description">Membutuhkan maintenance dan updating berkala untuk menjaga performa dan relevansi sistem</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-number">1/1</div>
+
+    <div class="presenter-notes" hidden>
+      Slide ini menggabungkan penjelasan tentang Custom AI Solutions, contoh implementasi dan karakteristiknya. Key talking points: 1. Definisi dan
+      konsep custom AI solutions 2. Contoh-contoh implementasi di berbagai industri 3. Karakteristik kunci yang membedakan custom AI solutions 4.
+      Pentingnya alignment dengan proses bisnis Potential Q&A: Q: Berapa lama waktu yang dibutuhkan untuk development? A: Tergantung kompleksitas,
+      bisa dari beberapa bulan hingga setahun lebih Q: Bagaimana dengan biaya pengembangan? A: Investasi awal lebih tinggi dibanding solusi
+      ready-made, tapi memberikan value yang sesuai kebutuhan spesifik Q: Apakah bisa dimodifikasi setelah implementasi? A: Ya, sistem dapat diupdate
+      dan dimodifikasi sesuai kebutuhan yang berkembang
+    </div>
+  </body>
+</html>

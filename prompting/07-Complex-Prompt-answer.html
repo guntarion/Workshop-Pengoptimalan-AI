@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop AI Prompting - Complex Prompting</title>
+    <style>
+      /* Base styles */
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      /* Header styles */
+      h1 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      h2 {
+        color: #2980b9;
+        margin-top: 30px;
+      }
+      /* Content boxes */
+      .concept-box {
+        background-color: #e8f6f3;
+        border-left: 4px solid #1abc9c;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .tips-box {
+        background-color: #fef9e7;
+        border-left: 4px solid #f1c40f;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .department {
+        background-color: #f8f9fa;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      /* Interactive elements */
+      .prompt-basic {
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-family: monospace;
+      }
+      .example-answer {
+        display: none;
+        background-color: #e8f6f3;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border-left: 4px solid #2ecc71;
+      }
+      .toggle-btn {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      .toggle-btn:hover {
+        background-color: #2980b9;
+      }
+      pre {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9em;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Workshop AI Prompting: Complex Prompting</h1>
+      
+      <!-- Workshop Header -->
+      <div style="text-align: center; margin: 2rem 0; font-family: 'Inter', system-ui, -apple-system, sans-serif">
+        <p style="margin: 0; padding: 0; font-size: 1.1rem; color: #1e293b; font-weight: 500">Workshop Pengoptimalan AI</p>
+        <p style="margin: 8px 0; padding: 4px 16px; font-size: 0.9rem; color: #2563eb; display: inline-block; border: 1px solid #2563eb; border-radius: 20px;">
+          18-21 Februari 2025
+        </p>
+        <p style="margin: 8px 0 0 0; padding: 0; font-size: 0.95rem; color: #64748b; letter-spacing: 0.5px">
+          Nusantara Power Services | Akhmad Guntar
+        </p>
+      </div>
+
+      <!-- Concept Introduction -->
+      <div class="concept-box">
+        <h2>Konsep Complex Prompting</h2>
+        <p>
+          Complex Prompting adalah teknik menyusun prompt yang terstruktur dan komprehensif untuk mendapatkan hasil yang lebih akurat dan konsisten dari AI. Teknik ini menggabungkan beberapa elemen prompt engineering seperti:
+        </p>
+        <ul>
+          <li>Role dan Context Setting</li>
+          <li>Format Output yang Terstruktur</li>
+          <li>Step-by-Step Instructions</li>
+          <li>Constraints dan Rules</li>
+          <li>Examples dan Few-Shot Learning</li>
+        </ul>
+      </div>
+
+      <!-- Tips Section -->
+      <div class="tips-box">
+        <h2>Tips Complex Prompting</h2>
+        <ul>
+          <li>Mulai dengan mendefinisikan peran dan konteks yang jelas</li>
+          <li>Berikan format output yang terstruktur (JSON, XML, dll)</li>
+          <li>Sertakan contoh yang relevan dengan kasus</li>
+          <li>Tetapkan batasan dan aturan yang spesifik</li>
+          <li>Gunakan tag untuk mengorganisir bagian-bagian prompt</li>
+          <li>Verifikasi output dengan kriteria yang telah ditetapkan</li>
+        </ul>
+      </div>
+
+      <h2>Latihan Complex Prompting</h2>
+      <p>Berikut adalah contoh-contoh kasus untuk berbagai departemen:</p>
+
+      <!-- HRD Section -->
+      <div class="department">
+        <h3>HRD</h3>
+        <div class="prompt-basic">
+          "Analisis hasil assessment kandidat dan berikan rekomendasi keputusan rekrutmen dengan pertimbangan kompetensi teknis dan soft skills."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('hrd-answer')">Lihat Contoh</button>
+        <div id="hrd-answer" class="example-answer">
+          <pre><code>&lt;system&gt;
+Anda adalah HR Specialist yang berpengalaman dalam melakukan assessment kandidat untuk posisi teknis di pembangkit listrik.
+&lt;/system&gt;
+
+&lt;context&gt;
+Analisis harus mencakup evaluasi kompetensi teknis dan soft skills berdasarkan kriteria yang ditentukan, dengan output berupa rekomendasi terstruktur.
+&lt;/context&gt;
+
+&lt;format&gt;
+{
+  "kandidat_info": {
+    "nama": string,
+    "posisi": string,
+    "pengalaman": string
+  },
+  "assessment_scores": {
+    "technical": {
+      "score": number,
+      "strengths": string[],
+      "gaps": string[]
+    },
+    "soft_skills": {
+      "score": number,
+      "strengths": string[],
+      "gaps": string[]
+    }
+  },
+  "rekomendasi": {
+    "keputusan": "HIRE|CONSIDER|REJECT",
+    "justifikasi": string[],
+    "development_areas": string[]
+  }
+}
+&lt;/format&gt;
+
+&lt;example_1&gt;
+Input:
+Kandidat: Budi Prakoso 
+Posisi: Operator PLTU
+Assessment Results:
+- Technical Knowledge: 85/100
+- Safety Awareness: 90/100
+- Problem Solving: 75/100
+- Communication: 80/100
+- Leadership Potential: 70/100
+
+Output:
+{
+  "kandidat_info": {
+    "nama": "Budi Prakoso",
+    "posisi": "Operator PLTU",
+    "pengalaman": "5 tahun di PLTU batubara"
+  },
+  "assessment_scores": {
+    "technical": {
+      "score": 85,
+      "strengths": [
+        "Pemahaman DCS yang kuat",
+        "Pengalaman troubleshooting",
+        "Sertifikasi K3"
+      ],
+      "gaps": [
+        "Pengalaman dengan sistem terbaru",
+        "Dokumentasi prosedur"
+      ]
+    },
+    "soft_skills": {
+      "score": 78,
+      "strengths": [
+        "Komunikasi efektif",
+        "Kerja tim yang baik",
+        "Inisiatif tinggi"
+      ],
+      "gaps": [
+        "Kepemimpinan perlu dikembangkan",
+        "Manajemen stress"
+      ]
+    }
+  },
+  "rekomendasi": {
+    "keputusan": "HIRE",
+    "justifikasi": [
+      "Kompetensi teknis melebihi requirement",
+      "Safety awareness sangat baik",
+      "Potensi pengembangan tinggi"
+    ],
+    "development_areas": [
+      "Leadership training",
+      "Advanced DCS certification",
+      "Stress management workshop"
+    ]
+  }
+}
+&lt;/example_1&gt;
+
+&lt;tugas&gt;
+Analisis kandidat berikut:
+Nama: Sarah Wijaya
+Posisi: Supervisor Operasi
+Assessment Results:
+- Technical Knowledge: 80/100
+- Safety Awareness: 85/100
+- Problem Solving: 88/100
+- Communication: 90/100
+- Leadership Potential: 85/100
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Safety Officer Section -->
+      <div class="department">
+        <h3>Safety Officer</h3>
+        <div class="prompt-basic">
+          "Lakukan analisis risiko dan berikan rekomendasi pengendalian untuk aktivitas pekerjaan di area confined space."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('safety-answer')">Lihat Contoh</button>
+        <div id="safety-answer" class="example-answer">
+          <pre><code>&lt;system&gt;
+Anda adalah Safety Officer yang berpengalaman dalam melakukan risk assessment untuk pekerjaan berisiko tinggi di pembangkit listrik.
+&lt;/system&gt;
+
+&lt;context&gt;
+Risk assessment harus mengikuti standar ISO 45001 dan NFPA, dengan mempertimbangkan semua aspek keselamatan kerja di confined space.
+&lt;/context&gt;
+
+&lt;format&gt;
+{
+  "pekerjaan_info": {
+    "jenis": string,
+    "lokasi": string,
+    "durasi": string
+  },
+  "risk_assessment": {
+    "bahaya": [
+      {
+        "jenis": string,
+        "severity": number,
+        "probability": number,
+        "risk_level": "HIGH|MEDIUM|LOW"
+      }
+    ],
+    "existing_controls": string[],
+    "additional_controls": string[]
+  },
+  "emergency_response": {
+    "rescue_plan": string[],
+    "emergency_contacts": string[],
+    "equipment_required": string[]
+  },
+  "recommendations": {
+    "immediate_actions": string[],
+    "preventive_measures": string[],
+    "training_needs": string[]
+  }
+}
+&lt;/format&gt;
+
+&lt;example_1&gt;
+Input:
+Pekerjaan: Pembersihan Boiler
+Lokasi: PLTU Unit 2
+Durasi: 8 jam
+Kondisi: Panas, terbatas, potensi gas berbahaya
+
+Output:
+{
+  "pekerjaan_info": {
+    "jenis": "Pembersihan Boiler",
+    "lokasi": "PLTU Unit 2 - Furnace Area",
+    "durasi": "8 jam"
+  },
+  "risk_assessment": {
+    "bahaya": [
+      {
+        "jenis": "Gas berbahaya (CO, H2S)",
+        "severity": 4,
+        "probability": 3,
+        "risk_level": "HIGH"
+      },
+      {
+        "jenis": "Heat stress",
+        "severity": 3,
+        "probability": 4,
+        "risk_level": "HIGH"
+      },
+      {
+        "jenis": "Terbatasnya akses keluar",
+        "severity": 4,
+        "probability": 2,
+        "risk_level": "MEDIUM"
+      }
+    ],
+    "existing_controls": [
+      "LOTO system",
+      "Gas detector",
+      "Ventilation fan",
+      "PPE standar"
+    ],
+    "additional_controls": [
+      "Portable air cooler",
+      "Emergency oxygen supply",
+      "Communication device"
+    ]
+  },
+  "emergency_response": {
+    "rescue_plan": [
+      "Dedicated rescue team standby",
+      "Emergency retrieval system",
+      "First aid team on site"
+    ],
+    "emergency_contacts": [
+      "Safety Control Room: ext. 789",
+      "Medical Team: ext. 555",
+      "Rescue Team: ext. 911"
+    ],
+    "equipment_required": [
+      "Tripod dengan winch",
+      "SCBA set",
+      "Stretcher khusus confined space"
+    ]
+  },
+  "recommendations": {
+    "immediate_actions": [
+      "Install additional ventilation",
+      "Pasang gas monitor continuous",
+      "Siapkan cooling station"
+    ],
+    "preventive_measures": [
+      "Review prosedur entry-exit",
+      "Update pemetaan gas berbahaya",
+      "Evaluasi sistem ventilasi"
+    ],
+    "training_needs": [
+      "Confined space refresher",
+      "Emergency rescue practice",
+      "Heat stress management"
+    ]
+  }
+}
+&lt;/example_1&gt;
+
+&lt;tugas&gt;
+Analisis pekerjaan berikut:
+Pekerjaan: Perbaikan Pompa
+Lokasi: Cooling Water Pump Pit
+Durasi: 4 jam
+Kondisi: Lembab, terbatas, potensi banjir
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Pengadaan Section -->
+      <div class="department">
+        <h3>Pengadaan</h3>
+        <div class="prompt-basic">
+          "Evaluasi teknis dan komersial untuk tender pengadaan spare parts kritikal dengan multiple vendors."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('procurement-answer')">Lihat Contoh</button>
+        <div id="procurement-answer" class="example-answer">
+          <pre><code>&lt;system&gt;
+Anda adalah Procurement Specialist yang berpengalaman dalam evaluasi tender untuk pengadaan spare parts kritikal pembangkit listrik.
+&lt;/system&gt;
+
+&lt;context&gt;
+Evaluasi harus mempertimbangkan aspek teknis, komersial, delivery capability, dan after-sales support dengan memperhatikan criticality peralatan.
+&lt;/context&gt;
+
+&lt;format&gt;
+{
+  "tender_info": {
+    "paket": string,
+    "estimasi_nilai": string,
+    "kritikalitas": "HIGH|MEDIUM|LOW"
+  },
+  "vendor_evaluation": [
+    {
+      "nama": string,
+      "scores": {
+        "technical": number,
+        "commercial": number,
+        "delivery": number,
+        "support": number
+      },
+      "strengths": string[],
+      "weaknesses": string[]
+    }
+  ],
+  "risk_assessment": {
+    "technical_risks": string[],
+    "commercial_risks": string[],
+    "delivery_risks": string[]
+  },
+  "rekomendasi": {
+    "vendor_terpilih": string,
+    "justifikasi": string[],
+    "syarat_tambahan": string[],
+    "mitigasi_risiko": string[]
+  }
+}
+&lt;/format&gt;
+
+&lt;example_1&gt;
+Input:
+Tender: Bearing Generator
+Vendors:
+1. PT Power Parts
+   - Technical score: 85/100
+   - Price: 180,000 USD
+   - Delivery: 12 weeks
+   - OEM Authorized
+2. PT Engineering Solution
+   - Technical score: 90/100
+   - Price: 220,000 USD
+   - Delivery: 8 weeks
+   - OEM Direct
+
+Output:
+{
+  "tender_info": {
+    "paket": "Bearing Generator GE Frame 9E",
+    "estimasi_nilai": "200,000 USD",
+    "kritikalitas": "HIGH"
+  },
+  "vendor_evaluation": [
+    {
+      "nama": "PT Power Parts",
+      "scores": {
+        "technical": 85,
+        "commercial": 90,
+        "delivery": 75,
+        "support": 80
+      },
+      "strengths": [
+        "Harga kompetitif",
+        "Local service center",
+        "Track record baik"
+      ],
+      "weaknesses": [
+        "Delivery time lebih lama",
+        "Tidak direct OEM",
+        "Limited stock"
+      ]
+    },
+    {
+      "nama": "PT Engineering Solution",
+      "scores": {
+        "technical": 90,
+        "commercial": 75,
+        "delivery": 90,
+        "support": 95
+      },
+      "strengths": [
+        "OEM direct support",
+        "Fast delivery",
+        "Complete documentation"
+      ],
+      "weaknesses": [
+        "Harga premium",
+        "Minimum order quantity",
+        "Payment terms ketat"
+      ]
+    }
+  ],
+  "risk_assessment": {
+    "technical_risks": [
+      "Quality consistency",
+      "Installation support",
+      "Warranty coverage"
+    ],
+    "commercial_risks": [
+      "Currency fluctuation",
+      "Payment terms",
+      "Price escalation"
+    ],
+    "delivery_risks": [
+      "Transport damage",
+      "Custom clearance",
+      "Storage condition"
+    ]
+  },
+  "rekomendasi": {
+    "vendor_terpilih": "PT Engineering Solution",
+    "justifikasi": [
+      "Critical equipment requirement",
+      "OEM guarantee",
+      "Fast delivery crucial"
+    ],
+    "syarat_tambahan": [
+      "Price negotiation target 5%",
+      "Extend warranty period",
+      "Include installation support"
+    ],
+    "mitigasi_risiko": [
+      "Performance bond 10%",
+      "Detailed QC procedure",
+      "Storage procedure training"
+    ]
+  }
+}
+&lt;/example_1&gt;
+
+&lt;tugas&gt;
+Evaluasi tender berikut:
+Tender: Motor Pompa Boiler Feed
+Vendors:
+1. PT Electric Solutions
+   - Technical score: 88/100
+   - Price: 150,000 USD
+   - Delivery: 16 weeks
+   - Authorized Distributor
+2. PT Industrial Motors
+   - Technical score: 82/100
+   - Price: 125,000 USD
+   - Delivery: 20 weeks
+   - Local Assembly
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+            <!-- Supply Chain Section -->
+      <div class="department">
+        <h3>Supply Chain</h3>
+        <div class="prompt-basic">
+          "Analisis dan optimasi inventory untuk spare parts kritikal dengan mempertimbangkan lead time, criticality, dan cost impact."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('supply-chain-answer')">Lihat Contoh</button>
+        <div id="supply-chain-answer" class="example-answer">
+          <pre><code>&lt;system&gt;
+Anda adalah Supply Chain Specialist yang berpengalaman dalam manajemen inventory pembangkit listrik.
+&lt;/system&gt;
+
+&lt;context&gt;
+Analisis harus mempertimbangkan criticality equipment, lead time pengadaan, holding cost, dan risk mitigation untuk ketersediaan spare parts.
+&lt;/context&gt;
+
+&lt;format&gt;
+{
+  "material_info": {
+    "kode": string,
+    "deskripsi": string,
+    "kategori": string,
+    "criticality": "HIGH|MEDIUM|LOW"
+  },
+  "consumption_analysis": {
+    "annual_usage": number,
+    "usage_pattern": "REGULAR|SEASONAL|IRREGULAR",
+    "last_12_months": number[],
+    "trend": "INCREASING|STABLE|DECREASING"
+  },
+  "inventory_parameters": {
+    "min_stock": number,
+    "max_stock": number,
+    "reorder_point": number,
+    "economic_order_qty": number,
+    "safety_stock": number
+  },
+  "cost_analysis": {
+    "unit_price": number,
+    "holding_cost": number,
+    "stockout_cost": number,
+    "order_cost": number
+  },
+  "recommendations": {
+    "stocking_strategy": string,
+    "order_policy": string,
+    "risk_mitigation": string[],
+    "cost_optimization": string[]
+  }
+}
+&lt;/format&gt;
+
+&lt;example_1&gt;
+Input:
+Material: Bearing SKF 23156 CC/W33
+- Usage 12 bulan terakhir: 6 unit
+- Lead time: 12 minggu
+- Unit price: $5,000
+- Criticality: High
+- Min stock: 1 unit
+- Current stock: 2 unit
+
+Output:
+{
+  "material_info": {
+    "kode": "BRG-23156-SKF",
+    "deskripsi": "Bearing SKF 23156 CC/W33",
+    "kategori": "Rotating Equipment",
+    "criticality": "HIGH"
+  },
+  "consumption_analysis": {
+    "annual_usage": 6,
+    "usage_pattern": "IRREGULAR",
+    "last_12_months": [0,1,0,2,0,1,0,0,1,0,1,0],
+    "trend": "STABLE"
+  },
+  "inventory_parameters": {
+    "min_stock": 2,
+    "max_stock": 5,
+    "reorder_point": 3,
+    "economic_order_qty": 3,
+    "safety_stock": 2
+  },
+  "cost_analysis": {
+    "unit_price": 5000,
+    "holding_cost": 750,
+    "stockout_cost": 100000,
+    "order_cost": 500
+  },
+  "recommendations": {
+    "stocking_strategy": "Maintain higher safety stock due to critical nature",
+    "order_policy": "Fixed Order Quantity with continuous review",
+    "risk_mitigation": [
+      "Develop alternative supplier",
+      "Implement condition monitoring",
+      "Setup consignment stock agreement"
+    ],
+    "cost_optimization": [
+      "Negotiate volume-based pricing",
+      "Optimize order quantity",
+      "Implement predictive maintenance"
+    ]
+  }
+}
+&lt;/example_1&gt;
+
+&lt;tugas&gt;
+Analisis material berikut:
+Material: Air Preheater Element
+- Usage 12 bulan terakhir: 24 unit
+- Lead time: 16 minggu
+- Unit price: $2,000
+- Criticality: Medium
+- Min stock: 4 unit
+- Current stock: 6 unit
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Accounting Section -->
+      <div class="department">
+        <h3>Akuntansi</h3>
+        <div class="prompt-basic">
+          "Analisis variance biaya operasional unit pembangkit dan berikan rekomendasi pengendalian biaya."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('accounting-answer')">Lihat Contoh</button>
+        <div id="accounting-answer" class="example-answer">
+          <pre><code>&lt;system&gt;
+Anda adalah Cost Controller yang berpengalaman dalam analisis biaya operasional pembangkit listrik.
+&lt;/system&gt;
+
+&lt;context&gt;
+Analisis harus mengidentifikasi root cause dari variansi biaya, dampak terhadap KPI, dan rekomendasi pengendalian yang actionable.
+&lt;/context&gt;
+
+&lt;format&gt;
+{
+  "period_info": {
+    "unit": string,
+    "period": string,
+    "baseline": string
+  },
+  "cost_variance": {
+    "total_variance": {
+      "amount": number,
+      "percentage": number,
+      "trend": "FAVORABLE|UNFAVORABLE"
+    },
+    "breakdown": [
+      {
+        "category": string,
+        "variance": number,
+        "contribution": number,
+        "root_causes": string[]
+      }
+    ]
+  },
+  "kpi_impact": {
+    "cost_per_kwh": {
+      "target": number,
+      "actual": number,
+      "variance": number
+    },
+    "other_metrics": [
+      {
+        "name": string,
+        "impact": string,
+        "severity": "HIGH|MEDIUM|LOW"
+      }
+    ]
+  },
+  "recommendations": {
+    "immediate_actions": string[],
+    "long_term_measures": string[],
+    "monitoring_points": string[]
+  }
+}
+&lt;/format&gt;
+
+&lt;example_1&gt;
+Input:
+Unit: PLTU Unit 1
+Period: Q3 2024
+Budget vs Actual:
+- Total Budget: 15M
+- Total Actual: 16.2M
+Breakdown:
+- Fuel: +500K
+- Maintenance: +400K
+- Chemicals: +200K
+- Labor: +100K
+
+Output:
+{
+  "period_info": {
+    "unit": "PLTU Unit 1",
+    "period": "Q3 2024",
+    "baseline": "Annual Budget 2024"
+  },
+  "cost_variance": {
+    "total_variance": {
+      "amount": 1200000,
+      "percentage": 8,
+      "trend": "UNFAVORABLE"
+    },
+    "breakdown": [
+      {
+        "category": "Fuel",
+        "variance": 500000,
+        "contribution": 41.7,
+        "root_causes": [
+          "Heat rate deviasi",
+          "Coal quality variance",
+          "Excessive startup/shutdown"
+        ]
+      },
+      {
+        "category": "Maintenance",
+        "variance": 400000,
+        "contribution": 33.3,
+        "root_causes": [
+          "Emergency repair HP Heater",
+          "Additional scope cleaning",
+          "Contractor rate increase"
+        ]
+      }
+    ]
+  },
+  "kpi_impact": {
+    "cost_per_kwh": {
+      "target": 0.065,
+      "actual": 0.072,
+      "variance": 0.007
+    },
+    "other_metrics": [
+      {
+        "name": "Availability Factor",
+        "impact": "Decreased by 2%",
+        "severity": "HIGH"
+      },
+      {
+        "name": "Heat Rate",
+        "impact": "Increased by 100 kcal/kWh",
+        "severity": "HIGH"
+      }
+    ]
+  },
+  "recommendations": {
+    "immediate_actions": [
+      "Optimasi parameter operasi",
+      "Review coal blending",
+      "Evaluasi jadwal maintenance"
+    ],
+    "long_term_measures": [
+      "Upgrade control system",
+      "Implement predictive maintenance",
+      "Develop maintenance contract strategy"
+    ],
+    "monitoring_points": [
+      "Daily heat rate monitoring",
+      "Weekly maintenance cost review",
+      "Monthly contractor performance"
+    ]
+  }
+}
+&lt;/example_1&gt;
+
+&lt;tugas&gt;
+Analisis data berikut:
+Unit: PLTU Unit 2
+Period: Q4 2024
+Budget vs Actual:
+- Total Budget: 14M
+- Total Actual: 15.5M
+Breakdown:
+- Maintenance: +800K
+- Fuel: +400K
+- Chemicals: +200K
+- Labor: +100K
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Third batch ends here -->
+      <script>
+        function toggleAnswer(id) {
+          const answer = document.getElementById(id);
+          if (answer.style.display === 'none' || answer.style.display === '') {
+            answer.style.display = 'block';
+          } else {
+            answer.style.display = 'none';
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

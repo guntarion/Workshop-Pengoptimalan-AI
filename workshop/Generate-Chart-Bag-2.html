@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Prompt Visualisasi Data - Bagian 2</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --accent: #06b6d4;
+        --background: #f8fafc;
+        --text: #1e293b;
+        --border: #e2e8f0;
+        --success: #059669;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background);
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: var(--text);
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: white;
+        transition: transform 0.2s;
+      }
+
+      .section:hover {
+        transform: translateY(-2px);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-number {
+        background: var(--primary);
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-weight: bold;
+      }
+
+      h2 {
+        color: var(--secondary);
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .prompt-container {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      .prompt {
+        font-family: 'Consolas', monospace;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        display: block;
+        line-height: 1.5;
+        max-width: 100%;
+      }
+
+      .structure {
+        margin-top: 1rem;
+        padding: 2rem;
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 0.5rem;
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .tip {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #ecfdf5;
+        border-radius: 0.5rem;
+        color: var(--success);
+      }
+
+      .tip::before {
+        content: '💡 Tips: ';
+        font-weight: bold;
+      }
+
+      .data-sample {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font-family: 'Consolas', monospace;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Bagian 2: Area Chart dan Pie Chart<br> untuk Industri Energi</h1>
+        <div style="
+          text-align: center;
+          margin: 2rem 0;
+          padding: 1.5rem;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          border-radius: 8px;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          background: white;
+        ">
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+            color: #1e293b;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+          ">Workshop Pengoptimalan AI</p>
+          <p style="
+            margin: 4px 0;
+            padding: 0;
+            font-size: 1rem;
+            color: #2563eb;
+            font-weight: 500;
+          ">18-21 Februari 2025</p>
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 0.95rem;
+            color: #64748b;
+          ">Nusantara Power Services | Akhmad Guntar</p>
+        </div>
+      </header>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <h2>Area Chart: Monitoring Beban Harian</h2>
+        </div>
+        <p>Membuat grafik area untuk memvisualisasikan pola beban harian dan kontribusi setiap unit pembangkit.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan visualisasi area chart untuk monitoring beban harian dengan spesifikasi berikut:
+
+Data yang ditampilkan:
+- Beban total sistem (MW)
+- Kontribusi setiap unit pembangkit
+- Data per jam selama 24 jam
+- Base load vs peak load
+
+Elemen visual:
+- Stacked area untuk kontribusi unit
+- Line overlay untuk total beban
+- Sumbu X: Waktu (jam)
+- Sumbu Y: Beban (MW)
+- Area fill dengan gradien atau pattern
+- Grid untuk pembacaan nilai
+
+Styling:
+- Warna berbeda untuk setiap unit
+- Opacity yang sesuai untuk overlapping areas
+- Smooth curves untuk transisi
+- Highlighted peak periods
+
+Interaktivitas:
+- Hover untuk detail kontribusi per unit
+- Click untuk isolate unit tertentu
+- Zoom untuk analisis periode spesifik
+- Toggle visibility per unit</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Definisi data temporal</li>
+            <li>Spesifikasi layout stacked</li>
+            <li>Styling untuk readability</li>
+            <li>Interaktivitas untuk analisis detail</li>
+          </ol>
+        </div>
+        <div class="data-sample">
+          <h4>Sample Data (daily_load.csv):</h4>
+time,unit1,unit2,unit3,unit4,total_load
+00:00,250,220,180,200,850
+01:00,245,215,175,195,830
+02:00,240,210,170,190,810
+03:00,235,205,165,185,790
+[...lanjutkan untuk 24 jam]</div>
+
+<br>
+      <p style="text-align: center; margin-bottom: 2rem">
+        <a href="chart-bag-2a_daily_load.csv" download style="
+          display: inline-block;
+          padding: 12px 24px;
+          background: #f8fafc;
+          color: #1e293b;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          transition: all 0.3s ease;
+        ">
+          <span style="color: #2563eb; margin-right: 8px">⬇️</span>
+          Unduh resource studi kasus
+        </a>
+      </p>
+
+        <div class="tip">
+          Gunakan color scheme yang memudahkan identifikasi base load vs peak load units.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <h2>Pie Chart: Analisis Pemeliharaan dan Downtime</h2>
+        </div>
+        <p>Membuat diagram lingkaran untuk menganalisis distribusi waktu pemeliharaan dan penyebab downtime.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan visualisasi pie chart untuk analisis pemeliharaan dengan spesifikasi berikut:
+
+Data yang ditampilkan:
+- Distribusi jenis pemeliharaan:
+  * Preventive Maintenance
+  * Corrective Maintenance
+  * Predictive Maintenance
+  * Emergency Repair
+- Breakdown penyebab downtime:
+  * Mechanical Issues
+  * Electrical Problems
+  * Control System
+  * External Factors
+  * Planned Outage
+
+Elemen visual:
+- Donut chart untuk jenis pemeliharaan
+- Pie chart untuk penyebab downtime
+- Persentase dan nilai absolut
+- Labels dengan callout lines
+- Legend dengan total values
+
+Styling:
+- Color scheme yang intuitif
+- Pattern fills untuk aksesibilitas
+- Emphasis pada nilai signifikan
+- Clean label placement
+
+Interaktivitas:
+- Hover untuk detail
+- Click untuk explode segment
+- Rotation untuk better viewing
+- Filter berdasarkan periode</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Kategorisasi data yang jelas</li>
+            <li>Multiple chart layout</li>
+            <li>Label dan annotation specs</li>
+            <li>Interaksi untuk eksplorasi data</li>
+          </ol>
+        </div>
+        <div class="data-sample">
+          <h4>Sample Data (maintenance_analysis.csv):</h4>
+maintenance_type,hours,percentage
+Preventive,2160,45
+Corrective,960,20
+Predictive,1440,30
+Emergency,240,5
+
+downtime_cause,hours,percentage
+Mechanical,720,30
+Electrical,480,20
+Control,360,15
+External,240,10
+Planned,600,25</div>
+
+<br>
+      <p style="text-align: center; margin-bottom: 2rem">
+        <a href="chart-bag-2b_maintenance_analysis.csv" download style="
+          display: inline-block;
+          padding: 12px 24px;
+          background: #f8fafc;
+          color: #1e293b;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          transition: all 0.3s ease;
+        ">
+          <span style="color: #2563eb; margin-right: 8px">⬇️</span>
+          Unduh resource studi kasus
+        </a>
+      </p>
+
+      <p style="text-align: center; margin-bottom: 2rem">
+        <a href="chart-bag-2c_downtime_analysis.csv" download style="
+          display: inline-block;
+          padding: 12px 24px;
+          background: #f8fafc;
+          color: #1e293b;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          transition: all 0.3s ease;
+        ">
+          <span style="color: #2563eb; margin-right: 8px">⬇️</span>
+          Unduh resource studi kasus
+        </a>
+      </p>
+
+        <div class="tip">
+          Tambahkan drill-down capability untuk analisis sub-kategori jika diperlukan.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

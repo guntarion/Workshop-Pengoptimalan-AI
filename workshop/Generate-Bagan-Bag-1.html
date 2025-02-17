@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Prompt Mermaid untuk Industri Energi - Bagian 1</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --accent: #06b6d4;
+        --background: #f8fafc;
+        --text: #1e293b;
+        --border: #e2e8f0;
+        --success: #059669;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background);
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: var(--text);
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: white;
+        transition: transform 0.2s;
+      }
+
+      .section:hover {
+        transform: translateY(-2px);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-number {
+        background: var(--primary);
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-weight: bold;
+      }
+
+      h2 {
+        color: var(--secondary);
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .prompt-container {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      .prompt {
+        font-family: 'Consolas', monospace;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        display: block;
+        line-height: 1.5;
+        max-width: 100%;
+      }
+
+      .structure {
+        margin-top: 1rem;
+        padding: 2rem;
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 0.5rem;
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .tip {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #ecfdf5;
+        border-radius: 0.5rem;
+        color: var(--success);
+      }
+
+      .tip::before {
+        content: '💡 Tips: ';
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Bagian 1: Flowchart, Sequence Diagram, <br> dan Gantt Chart</h1>
+        <div style="
+          text-align: center;
+          margin: 2rem 0;
+          padding: 1.5rem;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          border-radius: 8px;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          background: white;
+        ">
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+            color: #1e293b;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+          ">Workshop Pengoptimalan AI</p>
+          <p style="
+            margin: 4px 0;
+            padding: 0;
+            font-size: 1rem;
+            color: #2563eb;
+            font-weight: 500;
+          ">18-21 Februari 2025</p>
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 0.95rem;
+            color: #64748b;
+          ">Nusantara Power Services | Akhmad Guntar</p>
+        </div>
+      </header>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <h2>Flowchart: Prosedur Pemeliharaan Preventif</h2>
+        </div>
+        <p>Membuat diagram alir untuk prosedur pemeliharaan rutin peralatan pembangkit.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan flowchart untuk prosedur pemeliharaan preventif menggunakan Mermaid dengan spesifikasi berikut:
+
+Komponen yang harus ada:
+- Jadwal pemeliharaan sebagai trigger
+- Persiapan dokumen dan peralatan
+- Pemeriksaan ketersediaan spare parts
+- Izin kerja dan safety briefing
+- Eksekusi pemeliharaan
+- Pengujian post-maintenance
+- Dokumentasi dan pelaporan
+
+Tambahan detail:
+- Percabangan untuk kondisi spare parts
+- Percabangan untuk hasil pengujian
+- Loop untuk perbaikan jika hasil test gagal
+- Subgraph untuk pengelompokan aktivitas terkait
+
+Gunakan format:
+flowchart TD
+dengan styling:
+- Kotak untuk proses normal
+- Diamond untuk decision points
+- Rounded edges untuk start/end
+- Warna berbeda untuk setiap subgraph
+- Arrow labels untuk detail kondisi</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Definisi jelas komponen utama</li>
+            <li>Spesifikasi percabangan logika</li>
+            <li>Pengelompokan aktivitas dalam subgraph</li>
+            <li>Format dan arah diagram (TD = top-down)</li>
+            <li>Styling spesifik untuk tiap jenis node</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan dengan SOP pemeliharaan yang berlaku di fasilitas Anda. Tambahkan detail spesifik untuk equipment tertentu jika diperlukan.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <h2>Sequence Diagram: Protokol Penanganan Gangguan</h2>
+        </div>
+        <p>Membuat diagram urutan untuk menggambarkan interaksi antar tim dalam penanganan gangguan.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan sequence diagram untuk protokol penanganan gangguan pembangkit menggunakan Mermaid dengan spesifikasi berikut:
+
+Participants:
+- Operator Control Room
+- Supervisor Operasi
+- Tim Pemeliharaan
+- Tim Safety
+- Manajemen Plant
+- Sistem SCADA
+
+Alur interaksi:
+- Deteksi awal gangguan oleh SCADA
+- Notifikasi ke Operator
+- Eskalasi ke Supervisor
+- Mobilisasi Tim Pemeliharaan
+- Koordinasi dengan Tim Safety
+- Pelaporan ke Manajemen
+- Feedback setelah penanganan
+
+Detail tambahan:
+- Activation bars untuk menunjukkan periode aktif
+- Notes untuk informasi penting
+- Parallel actions saat diperlukan
+- Loop untuk monitoring berkelanjutan
+- Alt paths untuk skenario berbeda
+
+Gunakan format:
+sequenceDiagram
+dengan:
+- Arrows yang berbeda untuk tipe interaksi berbeda
+- Notes untuk detail prosedur
+- Participant boxes dengan warna berbeda</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Daftar lengkap participants</li>
+            <li>Alur interaksi yang terurut</li>
+            <li>Spesifikasi tipe interaksi</li>
+            <li>Penggunaan activation bars</li>
+            <li>Penambahan notes dan kondisi alternatif</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan dengan struktur organisasi dan jalur komunikasi yang ada di perusahaan Anda.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">3</div>
+          <h2>Gantt Chart: Jadwal Overhaul Tahunan</h2>
+        </div>
+        <p>Membuat diagram Gantt untuk perencanaan dan pelaksanaan overhaul pembangkit.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan Gantt chart untuk jadwal overhaul tahunan pembangkit menggunakan Mermaid dengan spesifikasi berikut:
+
+Sections:
+- Persiapan
+- Pemadaman Unit
+- Pembongkaran
+- Inspeksi
+- Perbaikan
+- Pemasangan Kembali
+- Komisioning
+- Dokumentasi
+
+Tasks untuk setiap section:
+- Minimal 3 task per section
+- Durasi setiap task
+- Dependencies antar task
+- Milestone penting
+
+Tambahan:
+- Critical path highlighting
+- Weekend highlights
+- Progress indicators
+- Resource allocation
+
+Gunakan format:
+gantt
+    dateFormat  YYYY-MM-DD
+    title Jadwal Overhaul Pembangkit
+    excludes weekends
+
+Dengan:
+- Task relationships (after, before)
+- Section colors
+- Milestone markers
+- Progress indicators</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Pembagian sections yang jelas</li>
+            <li>Detail tasks untuk setiap section</li>
+            <li>Spesifikasi dependencies</li>
+            <li>Format tanggal dan timeline</li>
+            <li>Pengaturan display (colors, markers, etc.)</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan timeline dengan jadwal pemeliharaan tahunan perusahaan dan pertimbangkan peak/off-peak seasons.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

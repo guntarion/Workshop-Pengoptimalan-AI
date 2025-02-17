@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop AI Prompting - Pemisahan Data dan Instruksi</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      h2 {
+        color: #2980b9;
+        margin-top: 30px;
+      }
+      .concept-box {
+        background-color: #e8f6f3;
+        border-left: 4px solid #1abc9c;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .tips-box {
+        background-color: #fef9e7;
+        border-left: 4px solid #f1c40f;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .department {
+        background-color: #f8f9fa;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .prompt-basic {
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-family: monospace;
+      }
+      .example-answer {
+        display: none;
+        background-color: #e8f6f3;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border-left: 4px solid #2ecc71;
+      }
+      .toggle-btn {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      .toggle-btn:hover {
+        background-color: #2980b9;
+      }
+      .note {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+      }
+      pre {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9em;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Workshop AI Prompting: Pemisahan Data dan Instruksi</h1>
+      <div style="text-align: center; margin: 2rem 0; font-family: 'Inter', system-ui, -apple-system, sans-serif">
+        <p style="margin: 0; padding: 0; font-size: 1.1rem; color: #1e293b; font-weight: 500">Workshop Pengoptimalan AI</p>
+        <p
+          style="
+            margin: 8px 0;
+            padding: 4px 16px;
+            font-size: 0.9rem;
+            color: #2563eb;
+            display: inline-block;
+            border: 1px solid #2563eb;
+            border-radius: 20px;
+          "
+        >
+          18-21 Februari 2025
+        </p>
+        <p style="margin: 8px 0 0 0; padding: 0; font-size: 0.95rem; color: #64748b; letter-spacing: 0.5px">
+          Nusantara Power Services | Akhmad Guntar
+        </p>
+      </div>
+
+      <div class="concept-box">
+        <h2>Konsep Pemisahan Data dan Instruksi</h2>
+        <p>
+          Pemisahan data dan instruksi adalah teknik penting dalam prompting di mana kita memisahkan dengan jelas antara data yang akan diproses
+          dan instruksi tentang bagaimana data tersebut harus ditangani.
+        </p>
+        <p>
+          Dengan menggunakan tag XML atau pembatas lainnya, kita dapat memastikan AI memahami dengan tepat bagian mana yang merupakan data dan
+          bagian mana yang merupakan instruksi pengolahan.
+        </p>
+      </div>
+
+      <div class="tips-box">
+        <h2>Tips Pemisahan Data dan Instruksi</h2>
+        <ul>
+          <li>Gunakan tag XML yang deskriptif untuk membungkus data</li>
+          <li>Pisahkan instruksi pengolahan dengan jelas</li>
+          <li>Berikan konteks spesifik untuk data yang diberikan</li>
+          <li>Tentukan format output yang diinginkan</li>
+          <li>Jelaskan parameter atau kriteria evaluasi</li>
+        </ul>
+      </div>
+
+      <h2>Latihan Pemisahan Data dan Instruksi</h2>
+      <p>Berikut adalah contoh-contoh kasus untuk berbagai departemen:</p>
+
+      <div class="department">
+        <h3>HRD</h3>
+        <div class="prompt-basic">
+          "Analisis data kinerja karyawan ini dan berikan rekomendasi pengembangan."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('hrd-answer')">Lihat Contoh</button>
+        <div id="hrd-answer" class="example-answer">
+          <pre><code>&lt;data&gt;
+  Nama: Ahmad Suryadi
+  Posisi: Operator Pembangkit
+  Masa Kerja: 3 tahun
+  
+  KPI Scores:
+  - Technical Competency: 75%
+  - Safety Awareness: 85%
+  - Team Collaboration: 90%
+  - Initiative: 70%
+  
+  Training History:
+  - Basic Operation (2022)
+  - Safety First (2023)
+  - Leadership Basics (2024)
+&lt;/data&gt;
+
+&lt;instruction&gt;
+  1. Evaluasi kekuatan dan area pengembangan berdasarkan KPI
+  2. Identifikasi gap kompetensi
+  3. Sarankan program pengembangan spesifik
+  4. Tentukan timeline dan metode evaluasi kemajuan
+&lt;/instruction&gt;
+
+&lt;output_format&gt;
+  - Strength Analysis
+  - Development Areas
+  - Recommended Programs
+  - Timeline & Milestones
+&lt;/output_format&gt;
+          </code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Safety Officer</h3>
+        <div class="prompt-basic">
+          "Evaluasi laporan insiden dan berikan rekomendasi perbaikan sistem."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('safety-answer')">Lihat Contoh</button>
+        <div id="safety-answer" class="example-answer">
+          <pre><code>&lt;incident_data&gt;
+  Tanggal: 15 Feb 2025
+  Lokasi: Area Turbin Unit 2
+  Tipe: Near Miss
+  
+  Kronologi:
+  - Teknisi melakukan inspeksi rutin
+  - Menemukan kebocoran minor pada sistem pelumas
+  - Tetesan oli terdeteksi di lantai
+  - Area sudah diberi tanda peringatan
+  
+  Tindakan Awal:
+  - Pemasangan oil spill kit
+  - Penambahan rambu peringatan
+  - Penjadwalan perbaikan
+&lt;/incident_data&gt;
+
+&lt;analysis_parameters&gt;
+  1. Risk Assessment (severity & probability)
+  2. Root Cause Analysis
+  3. Existing Control Evaluation
+  4. System Improvement Opportunities
+&lt;/analysis_parameters&gt;
+
+&lt;deliverables&gt;
+  - Risk Matrix Position
+  - Contributing Factors
+  - Corrective Actions
+  - Preventive Measures
+  - Timeline Implementation
+&lt;/deliverables&gt;
+          </code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Supply Chain</h3>
+        <div class="prompt-basic">
+          "Analisis data inventory dan optimasi stok spare part."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('supply-answer')">Lihat Contoh</button>
+        <div id="supply-answer" class="example-answer">
+          <pre><code>
+&lt;inventory_data&gt;
+  Kategori: Critical Spares
+  Period: Jan-Dec 2024
+  
+  Items:
+  1. Bearing SKF 7320
+     - Stock: 5 units
+     - Usage: 8 units/year
+     - Lead Time: 3 months
+     - Cost: $2,500/unit
+  
+  2. Oil Filter GE-type
+     - Stock: 12 units
+     - Usage: 24 units/year
+     - Lead Time: 1 month
+     - Cost: $800/unit
+&lt;/inventory_data&gt;
+
+&lt;analysis_requirements&gt;
+  1. Calculate optimal stock levels
+  2. Evaluate reorder points
+  3. Assess stock-out risks
+  4. Consider storage costs
+&lt;/analysis_requirements&gt;
+
+&lt;expected_output&gt;
+  - Inventory Strategy
+  - Order Recommendations
+  - Cost Optimization Plan
+  - Risk Mitigation Steps
+&lt;/expected_output&gt;
+          </code></pre>
+        </div>
+      </div>
+
+
+       <div class="department">
+        <h3>Operator Pembangkit</h3>
+        <div class="prompt-basic">
+          "Analisis data operasi unit dan optimasi parameter."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('operator-answer')">Lihat Contoh</button>
+        <div id="operator-answer" class="example-answer">
+          <pre><code>&lt;operational_data&gt;
+  Unit: GT 2.1
+  Periode: 15 Feb 2025, 06:00-14:00
+  
+  Parameters:
+  - Load: 180 MW
+  - Exhaust Temp: 535°C
+  - IGV Position: 84%
+  - Fuel Flow: 48 MMSCFD
+  
+  Ambient Conditions:
+  - Temperature: 32°C
+  - Humidity: 85%
+  - Pressure: 1013 mbar
+&lt;/operational_data&gt;
+
+&lt;analysis_scope&gt;
+  1. Performance evaluation
+  2. Parameter optimization
+  3. Efficiency analysis
+  4. Operating constraints check
+&lt;/analysis_scope&gt;
+
+&lt;required_output&gt;
+  - Performance Assessment
+  - Optimization Recommendations
+  - Operating Guidelines
+  - Monitoring Points
+&lt;/required_output&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Engineer Mekanik</h3>
+        <div class="prompt-basic">
+          "Analisis data vibrasi bearing dan rekomendasi tindakan."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('mechanical-answer')">Lihat Contoh</button>
+        <div id="mechanical-answer" class="example-answer">
+          <pre><code>&lt;vibration_data&gt;
+  Equipment: Steam Turbine
+  Location: DE Bearing
+  Date: 15 Feb 2025
+  
+  Measurements:
+  - Overall: 4.2 mm/s RMS
+  - 1X: 2.8 mm/s @3000 RPM
+  - 2X: 0.8 mm/s
+  - Bearing Temp: 75°C
+  
+  Historical Data:
+  - Last Month: 3.5 mm/s RMS
+  - Baseline: 2.8 mm/s RMS
+&lt;/vibration_data&gt;
+
+&lt;analysis_requirements&gt;
+  1. Trend Analysis
+  2. Fault Pattern Recognition
+  3. Severity Assessment
+  4. Remaining Life Estimation
+&lt;/analysis_requirements&gt;
+
+&lt;deliverables&gt;
+  - Condition Assessment
+  - Root Cause Analysis
+  - Maintenance Recommendations
+  - Monitoring Strategy
+&lt;/deliverables&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Engineer Listrik</h3>
+        <div class="prompt-basic">
+          "Evaluasi hasil test transformator dan rekomendasi maintenance."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('electrical-answer')">Lihat Contoh</button>
+        <div id="electrical-answer" class="example-answer">
+          <pre><code>&lt;transformer_data&gt;
+  Unit: Main Transformer GT 1
+  Rating: 500 MVA, 21/525 kV
+  Age: 12 years
+  
+  Test Results:
+  - Dissolved Gas Analysis:
+    * H2: 150 ppm
+    * CH4: 120 ppm
+    * C2H2: 2 ppm
+  - Oil Quality:
+    * Moisture: 25 ppm
+    * Acidity: 0.15 mgKOH/g
+    * BDV: 45 kV
+  - Electrical Tests:
+    * Winding Resistance: Within limits
+    * Tan Delta: 0.5%
+&lt;/transformer_data&gt;
+
+&lt;analysis_criteria&gt;
+  1. IEEE/IEC Standards Compliance
+  2. Trend Analysis (Last 3 Years)
+  3. Risk Assessment
+  4. Maintenance Strategy Review
+&lt;/analysis_criteria&gt;
+
+&lt;required_output&gt;
+  - Condition Assessment Report
+  - Maintenance Recommendations
+  - Testing Schedule Update
+  - Risk Mitigation Plan
+&lt;/required_output&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Teknisi I&C</h3>
+        <div class="prompt-basic">
+          "Analisis kinerja sistem kontrol dan kalibrasi instrumen."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('ic-answer')">Lihat Contoh</button>
+        <div id="ic-answer" class="example-answer">
+          <pre><code>&lt;control_system_data&gt;
+  System: DCS Turbine Control
+  Loop: Speed/Load Control
+  Date: 15 Feb 2025
+  
+  Performance Data:
+  - Response Time: 250ms
+  - Overshoot: 2.5%
+  - Settling Time: 1.2s
+  - Steady State Error: 0.3%
+  
+  Calibration Data:
+  - Speed Sensor: -0.2% error
+  - Pressure Transmitter: +0.5% error
+  - Flow Meter: Within specs
+&lt;/control_system_data&gt;
+
+&lt;analysis_parameters&gt;
+  1. Control Loop Performance
+  2. Instrument Accuracy
+  3. System Stability
+  4. Tuning Requirements
+&lt;/analysis_parameters&gt;
+
+&lt;deliverables&gt;
+  - Performance Report
+  - Calibration Schedule
+  - Tuning Recommendations
+  - Maintenance Actions
+&lt;/deliverables&gt;</code></pre>
+        </div>
+      </div>
+
+       <div class="department">
+        <h3>Teknisi Predictive Maintenance</h3>
+        <div class="prompt-basic">
+          "Analisis trend monitoring dan prediksi kegagalan peralatan."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('pdm-answer')">Lihat Contoh</button>
+        <div id="pdm-answer" class="example-answer">
+          <pre><code>&lt;monitoring_data&gt;
+  Equipment: Feed Water Pump
+  Monitoring Period: Oct 2024 - Feb 2025
+  
+  Parameters:
+  - Vibration Trend:
+    * Oct: 2.8 mm/s
+    * Nov: 3.2 mm/s
+    * Dec: 3.5 mm/s
+    * Jan: 4.1 mm/s
+    * Feb: 4.8 mm/s
+  
+  - Bearing Temperature:
+    * Oct: 65°C
+    * Nov: 68°C
+    * Dec: 70°C
+    * Jan: 73°C
+    * Feb: 76°C
+  
+  - Oil Analysis:
+    * Fe content: Increasing trend
+    * Water content: Stable
+    * Viscosity: Within limits
+&lt;/monitoring_data&gt;
+
+&lt;analysis_requirements&gt;
+  1. Trend Pattern Analysis
+  2. Failure Mode Prediction
+  3. Remaining Useful Life Estimation
+  4. Risk Assessment
+&lt;/analysis_requirements&gt;
+
+&lt;expected_output&gt;
+  - Health Assessment Report
+  - Failure Prediction Timeline
+  - Maintenance Recommendations
+  - Monitoring Strategy Update
+&lt;/expected_output&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Chemical Engineer</h3>
+        <div class="prompt-basic">
+          "Analisis kualitas air dan optimasi sistem treatment."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('chemical-answer')">Lihat Contoh</button>
+        <div id="chemical-answer" class="example-answer">
+          <pre><code>&lt;water_quality_data&gt;
+  System: HRSG Water Treatment
+  Date: 15 Feb 2025
+  
+  Parameters:
+  - Boiler Feed Water:
+    * pH: 9.2
+    * Conductivity: 0.2 µS/cm
+    * Dissolved O2: 5 ppb
+    * Silica: 10 ppb
+    * Total Fe: 8 ppb
+  
+  - Steam/Water Cycle:
+    * Phosphate: 2.5 ppm
+    * Hydrazine: 20 ppb
+    * Ammonia: 1.5 ppm
+  
+  Chemical Usage:
+  - Phosphate consumption: 25 kg/month
+  - Oxygen scavenger: 40 L/month
+&lt;/water_quality_data&gt;
+
+&lt;analysis_scope&gt;
+  1. ASME/VGB Guidelines Compliance
+  2. Treatment Effectiveness
+  3. Chemical Consumption Optimization
+  4. Corrosion Risk Assessment
+&lt;/analysis_scope&gt;
+
+&lt;required_output&gt;
+  - Water Quality Report
+  - Treatment Recommendations
+  - Chemical Dosing Optimization
+  - Monitoring Program Update
+&lt;/required_output&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Environmental Engineer</h3>
+        <div class="prompt-basic">
+          "Analisis data emisi dan optimasi sistem kendali lingkungan."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('environmental-answer')">Lihat Contoh</button>
+        <div id="environmental-answer" class="example-answer">
+          <pre><code>&lt;emission_data&gt;
+  Unit: PLTU Unit 1
+  Period: Feb 2025
+  
+  CEMS Data:
+  - NOx: 180 mg/Nm³
+  - SO2: 200 mg/Nm³
+  - Particulate: 25 mg/Nm³
+  - CO2: 800 kg/MWh
+  
+  Control Systems:
+  - DeNOx efficiency: 85%
+  - FGD efficiency: 90%
+  - ESP performance: 99.5%
+  
+  Compliance Limits:
+  - NOx: 200 mg/Nm³
+  - SO2: 250 mg/Nm³
+  - Particulate: 30 mg/Nm³
+&lt;/emission_data&gt;
+
+&lt;analysis_requirements&gt;
+  1. Compliance Assessment
+  2. Control System Performance
+  3. Trend Analysis
+  4. Optimization Opportunities
+&lt;/analysis_requirements&gt;
+
+&lt;expected_output&gt;
+  - Compliance Status Report
+  - Performance Optimization Plan
+  - Emission Reduction Strategy
+  - Monitoring Recommendations
+&lt;/expected_output&gt;</code></pre>
+        </div>
+      </div>
+
+      <script>
+        function toggleAnswer(id) {
+          const answer = document.getElementById(id);
+          if (answer.style.display === 'none' || answer.style.display === '') {
+            answer.style.display = 'block';
+          } else {
+            answer.style.display = 'none';
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

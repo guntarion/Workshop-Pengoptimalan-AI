@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Step Workflow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #3b82f6;
+        --background: #ffffff;
+        --text: #1e293b;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(120deg, #f0f9ff, #dbeafe);
+        color: var(--text);
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .slide-container {
+        max-width: 1200px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .pattern {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle at 25px 25px, rgba(37, 99, 235, 0.05) 2%, transparent 0%),
+          radial-gradient(circle at 75px 75px, rgba(37, 99, 235, 0.05) 2%, transparent 0%);
+        background-size: 100px 100px;
+        animation: patternMove 60s linear infinite;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      .content-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        padding: 3rem;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slide-title {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 1rem;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .slide-title:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .slide-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), transparent);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        color: #334155;
+        text-align: center;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .subtitle:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .workflow-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .workflow-step {
+        width: 100%;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .workflow-step:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .task-box {
+        background: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+        margin-bottom: 1rem;
+      }
+
+      .step-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .step-box {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        opacity: 0.5;
+      }
+
+      .step-box:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .step-box.blue {
+        border: 2px solid #0066cc;
+      }
+
+      .step-box.green {
+        border: 2px solid #00cc66;
+      }
+
+      .step-box.yellow {
+        border: 2px solid #ffcc00;
+      }
+
+      .detail-box {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-top: 1rem;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .detail-box.blue {
+        background: rgba(0, 102, 204, 0.1);
+      }
+
+      .detail-box.green {
+        background: rgba(0, 204, 102, 0.1);
+      }
+
+      .detail-box.yellow {
+        background: rgba(255, 204, 0, 0.1);
+      }
+
+      .arrow {
+        width: 2px;
+        height: 40px;
+        background: var(--primary);
+        margin: 1rem auto;
+        position: relative;
+      }
+
+      .arrow::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid var(--primary);
+      }
+
+      @keyframes patternMove {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100px 100px;
+        }
+      }
+
+      .implementation-section {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(37, 99, 235, 0.1);
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .step-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0.5;
+      }
+
+      .step-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .step-card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .step-title {
+        font-size: 1.1rem;
+        color: var(--primary);
+        margin: 0;
+      }
+
+      .step-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .step-list li {
+        padding-left: 1.5rem;
+        position: relative;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        color: #475569;
+        transition: all 0.3s ease;
+      }
+
+      .step-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .step-card:hover .step-list li::before {
+        transform: translateX(3px);
+        opacity: 1;
+      }
+
+      .step-card:hover .step-list li {
+        color: #1e293b;
+        transform: translateX(3px);
+      }
+
+      .case-study-section {
+        margin-top: 4rem;
+      }
+
+      .case-study-container {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 2rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0.5;
+      }
+
+      .case-study-container:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .case-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .case-header h3 {
+        font-size: 1.2rem;
+        color: var(--primary);
+        margin: 0;
+      }
+
+      .implementation-steps {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .implementation-step {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+      }
+
+      .implementation-step:hover {
+        opacity: 1;
+        transform: translateX(10px);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+      }
+
+      .step-number {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .step-content {
+        padding-left: 1rem;
+        border-left: 2px solid rgba(37, 99, 235, 0.2);
+      }
+
+      .step-content p {
+        margin-bottom: 0.75rem;
+        color: #475569;
+      }
+
+      .step-content ul {
+        list-style: none;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .step-content ul li {
+        position: relative;
+        margin-bottom: 0.5rem;
+        color: #475569;
+        transition: all 0.3s ease;
+      }
+
+      .step-content ul li::before {
+        content: "•";
+        position: absolute;
+        left: -1.5rem;
+        color: var(--primary);
+        opacity: 0.7;
+      }
+
+      .implementation-step:hover .step-content ul li {
+        color: #1e293b;
+        transform: translateX(5px);
+      }
+
+      .output-format {
+        font-style: italic;
+        color: var(--primary);
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 1024px) {
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pattern"></div>
+
+    <div class="slide-container">
+      <div class="content-card">
+        <h1 class="slide-title">Multi-Step Workflow</h1>
+        <p class="subtitle">Teknik memecah tugas kompleks menjadi beberapa tahapan prompt yang lebih kecil dan terstruktur</p>
+        <p style="text-align: center; margin-bottom: 2rem">
+          Workshop Pengoptimalan AI | 18-21 Februari 2025 | Nusantara Power Services | Akhmad Guntar
+        </p>
+
+        <div class="workflow-container">
+          <div class="workflow-step">
+            <div class="task-box">TUGAS KOMPLEKS</div>
+            <div class="arrow"></div>
+            <div class="task-box" style="background: #f0f0f0;">
+              (Membuat presentasi untuk mendapatkan tambahan anggaran)
+            </div>
+          </div>
+
+          <div class="step-row">
+            <div class="step-box blue">
+              <h3 style="color: #0066cc;">Tahap 1</h3>
+              <div class="detail-box blue">
+                Uraikan 3 manfaat utama dari proyek untuk tim marketing dan kuantifikasi potensi dampaknya
+              </div>
+            </div>
+
+            <div class="step-box green">
+              <h3 style="color: #00cc66;">Tahap 2</h3>
+              <div class="detail-box green">
+                Identifikasi keberatan potensial dari tim marketing dan siapkan argumen bantahan
+              </div>
+            </div>
+
+            <div class="step-box yellow">
+              <h3 style="color: #ffcc00;">Tahap 3</h3>
+              <div class="detail-box yellow">
+                Rekomendasikan format visual (grafik, bagan, dll.) untuk menyajikan data finansial dengan jelas dan impactful
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-section">
+          <h2 class="section-title">Langkah Praktis Implementasi</h2>
+          
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-card-header">
+                <div class="enhanced-icon-container">🎯</div>
+                <h3 class="step-title">1. Identifikasi Task Utama</h3>
+              </div>
+              <ul class="step-list">
+                <li>Pahami objective akhir</li>
+                <li>List semua komponen yang dibutuhkan</li>
+                <li>Tentukan dependencies antar komponen</li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-header">
+                <div class="enhanced-icon-container">📋</div>
+                <h3 class="step-title">2. Breakdown ke Sub-Tasks</h3>
+              </div>
+              <ul class="step-list">
+                <li>Urutkan berdasarkan logical flow</li>
+                <li>Pastikan setiap step measurable</li>
+                <li>Definisikan output tiap step</li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-header">
+                <div class="enhanced-icon-container">💡</div>
+                <h3 class="step-title">3. Desain Prompt per Step</h3>
+              </div>
+              <ul class="step-list">
+                <li>Berikan context spesifik</li>
+                <li>Tentukan format output yang diinginkan</li>
+                <li>Sertakan constraints bila ada</li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-header">
+                <div class="enhanced-icon-container">🔄</div>
+                <h3 class="step-title">4. Review & Iterate</h3>
+              </div>
+              <ul class="step-list">
+                <li>Validasi output tiap step</li>
+                <li>Pastikan alignment dengan objective</li>
+                <li>Refine prompt bila perlu</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h2 class="section-title">Studi Kasus: Pembangkit Listrik</h2>
+            <div class="case-study-container">
+              <div class="case-header">
+                <div class="enhanced-icon-container">⚡</div>
+                <h3>Develop preventive maintenance program untuk critical equipment PLTU</h3>
+              </div>
+
+              <div class="implementation-steps">
+                <div class="implementation-step">
+                  <h4 class="step-number">Step 1: Equipment Assessment</h4>
+                  <div class="step-content">
+                    <p>Analisa historical data untuk mengidentifikasi critical equipment berdasarkan:</p>
+                    <ul>
+                      <li>Frequency of failure</li>
+                      <li>Impact on generation</li>
+                      <li>Repair cost & time</li>
+                      <li>Sparepart availability</li>
+                    </ul>
+                    <p class="output-format">Output: Ranked list dengan justification</p>
+                  </div>
+                </div>
+
+                <div class="implementation-step">
+                  <h4 class="step-number">Step 2: Maintenance Strategy</h4>
+                  <div class="step-content">
+                    <p>Untuk setiap critical equipment yang teridentifikasi:</p>
+                    <ul>
+                      <li>Recommended inspection interval</li>
+                      <li>Key parameters to monitor</li>
+                      <li>Early warning indicators</li>
+                      <li>Required tools & expertise</li>
+                    </ul>
+                    <p class="output-format">Output: Maintenance checklist matrix</p>
+                  </div>
+                </div>
+
+                <div class="implementation-step">
+                  <h4 class="step-number">Step 3: Resource Planning</h4>
+                  <div class="step-content">
+                    <p>Hitung kebutuhan berdasarkan maintenance strategy:</p>
+                    <ul>
+                      <li>Manpower & expertise level</li>
+                      <li>Tools & equipment</li>
+                      <li>Sparepart inventory</li>
+                      <li>Estimated budget</li>
+                    </ul>
+                    <p class="output-format">Output: Resource requirement table</p>
+                  </div>
+                </div>
+
+                <div class="implementation-step">
+                  <h4 class="step-number">Step 4: Implementation Plan</h4>
+                  <div class="step-content">
+                    <p>Develop timeline implementasi dengan mempertimbangkan:</p>
+                    <ul>
+                      <li>Plant operation schedule</li>
+                      <li>Resource availability</li>
+                      <li>Training requirements</li>
+                      <li>Documentation needs</li>
+                    </ul>
+                    <p class="output-format">Output: Gantt chart format</p>
+                  </div>
+                </div>
+
+                <div class="implementation-step">
+                  <h4 class="step-number">Step 5: Performance Metrics</h4>
+                  <div class="step-content">
+                    <p>Design KPIs untuk mengukur efektivitas program:</p>
+                    <ul>
+                      <li>Equipment reliability metrics</li>
+                      <li>Maintenance cost tracking</li>
+                      <li>Program compliance</li>
+                      <li>Impact on plant performance</li>
+                    </ul>
+                    <p class="output-format">Output: Dashboard layout</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <h2 class="section-title" style="font-size: 2rem; color: var(--primary); margin-bottom: 1.5rem;">Manfaat Pendekatan Multi-Step</h2>
+          <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+<div class="enhanced-benefit-card step-card" style="background: rgba(255, 255, 255, 0.8); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1); transition: all 0.3s ease;">
+  <div class="benefit-header" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    <div class="enhanced-icon-container" style="font-size: 1.5rem;">🎯</div>
+    <h3 class="benefit-title" style="font-size: 1.2rem; color: var(--primary); margin: 0;">Fokus yang Lebih Tajam</h3>
+  </div>
+  <div class="benefit-content" style="color: #475569;">
+    <ul class="benefit-list" style="list-style: none; padding: 0; margin: 0;">
+      <li style="margin-bottom: 0.5rem;">Setiap tahap memiliki tujuan yang jelas dan terukur</li>
+      <li style="margin-bottom: 0.5rem;">Memudahkan konsentrasi pada satu aspek</li>
+      <li style="margin-bottom: 0.5rem;">Mengurangi cognitive overload</li>
+    </ul>
+  </div>
+</div>
+
+<div class="enhanced-benefit-card step-card" style="background: rgba(255, 255, 255, 0.8); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1); transition: all 0.3s ease;">
+  <div class="benefit-header" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    <div class="enhanced-icon-container" style="font-size: 1.5rem;">🔄</div>
+    <h3 class="benefit-title" style="font-size: 1.2rem; color: var(--primary); margin: 0;">Proses Iteratif</h3>
+  </div>
+  <div class="benefit-content" style="color: #475569;">
+    <ul class="benefit-list" style="list-style: none; padding: 0; margin: 0;">
+      <li style="margin-bottom: 0.5rem;">Memungkinkan perbaikan di setiap tahap</li>
+      <li style="margin-bottom: 0.5rem;">Feedback loop yang lebih cepat</li>
+      <li style="margin-bottom: 0.5rem;">Fleksibilitas dalam penyesuaian</li>
+    </ul>
+  </div>
+</div>
+
+<div class="enhanced-benefit-card step-card" style="background: rgba(255, 255, 255, 0.8); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1); transition: all 0.3s ease;">
+  <div class="benefit-header" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    <div class="enhanced-icon-container" style="font-size: 1.5rem;">📈</div>
+    <h3 class="benefit-title" style="font-size: 1.2rem; color: var(--primary); margin: 0;">Peningkatan Kualitas</h3>
+  </div>
+  <div class="benefit-content" style="color: #475569;">
+    <ul class="benefit-list" style="list-style: none; padding: 0; margin: 0;">
+      <li style="margin-bottom: 0.5rem;">Output yang lebih terstruktur</li>
+      <li style="margin-bottom: 0.5rem;">Hasil yang lebih komprehensif</li>
+      <li style="margin-bottom: 0.5rem;">Reduksi kesalahan signifikan</li>
+    </ul>
+  </div>
+</div>
+
+<div class="enhanced-benefit-card step-card" style="background: rgba(255, 255, 255, 0.8); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1); transition: all 0.3s ease;">
+  <div class="benefit-header" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    <div class="enhanced-icon-container" style="font-size: 1.5rem;">⚡</div>
+    <h3 class="benefit-title" style="font-size: 1.2rem; color: var(--primary); margin: 0;">Efisiensi Tinggi</h3>
+  </div>
+  <div class="benefit-content" style="color: #475569;">
+    <ul class="benefit-list" style="list-style: none; padding: 0; margin: 0;">
+      <li style="margin-bottom: 0.5rem;">Pengelolaan tugas lebih sistematis</li>
+      <li style="margin-bottom: 0.5rem;">Tracking progress lebih mudah</li>
+      <li style="margin-bottom: 0.5rem;">Optimasi resource dan waktu</li>
+    </ul>
+  </div>
+</div>
+
+<div class="enhanced-benefit-card step-card" style="background: rgba(255, 255, 255, 0.8); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1); transition: all 0.3s ease;">
+  <div class="benefit-header" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    <div class="enhanced-icon-container" style="font-size: 1.5rem;">🔍</div>
+    <h3 class="benefit-title" style="font-size: 1.2rem; color: var(--primary); margin: 0;">Kontrol yang Lebih Baik</h3>
+  </div>
+  <div class="benefit-content" style="color: #475569;">
+    <ul class="benefit-list" style="list-style: none; padding: 0; margin: 0;">
+      <li style="margin-bottom: 0.5rem;">Monitoring setiap tahap lebih detail</li>
+      <li style="margin-bottom: 0.5rem;">Identifikasi bottleneck lebih cepat</li>
+      <li style="margin-bottom: 0.5rem;">Manajemen risiko lebih efektif</li>
+    </ul>
+  </div>
+</div>
+
+<div class="enhanced-benefit-card step-card" style="background: rgba(255, 255, 255, 0.8); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1); transition: all 0.3s ease;">
+  <div class="benefit-header" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    <div class="enhanced-icon-container" style="font-size: 1.5rem;">🤝</div>
+    <h3 class="benefit-title" style="font-size: 1.2rem; color: var(--primary); margin: 0;">Kolaborasi Efektif</h3>
+  </div>
+  <div class="benefit-content" style="color: #475569;">
+    <ul class="benefit-list" style="list-style: none; padding: 0; margin: 0;">
+      <li style="margin-bottom: 0.5rem;">Pembagian tugas lebih jelas</li>
+      <li style="margin-bottom: 0.5rem;">Komunikasi antar tim lebih terstruktur</li>
+      <li style="margin-bottom: 0.5rem;">Sinkronisasi pekerjaan lebih baik</li>
+    </ul>
+  </div>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

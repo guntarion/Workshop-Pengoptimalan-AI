@@ -1,0 +1,6 @@
+downtime_cause,hours,percentage
+Mechanical,1440,30.0
+Electrical,960,20.0
+Control,720,15.0
+External,480,10.0
+Planned,1200,25.0

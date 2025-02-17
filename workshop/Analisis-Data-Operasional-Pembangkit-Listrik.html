@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop: Analisis Data Pembangkit Listrik</title>
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #3b82f6;
+        --accent-color: #60a5fa;
+        --background-color: #f8fafc;
+        --text-color: #1e293b;
+        --border-color: #e2e8f0;
+        --hint-color: #64748b;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        padding: 2rem;
+      }
+
+      h1 {
+        color: var(--primary-color);
+        font-size: 2.25rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .question {
+        margin-bottom: 2.5rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.75rem;
+        background-color: white;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .question:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px -3px rgb(0 0 0 / 0.1);
+      }
+
+      h2 {
+        color: var(--secondary-color);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      h2::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 1.5rem;
+        background-color: var(--secondary-color);
+        border-radius: 2px;
+      }
+
+      .sub-question {
+        margin: 1.5rem 0;
+        padding-left: 1.25rem;
+        border-left: 3px solid var(--accent-color);
+      }
+
+      h3 {
+        color: var(--secondary-color);
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+        color: var(--text-color);
+      }
+
+      code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        background-color: var(--background-color);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.9em;
+        color: var(--primary-color);
+      }
+
+      ul,
+      ol {
+        margin: 1rem 0 1rem 1.5rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      .hint {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: var(--background-color);
+        border-left: 4px solid var(--accent-color);
+        border-radius: 0.5rem;
+      }
+
+      .hint p {
+        color: var(--hint-color);
+        font-style: italic;
+        margin: 0;
+      }
+
+      .bonus {
+        background-color: #f0f9ff;
+        border: 1px dashed var(--accent-color);
+      }
+
+      .bonus h2 {
+        color: var(--accent-color);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 1.75rem;
+        }
+
+        h2 {
+          font-size: 1.25rem;
+        }
+
+        .question {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Analisis Data Operasional Pembangkit Listrik</h1>
+      <div style="
+  text-align: center;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  max-width: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+">
+  <p style="
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    color: #1e293b;
+    font-weight: 600;
+  ">Workshop Pengoptimalan AI</p>
+  <p style="
+    margin: 8px 0;
+    padding: 0;
+    font-size: 1rem;
+    color: #2563eb;
+    font-weight: 500;
+  ">18-21 Februari 2025</p>
+  <div style="
+    width: 40px;
+    height: 2px;
+    background: #e2e8f0;
+    margin: 12px auto;
+  "></div>
+  <p style="
+    margin: 0;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #64748b;
+  ">Nusantara Power Services | Akhmad Guntar</p>
+</div>
+
+      <p style="text-align: center; margin-bottom: 2rem">
+        <a href="Analisis-Data-Operasional_power_plant_data.csv" download style="
+          display: inline-block;
+          padding: 12px 24px;
+          background: #f8fafc;
+          color: #1e293b;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          transition: all 0.3s ease;
+        ">
+          <span style="color: #2563eb; margin-right: 8px">⬇️</span>
+          Unduh resource studi kasus
+        </a>
+      </p>
+
+      <div class="question">
+        <h2>Soal 1: Analisis Statistik Deskriptif & Efisiensi Pembangkit</h2>
+        <p>
+          Sebuah perusahaan listrik memiliki 3 pembangkit dengan data operasional harian selama periode 2020-2024. Data tersedia dalam file
+          <code>Analisis-Data-Operasional_power_plant_data.csv</code>.
+        </p>
+
+        <div class="sub-question">
+          <h3>Tugas:</h3>
+          <ol>
+            <li>
+              Lakukan analisis statistik deskriptif untuk parameter berikut:
+              <ul>
+                <li>Beban pembangkit (load_mw)</li>
+                <li>Efisiensi (efficiency)</li>
+                <li>Emisi (emissions_tons)</li>
+              </ul>
+            </li>
+            <li>Uji hipotesis: Apakah ada perbedaan signifikan antara efisiensi pembangkit gas (Plant_2) dengan target efisiensi 42% (α = 0.05)?</li>
+            <li>Visualisasikan distribusi efisiensi untuk ketiga pembangkit dalam bentuk box plot.</li>
+          </ol>
+          <div class="hint">
+            <p>
+              Petunjuk: Gunakan pendekatan statistik yang sesuai untuk menguji hipotesis (t-test atau z-test). Pertimbangkan penggunaan library
+              seperti scipy.stats untuk analisis statistik.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <h2>Soal 2: Analisis Korelasi & Prediksi Kinerja</h2>
+        <p>Menggunakan dataset yang sama, analisis hubungan antara berbagai parameter operasional pembangkit.</p>
+
+        <div class="sub-question">
+          <h3>Tugas:</h3>
+          <ol>
+            <li>
+              Analisis korelasi antara:
+              <ul>
+                <li>Beban pembangkit dengan tingkat emisi</li>
+                <li>Temperatur ambient dengan efisiensi</li>
+                <li>Beban pembangkit dengan biaya operasi</li>
+              </ul>
+            </li>
+            <li>
+              Buat model regresi untuk memprediksi:
+              <ul>
+                <li>Emisi berdasarkan beban pembangkit</li>
+                <li>Biaya operasi berdasarkan beban dan efisiensi</li>
+              </ul>
+            </li>
+            <li>Evaluasi akurasi model menggunakan R² dan RMSE</li>
+          </ol>
+          <div class="hint">
+            <p>Petunjuk: Pertimbangkan penggunaan regresi linear berganda untuk prediksi biaya operasi. Lakukan normalisasi data jika diperlukan.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <h2>Soal 3: Analisis Time Series & Optimasi Operasional</h2>
+        <p>Analisis pola temporal dari operasi pembangkit dan buat rekomendasi optimasi.</p>
+
+        <div class="sub-question">
+          <h3>Tugas:</h3>
+          <ol>
+            <li>
+              Analisis time series:
+              <ul>
+                <li>Identifikasi pola musiman beban pembangkit</li>
+                <li>Analisis tren efisiensi jangka panjang</li>
+                <li>Deteksi anomali dalam data operasional</li>
+              </ul>
+            </li>
+            <li>
+              Buat peramalan untuk 3 bulan ke depan:
+              <ul>
+                <li>Beban pembangkit</li>
+                <li>Biaya operasional</li>
+                <li>Revenue</li>
+              </ul>
+            </li>
+            <li>Berikan rekomendasi untuk optimasi operasional berdasarkan hasil analisis</li>
+          </ol>
+          <div class="hint">
+            <p>
+              Petunjuk: Gunakan teknik dekomposisi time series untuk memisahkan komponen trend, seasonal, dan residual. Pertimbangkan penggunaan model
+              SARIMA atau Prophet untuk peramalan.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="question bonus">
+        <h2>Bonus: Analisis Profitabilitas</h2>
+        <p>Analisis profitabilitas pembangkit dan faktor-faktor yang mempengaruhinya.</p>
+
+        <div class="sub-question">
+          <h3>Tugas:</h3>
+          <ol>
+            <li>Hitung dan bandingkan profitabilitas ketiga pembangkit</li>
+            <li>Identifikasi faktor-faktor yang paling mempengaruhi profitabilitas</li>
+            <li>Buat dashboard visual untuk monitoring kinerja finansial</li>
+          </ol>
+          <div class="hint">
+            <p>Petunjuk: Gunakan visualisasi interaktif seperti Plotly atau Bokeh untuk membuat dashboard yang informatif.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

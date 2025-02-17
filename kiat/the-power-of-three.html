@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Power of Three</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #3b82f6;
+        --background: #ffffff;
+        --text: #1e293b;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(120deg, #f0f9ff, #dbeafe);
+        color: var(--text);
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .slide-container {
+        max-width: 1200px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .pattern {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle at 25px 25px, rgba(37, 99, 235, 0.05) 2%, transparent 0%),
+          radial-gradient(circle at 75px 75px, rgba(37, 99, 235, 0.05) 2%, transparent 0%);
+        background-size: 100px 100px;
+        animation: patternMove 60s linear infinite;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      .content-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        padding: 3rem;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slide-title {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 1rem;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .slide-title:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .slide-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), transparent);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        color: #334155;
+        text-align: center;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .subtitle:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .section {
+        margin-bottom: 4rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 2rem;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .section-title:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .concept-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .concept-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0.5;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .concept-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .example-section {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      .example-section:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .architecture-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .architecture-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0.7;
+      }
+
+      .architecture-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .icon-container {
+        min-width: 2.5rem;
+        height: 2.5rem;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+        font-size: 1.5rem;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .concept-card:hover .icon-container {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+
+      .benefits {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .benefit-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0.5;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .benefit-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .code-block {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        font-family: 'Courier New', monospace;
+        white-space: pre-wrap;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .code-block:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .section-subtitle {
+        font-size: 1.4rem;
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .section-subtitle:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+      .iteration-cards {
+        display: grid;
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .iteration-card {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0.5;
+      }
+
+      .iteration-card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+      }
+
+      .iteration-title {
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .iteration-content {
+        color: #475569;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .tips-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .tips-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .architecture-title {
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .feature-list li {
+        margin: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .feature-list li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+      }
+
+      @keyframes patternMove {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100px 100px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .concept-cards,
+        .architecture-cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .concept-cards,
+        .architecture-cards,
+        .benefits {
+          grid-template-columns: 1fr;
+        }
+
+        .content-card {
+          padding: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pattern"></div>
+
+    <div class="slide-container">
+      <div class="content-card">
+        <h1 class="slide-title">The Power of Three</h1>
+        <p class="subtitle">Metode efektif untuk mengeksplorasi berbagai solusi dan mengambil keputusan yang optimal</p>
+        <p style="text-align: center; margin-bottom: 2rem">
+          Workshop Pengoptimalan AI | 18-21 Februari 2025 | Nusantara Power Services | Akhmad Guntar
+        </p>
+
+        <div class="section">
+          <h2 class="section-title">Konsep Dasar</h2>
+          <div class="concept-cards">
+            <div class="concept-card">
+              <div class="icon-container">🎯</div>
+              <div>
+                <h3>Variasi Ide</h3>
+                <p>Mendapatkan beragam perspektif dan pendekatan dalam menyelesaikan masalah</p>
+              </div>
+            </div>
+            <div class="concept-card">
+              <div class="icon-container">⚖️</div>
+              <div>
+                <h3>Perbandingan</h3>
+                <p>Membandingkan pendekatan berbeda untuk menemukan solusi optimal</p>
+              </div>
+            </div>
+            <div class="concept-card">
+              <div class="icon-container">✨</div>
+              <div>
+                <h3>Pemilihan</h3>
+                <p>Memilih opsi terbaik berdasarkan konteks dan kebutuhan spesifik</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Contoh Implementasi: Sistem Monitoring Pembangkit Listrik</h2>
+          <div class="example-section">
+            <h3>Contoh Prompt yang Baik:</h3>
+            <p>
+              "Sebagai system architect di pembangkit listrik tenaga uap 500MW, saya membutuhkan solusi monitoring realtime untuk efisiensi boiler,
+              konsumsi bahan bakar, temperature turbin, dan vibrasi bearing. Berikan 3 variasi arsitektur dengan pertimbangan reliability, cost,
+              maintenance, dan scalability."
+            </p>
+
+            <div class="architecture-cards">
+              <div class="architecture-card">
+                <h4 class="architecture-title">Arsitektur Tradisional</h4>
+                <ul class="feature-list">
+                  <li>SCADA based system</li>
+                  <li>Database terpusat</li>
+                  <li>HMI berbasis desktop</li>
+                  <li>Komunikasi industrial ethernet</li>
+                </ul>
+              </div>
+
+              <div class="architecture-card">
+                <h4 class="architecture-title">Arsitektur Modern</h4>
+                <ul class="feature-list">
+                  <li>IoT sensors</li>
+                  <li>Cloud based storage</li>
+                  <li>Web based dashboard</li>
+                  <li>Real-time analytics</li>
+                </ul>
+              </div>
+
+              <div class="architecture-card">
+                <h4 class="architecture-title">Arsitektur Hybrid</h4>
+                <ul class="feature-list">
+                  <li>Edge computing di plant</li>
+                  <li>Redundant storage</li>
+                  <li>Mobile + desktop interface</li>
+                  <li>AI predictive maintenance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Nilai dalam Konteks Industrial</h2>
+          <div class="benefits">
+            <div class="benefit-card">
+              <div class="icon-container">💰</div>
+              <div>
+                <h3>Investasi Besar</h3>
+                <p>Keputusan melibatkan investasi signifikan yang membutuhkan pertimbangan matang</p>
+              </div>
+            </div>
+            <div class="benefit-card">
+              <div class="icon-container">⚡</div>
+              <div>
+                <h3>Keandalan Kritis</h3>
+                <p>Sistem harus menjamin keandalan tinggi untuk operasional yang berkelanjutan</p>
+              </div>
+            </div>
+            <div class="benefit-card">
+              <div class="icon-container">🔄</div>
+              <div>
+                <h3>Jangka Panjang</h3>
+                <p>Membutuhkan pertimbangan dampak dan maintenance jangka panjang</p>
+              </div>
+            </div>
+            <div class="benefit-card">
+              <div class="icon-container">👥</div>
+              <div>
+                <h3>Multi-Stakeholder</h3>
+                <p>Melibatkan berbagai stakeholder dengan kebutuhan yang berbeda</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Implementasi Praktis</h2>
+
+          <div class="example-section">
+            <h3 class="section-subtitle">Persiapan Prompt yang Terstruktur</h3>
+            <div class="structured-prompt-card">
+              <div class="prompt-example">
+                <h4 class="example-title">Contoh Struktur Prompt:</h4>
+                <pre class="code-block">
+Role: Senior Engineer Pembangkit
+Context: Optimasi sistem predictive maintenance turbin gas
+Constraint: Budget 1M USD, implementasi max 6 bulan
+Request: Berikan 3 variasi solusi dengan mempertimbangkan:
+- Accuracy prediksi
+- Speed implementasi
+- Maintenance cost
+- Team capability</pre
+                >
+              </div>
+            </div>
+
+            <div class="prompt-steps">
+              <ul class="feature-list">
+                <li>Definisikan konteks dengan jelas</li>
+                <li>Tentukan kriteria/constraint spesifik</li>
+                <li>Minta eksplisit 3 variasi dalam prompt</li>
+                <li>Berikan parameter pembanding</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="example-section">
+            <h3 class="section-subtitle">Evaluasi & Iterasi Respon</h3>
+            <div class="iteration-cards">
+              <div class="iteration-card">
+                <h4 class="iteration-title">ITERASI 1: Initial Request</h4>
+                <p class="iteration-content">"Berikan 3 variasi sistem early warning untuk vibrasi berlebih pada turbin"</p>
+              </div>
+
+              <div class="iteration-card">
+                <h4 class="iteration-title">ITERASI 2: Refined Request</h4>
+                <p class="iteration-content">
+                  "Dari 3 variasi sebelumnya, kita focus ke IoT based solution. Berikan 3 variasi detail arsitektur IoT dengan trade-off berbeda
+                  antara cost vs reliability"
+                </p>
+              </div>
+
+              <div class="iteration-card">
+                <h4 class="iteration-title">ITERASI 3: Final Specification</h4>
+                <p class="iteration-content">
+                  "Untuk arsitektur IoT terpilih, berikan 3 variasi detail implementasi dengan: <br />- Tech stack berbeda <br />- Timeline
+                  implementasi <br />- Resource requirement <br />- Cost breakdown"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tips-section">
+            <h3 class="section-subtitle">Tips Implementasi</h3>
+            <div class="tips-cards">
+              <div class="benefit-card">
+                <div class="icon-container">🔍</div>
+                <div>
+                  <h3>Scope First</h3>
+                  <p>Selalu mulai dengan scope luas, kemudian fokus ke detail</p>
+                </div>
+              </div>
+
+              <div class="benefit-card">
+                <div class="icon-container">🔄</div>
+                <div>
+                  <h3>Iterative Feedback</h3>
+                  <p>Gunakan feedback dari setiap iterasi untuk memperbaiki request berikutnya</p>
+                </div>
+              </div>
+
+              <div class="benefit-card">
+                <div class="icon-container">📝</div>
+                <div>
+                  <h3>Documentation</h3>
+                  <p>Dokumentasikan semua variasi untuk referensi</p>
+                </div>
+              </div>
+
+              <div class="benefit-card">
+                <div class="icon-container">👥</div>
+                <div>
+                  <h3>Multiple Perspectives</h3>
+                  <p>Libatkan perspective berbeda dalam evaluasi</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

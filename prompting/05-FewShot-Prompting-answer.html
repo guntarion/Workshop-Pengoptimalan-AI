@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop AI Prompting - Few Shot Prompting</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      h2 {
+        color: #2980b9;
+        margin-top: 30px;
+      }
+      .concept-box {
+        background-color: #e8f6f3;
+        border-left: 4px solid #1abc9c;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .tips-box {
+        background-color: #fef9e7;
+        border-left: 4px solid #f1c40f;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .department {
+        background-color: #f8f9fa;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .prompt-basic {
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-family: monospace;
+      }
+      .example-answer {
+        display: none;
+        background-color: #e8f6f3;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border-left: 4px solid #2ecc71;
+      }
+      .toggle-btn {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      .toggle-btn:hover {
+        background-color: #2980b9;
+      }
+      pre {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9em;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Workshop AI Prompting: Few Shot Prompting</h1>
+      <div style="text-align: center; margin: 2rem 0; font-family: 'Inter', system-ui, -apple-system, sans-serif">
+        <p style="margin: 0; padding: 0; font-size: 1.1rem; color: #1e293b; font-weight: 500">Workshop Pengoptimalan AI</p>
+        <p style="margin: 8px 0; padding: 4px 16px; font-size: 0.9rem; color: #2563eb; display: inline-block; border: 1px solid #2563eb; border-radius: 20px;">
+          18-21 Februari 2025
+        </p>
+        <p style="margin: 8px 0 0 0; padding: 0; font-size: 0.95rem; color: #64748b; letter-spacing: 0.5px">
+          Nusantara Power Services | Akhmad Guntar
+        </p>
+      </div>
+
+      <div class="concept-box">
+        <h2>Konsep Few Shot Prompting</h2>
+        <p>
+          Few Shot Prompting adalah teknik memberikan beberapa contoh (shots) kepada AI untuk menunjukkan pola atau format yang
+          diinginkan sebelum memberikan tugas utama.
+        </p>
+        <p>
+          Dengan memberikan 2-3 contoh kasus serupa beserta jawaban yang diharapkan, AI dapat lebih memahami konteks dan
+          menghasilkan output yang lebih sesuai dengan kebutuhan.
+        </p>
+      </div>
+
+      <div class="tips-box">
+        <h2>Tips Few Shot Prompting</h2>
+        <ul>
+          <li>Berikan 2-3 contoh yang mencakup variasi kasus</li>
+          <li>Pastikan format output konsisten antar contoh</li>
+          <li>Sertakan detail teknis yang relevan</li>
+          <li>Gunakan contoh yang mirip dengan kasus aktual</li>
+          <li>Manfaatkan format terstruktur (JSON, XML, dll)</li>
+        </ul>
+      </div>
+
+      <h2>Latihan Few Shot Prompting</h2>
+      <p>Berikut adalah contoh-contoh kasus untuk berbagai departemen:</p>
+
+      <div class="department">
+        <h3>HRD</h3>
+        <div class="prompt-basic">
+          "Evaluasi hasil assessment karyawan dan berikan rekomendasi pengembangan."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('hrd-answer')">Lihat Contoh</button>
+        <div id="hrd-answer" class="example-answer">
+          <pre><code>&lt;contoh_1&gt;
+Input: 
+Nama: Budi Santoso
+Posisi: Operator CCR
+Assessment Results:
+- Technical: 75/100
+- Safety: 85/100
+- Leadership: 65/100
+- Communication: 80/100
+
+Output:
+{
+  "strengths": ["Safety awareness", "Communication skills"],
+  "areas_for_improvement": ["Leadership capabilities", "Technical knowledge"],
+  "recommended_training": [
+    "Advanced DCS Operation",
+    "Basic Leadership for Operators"
+  ],
+  "development_timeline": "6 months",
+  "mentoring_needs": "Assign senior operator as mentor"
+}
+&lt;/contoh_1&gt;
+
+&lt;contoh_2&gt;
+Input:
+Nama: Sarah Wijaya
+Posisi: Supervisor Maintenance
+Assessment Results:
+- Technical: 90/100
+- Safety: 90/100
+- Leadership: 75/100
+- Communication: 70/100
+
+Output:
+{
+  "strengths": ["Technical expertise", "Safety mindset"],
+  "areas_for_improvement": ["Team communication", "Delegation skills"],
+  "recommended_training": [
+    "Effective Communication for Leaders",
+    "Advanced People Management"
+  ],
+  "development_timeline": "3 months",
+  "mentoring_needs": "Executive coaching program"
+}
+&lt;/contoh_2&gt;
+
+&lt;tugas&gt;
+Berikan evaluasi untuk:
+Nama: Ahmad Riyadi
+Posisi: Engineer Pemeliharaan
+Assessment Results:
+- Technical: 85/100
+- Safety: 70/100
+- Leadership: 80/100
+- Communication: 85/100
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Safety Officer</h3>
+        <div class="prompt-basic">
+          "Analisis insiden dan berikan rekomendasi perbaikan sistem."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('safety-answer')">Lihat Contoh</button>
+        <div id="safety-answer" class="example-answer">
+          <pre><code>&lt;contoh_1&gt;
+Input:
+Lokasi: PLTU Unit 2
+Jenis: Near Miss
+Deskripsi: Operator hampir tersengat listrik saat melakukan pemeriksaan panel karena isolasi kabel yang rusak
+
+Output:
+{
+  "risk_level": "High",
+  "root_causes": [
+    "Inadequate maintenance schedule",
+    "Missing pre-job inspection",
+    "Worn out insulation"
+  ],
+  "immediate_actions": [
+    "Replace damaged cables",
+    "Inspect all similar panels",
+    "Issue safety alert"
+  ],
+  "preventive_measures": [
+    "Update PM checklist",
+    "Enhance LOTO procedure",
+    "Refresh electrical safety training"
+  ],
+  "verification_method": "Weekly safety audit"
+}
+&lt;/contoh_1&gt;
+
+&lt;contoh_2&gt;
+Input:
+Lokasi: Coal Handling System
+Jenis: Incident
+Deskripsi: Contractor terpeleset di coal yard setelah hujan, mengalami minor injury
+
+Output:
+{
+  "risk_level": "Medium",
+  "root_causes": [
+    "Slippery surface post-rain",
+    "Inadequate drainage",
+    "Improper footwear"
+  ],
+  "immediate_actions": [
+    "Install anti-slip mats",
+    "Improve drainage system",
+    "Update PPE requirements"
+  ],
+  "preventive_measures": [
+    "Regular yard maintenance",
+    "Contractor safety briefing",
+    "Weather warning system"
+  ],
+  "verification_method": "Daily yard inspection"
+}
+&lt;/contoh_2&gt;
+
+&lt;tugas&gt;
+Analisis insiden berikut:
+Lokasi: Cooling Water Pump
+Jenis: Near Miss
+Deskripsi: Teknisi mekanik hampir terkena semburan air panas saat membuka valve karena prosedur isolasi tidak diikuti dengan benar
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+
+      <div class="department">
+        <h3>Pengadaan</h3>
+        <div class="prompt-basic">
+          "Evaluasi vendor dan berikan rekomendasi keputusan tender."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('procurement-answer')">Lihat Contoh</button>
+        <div id="procurement-answer" class="example-answer">
+          <pre><code>&lt;contoh_1&gt;
+Input:
+Tender: Overhaul Turbin
+Vendor Evaluasi:
+- PT ABC Power
+  * Harga: 8.5M
+  * Pengalaman: 12 tahun
+  * Tenaga Ahli: 15 orang
+  * Performance Record: 90%
+- PT XYZ Engineering
+  * Harga: 7.2M
+  * Pengalaman: 5 tahun
+  * Tenaga Ahli: 8 orang
+  * Performance Record: 85%
+
+Output:
+{
+  "rekomendasi": "PT ABC Power",
+  "analisis": {
+    "technical_score": 85,
+    "commercial_score": 75,
+    "total_score": 82,
+    "key_strengths": [
+      "Track record proven",
+      "Tenaga ahli memadai",
+      "Experience dengan unit serupa"
+    ],
+    "risks": [
+      "Premium price vs competitor",
+      "Resource availability during peak season"
+    ]
+  },
+  "mitigasi": [
+    "Price negotiation target 5%",
+    "Lock resource commitment in contract",
+    "Detailed milestone payment terms"
+  ],
+  "alternatif": "PT XYZ sebagai backup dengan syarat additional expert"
+}
+&lt;/contoh_1&gt;
+
+&lt;contoh_2&gt;
+Input:
+Tender: Chemical Water Treatment
+Vendor Evaluasi:
+- PT Chemical Solution
+  * Harga: 2.1M
+  * Pengalaman: 8 tahun
+  * Technical Compliance: 95%
+  * Delivery Performance: 88%
+- PT Water Tech
+  * Harga: 2.3M
+  * Pengalaman: 15 tahun
+  * Technical Compliance: 100%
+  * Delivery Performance: 95%
+
+Output:
+{
+  "rekomendasi": "PT Water Tech",
+  "analisis": {
+    "technical_score": 90,
+    "commercial_score": 85,
+    "total_score": 88,
+    "key_strengths": [
+      "Full technical compliance",
+      "Proven delivery performance",
+      "Extensive experience"
+    ],
+    "risks": [
+      "Higher price point",
+      "Limited local stock"
+    ]
+  },
+  "mitigasi": [
+    "Negotiate consignment stock",
+    "Volume-based pricing scheme",
+    "Quarterly performance review"
+  ],
+  "alternatif": "PT Chemical Solution dengan syarat performance bond"
+}
+&lt;/contoh_2&gt;
+
+&lt;tugas&gt;
+Evaluasi tender berikut:
+Tender: Jasa Pemeliharaan Conveyor
+Vendor Evaluasi:
+- PT Belt Systems
+  * Harga: 1.8M
+  * Pengalaman: 10 tahun
+  * Technical Compliance: 90%
+  * Safety Record: 95%
+- PT Conveyor Indo
+  * Harga: 1.5M
+  * Pengalaman: 7 tahun
+  * Technical Compliance: 85%
+  * Safety Record: 90%
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Supply Chain</h3>
+        <div class="prompt-basic">
+          "Optimasi inventory dan rekomendasi stocking strategy."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('supply-answer')">Lihat Contoh</button>
+        <div id="supply-answer" class="example-answer">
+          <pre><code>&lt;contoh_1&gt;
+Input:
+Material: Bearing SKF 23156
+Data Inventory:
+- Current Stock: 4 units
+- Usage 12 bulan: 8 units
+- Lead Time: 3 bulan
+- Unit Cost: $5,000
+- Criticality: High
+- Storage Cost: 15%/tahun
+
+Output:
+{
+  "inventory_strategy": {
+    "min_stock": 2,
+    "max_stock": 6,
+    "reorder_point": 3,
+    "order_quantity": 4,
+    "safety_stock": 2
+  },
+  "cost_analysis": {
+    "holding_cost": "$4,500/tahun",
+    "stockout_risk_cost": "$25,000/event",
+    "optimal_order_cost": "$20,000/order"
+  },
+  "recommendations": [
+    "Implement min-max control",
+    "Setup vendor consignment",
+    "Weekly stock review"
+  ],
+  "risk_mitigation": [
+    "Alternative vendor qualification",
+    "Cross-reference parts listing",
+    "Emergency delivery contract"
+  ]
+}
+&lt;/contoh_1&gt;
+
+&lt;contoh_2&gt;
+Input:
+Material: Filter Cartridge
+Data Inventory:
+- Current Stock: 50 units
+- Usage 12 bulan: 200 units
+- Lead Time: 1 bulan
+- Unit Cost: $100
+- Criticality: Medium
+- Storage Cost: 10%/tahun
+
+Output:
+{
+  "inventory_strategy": {
+    "min_stock": 20,
+    "max_stock": 80,
+    "reorder_point": 30,
+    "order_quantity": 50,
+    "safety_stock": 10
+  },
+  "cost_analysis": {
+    "holding_cost": "$500/tahun",
+    "stockout_risk_cost": "$1,000/event",
+    "optimal_order_cost": "$5,000/order"
+  },
+  "recommendations": [
+    "Implement Kanban system",
+    "Quarterly supplier review",
+    "ABC analysis implementation"
+  ],
+  "risk_mitigation": [
+    "Local supplier development",
+    "Bulk purchase discount",
+    "VMI program exploration"
+  ]
+}
+&lt;/contoh_2&gt;
+
+&lt;tugas&gt;
+Analisis material berikut:
+Material: V-Belt Gates 3V710
+Data Inventory:
+- Current Stock: 10 units
+- Usage 12 bulan: 30 units
+- Lead Time: 2 bulan
+- Unit Cost: $150
+- Criticality: Medium
+- Storage Cost: 12%/tahun
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Akuntansi</h3>
+        <div class="prompt-basic">
+          "Analisis varians biaya operasional dan berikan rekomendasi pengendalian."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('accounting-answer')">Lihat Contoh</button>
+        <div id="accounting-answer" class="example-answer">
+          <pre><code>&lt;contoh_1&gt;
+Input:
+Unit: PLTU Unit 1
+Period: Q3 2024
+Data:
+- O&M Budget: 12.5M
+- Actual Spend: 13.8M
+- Major Categories:
+  * Spare Parts: +800K
+  * Chemicals: +200K
+  * Contractors: +300K
+
+Output:
+{
+  "variance_analysis": {
+    "total_variance": "+1.3M (10.4%)",
+    "significant_items": [
+      {
+        "category": "Spare Parts",
+        "variance": "+800K",
+        "root_causes": [
+          "Emergency bearing replacement",
+          "Unplanned pump overhaul",
+          "Price escalation on imports"
+        ]
+      },
+      {
+        "category": "Contractors",
+        "variance": "+300K",
+        "root_causes": [
+          "Additional scope in maintenance",
+          "Overtime during forced outage"
+        ]
+      }
+    ]
+  },
+  "recommendations": [
+    "Enhance preventive maintenance",
+    "Review contractor rate structure",
+    "Implement spare parts pooling"
+  ],
+  "kpi_impacts": {
+    "budget_performance": "Below target",
+    "cost_per_kwh": "+5%",
+    "maintenance_ratio": "+8%"
+  }
+}
+&lt;/contoh_1&gt;
+
+&lt;contoh_2&gt;
+Input:
+Unit: PLTGU Block 1
+Period: Q4 2024
+Data:
+- O&M Budget: 15M
+- Actual Spend: 14.2M
+- Major Categories:
+  * Fuel: -500K
+  * Maintenance: -200K
+  * Labor: -100K
+
+Output:
+{
+  "variance_analysis": {
+    "total_variance": "-800K (5.3%)",
+    "significant_items": [
+      {
+        "category": "Fuel",
+        "variance": "-500K",
+        "root_causes": [
+          "Improved heat rate",
+          "Lower dispatch hours",
+          "Optimized startup procedure"
+        ]
+      },
+      {
+        "category": "Maintenance",
+        "variance": "-200K",
+        "root_causes": [
+          "Deferred non-critical maintenance",
+          "In-house repairs vs contractor"
+        ]
+      }
+    ]
+  },
+  "recommendations": [
+    "Document efficiency improvements",
+    "Review maintenance deferrals",
+    "Update budget baseline"
+  ],
+  "kpi_impacts": {
+    "budget_performance": "Above target",
+    "cost_per_kwh": "-3%",
+    "maintenance_ratio": "-5%"
+  }
+}
+&lt;/contoh_2&gt;
+
+&lt;tugas&gt;
+Analisis data berikut:
+Unit: PLTU Unit 2
+Period: Q1 2025
+Data:
+- O&M Budget: 13M
+- Actual Spend: 14.5M
+- Major Categories:
+  * Maintenance: +900K
+  * Chemicals: +400K
+  * Labor: +200K
+&lt;/tugas&gt;</code></pre>
+        </div>
+      </div>
+
+      <script>
+        function toggleAnswer(id) {
+          const answer = document.getElementById(id);
+          if (answer.style.display === 'none' || answer.style.display === '') {
+            answer.style.display = 'block';
+          } else {
+            answer.style.display = 'none';
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

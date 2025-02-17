@@ -1,0 +1,5 @@
+maintenance_type,hours,percentage
+Preventive,2160,45.0
+Corrective,960,20.0
+Predictive,1440,30.0
+Emergency,240,5.0

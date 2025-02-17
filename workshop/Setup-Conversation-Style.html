@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaya Percakapan di Industri Pembangkit Listrik</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prismjs/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prismjs/1.29.0/components/prism-javascript.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prismjs/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <!-- Add Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen" x-data="{ activeTab: 'technical' }">
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl font-bold mb-4">Gaya Percakapan Claude.AI</h1>
+                <p class="text-xl">Panduan Komprehensif untuk Industri Pembangkit Listrik</p>
+                                <div style="
+                  text-align: center;
+                  margin: 2rem 0;
+                  padding: 1.5rem;
+                  background: linear-gradient(to right, #f8fafc, #ffffff, #f8fafc);
+                  border-radius: 12px;
+                  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+                ">
+                  <p style="
+                    margin: 0;
+                    padding: 0;
+                    font-size: 1.1rem;
+                    color: #1e293b;
+                    font-weight: 500;
+                  ">Workshop Pengoptimalan AI 
+                    <span style="
+                      display: inline-block;
+                      padding: 4px 12px;
+                      background: #2563eb;
+                      color: white;
+                      border-radius: 16px;
+                      font-size: 0.9rem;
+                      margin-left: 8px;
+                    ">18-21 Februari 2025</span>
+                  </p>
+                  <p style="
+                    margin: 8px 0 0 0;
+                    padding: 0;
+                    font-size: 1rem;
+                    color: #64748b;
+                  ">Nusantara Power Services | <span style="color: #2563eb">Akhmad Guntar</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container mx-auto px-4 py-8">
+            <!-- Style Selector -->
+            <div class="flex flex-wrap gap-4 mb-8">
+                <button 
+                    @click="activeTab = 'technical'" 
+                    :class="{'bg-blue-600 text-white': activeTab === 'technical', 'bg-gray-200': activeTab !== 'technical'}"
+                    class="px-4 py-2 rounded-lg transition-colors duration-200">
+                    Technical Expert
+                </button>
+                <button 
+                    @click="activeTab = 'administrative'" 
+                    :class="{'bg-blue-600 text-white': activeTab === 'administrative', 'bg-gray-200': activeTab !== 'administrative'}"
+                    class="px-4 py-2 rounded-lg transition-colors duration-200">
+                    Administrative
+                </button>
+                <button 
+                    @click="activeTab = 'training'" 
+                    :class="{'bg-blue-600 text-white': activeTab === 'training', 'bg-gray-200': activeTab !== 'training'}"
+                    class="px-4 py-2 rounded-lg transition-colors duration-200">
+                    Training
+                </button>
+                <button 
+                    @click="activeTab = 'supply'" 
+                    :class="{'bg-blue-600 text-white': activeTab === 'supply', 'bg-gray-200': activeTab !== 'supply'}"
+                    class="px-4 py-2 rounded-lg transition-colors duration-200">
+                    Supply Chain
+                </button>
+                <button 
+                    @click="activeTab = 'management'" 
+                    :class="{'bg-blue-600 text-white': activeTab === 'management', 'bg-gray-200': activeTab !== 'management'}"
+                    class="px-4 py-2 rounded-lg transition-colors duration-200">
+                    Management
+                </button>
+            </div>
+
+            <!-- Content Panels -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+
+                <!-- Technical Expert Panel -->
+                <div x-show="activeTab === 'technical'" class="space-y-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold ml-4">Technical Expert Style</h2>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2">Karakteristik:</h3>
+                        <ul class="list-disc pl-6 mb-4">
+                            <li>Detail teknis yang mendalam</li>
+                            <li>Terminologi spesifik industri</li>
+                            <li>Fokus pada parameter operasional</li>
+                        </ul>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white">
+                            <p class="text-gray-400 mb-2">Contoh Percakapan:</p>
+                            <p class="mb-2">User: "Bagaimana prosedur pemeliharaan untuk turbin gas?"</p>
+                            <p>Claude: "Pemeliharaan turbin gas terdiri dari beberapa level inspeksi: combustion inspection (CI), hot gas path inspection (HGPI), dan major inspection (MI). Setiap level memiliki interval dan scope yang berbeda berdasarkan equivalent operating hours (EOH) dan start cycles..."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Administrative Panel -->
+                <div x-show="activeTab === 'administrative'" class="space-y-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold ml-4">Administrative Style</h2>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2">Karakteristik:</h3>
+                        <ul class="list-disc pl-6 mb-4">
+                            <li>Formal dan terstruktur</li>
+                            <li>Fokus pada prosedur dan dokumentasi</li>
+                            <li>Kepatuhan terhadap regulasi</li>
+                        </ul>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white">
+                            <p class="text-gray-400 mb-2">Contoh Percakapan:</p>
+                            <p class="mb-2">User: "Bagaimana proses pengajuan cuti tahunan?"</p>
+                            <p>Claude: "Prosedur pengajuan cuti tahunan dilakukan melalui sistem HRIS dengan tahapan berikut: 1) Pengisian formulir FPC-01, 2) Persetujuan supervisor langsung, 3) Validasi HRD..."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training Panel -->
+                <div x-show="activeTab === 'training'" class="space-y-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold ml-4">Training Style</h2>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2">Karakteristik:</h3>
+                        <ul class="list-disc pl-6 mb-4">
+                            <li>Penjelasan bertahap</li>
+                            <li>Banyak contoh dan ilustrasi</li>
+                            <li>Pendekatan interaktif</li>
+                        </ul>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white">
+                            <p class="text-gray-400 mb-2">Contoh Percakapan:</p>
+                            <p class="mb-2">User: "Jelaskan proses start up pembangkit untuk operator baru"</p>
+                            <p>Claude: "Mari kita pelajari proses start up step by step. Pertama, kita akan membahas pre-start checklist. Bayangkan ini seperti memeriksa mobil sebelum perjalanan jauh..."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supply Chain Panel -->
+                <div x-show="activeTab === 'supply'" class="space-y-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold ml-4">Supply Chain Style</h2>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2">Karakteristik:</h3>
+                        <ul class="list-disc pl-6 mb-4">
+                            <li>Fokus pada data numerik</li>
+                            <li>Timeline dan tracking</li>
+                            <li>Status dan progress update</li>
+                        </ul>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white">
+                            <p class="text-gray-400 mb-2">Contoh Percakapan:</p>
+                            <p class="mb-2">User: "Update status pengadaan spare part turbin?"</p>
+                            <p>Claude: "Status pengadaan: PO terbit 15 Jan, lead time 12 minggu, ETA di site 10 Apr. Current progress: fabrication phase 60%, quality check scheduled next week..."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Management Panel -->
+                <div x-show="activeTab === 'management'" class="space-y-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold ml-4">Management Style</h2>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2">Karakteristik:</h3>
+                        <ul class="list-disc pl-6 mb-4">
+                            <li>Ringkas dan fokus pada KPI</li>
+                            <li>Overview level informasi</li>
+                            <li>Highlight performa dan issue</li>
+                        </ul>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white">
+                            <p class="text-gray-400 mb-2">Contoh Percakapan:</p>
+                            <p class="mb-2">User: "Bagaimana performance pembangkit bulan ini?"</p>
+                            <p>Claude: "Highlight performance Januari: Availability Factor 92% (target 90%), EFOR 3.2% (di bawah threshold 5%), heat rate 2% lebih baik dari target. Issue utama: 1 kali trip karena..."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage Guide Section -->
+            <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4">Panduan Penggunaan</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold">Cara Menggunakan:</h3>
+                        <ol class="list-decimal pl-6">
+                            <li>Pilih style yang sesuai dari dropdown menu</li>
+                            <li>Style akan menyesuaikan:
+                                <ul class="list-disc pl-6 mt-2">
+                                    <li>Level detail teknis</li>
+                                    <li>Penggunaan terminologi</li>
+                                    <li>Format jawaban</li>
+                                    <li>Pendekatan penjelasan</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold">Penyesuaian Berdasarkan:</h3>
+                        <ul class="list-disc pl-6">
+                            <li>Target audience (teknisi vs manajemen)</li>
+                            <li>Kompleksitas topik</li>
+                            <li>Tujuan komunikasi</li>
+                            <li>Tingkat formalitas yang diperlukan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 mt-8">
+            <div class="container mx-auto px-4 text-center">
+                <p>© 2025 Power Plant Industry Guide. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop AI Prompting - Zero Prompting</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      h2 {
+        color: #2980b9;
+        margin-top: 30px;
+      }
+      .concept-box {
+        background-color: #e8f6f3;
+        border-left: 4px solid #1abc9c;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .tips-box {
+        background-color: #fef9e7;
+        border-left: 4px solid #f1c40f;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .department {
+        background-color: #f8f9fa;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .prompt-basic {
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-family: monospace;
+      }
+      .example-answer {
+        display: none;
+        background-color: #e8f6f3;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border-left: 4px solid #2ecc71;
+      }
+      .toggle-btn {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      .toggle-btn:hover {
+        background-color: #2980b9;
+      }
+      pre {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9em;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Workshop AI Prompting: Zero Prompting</h1>
+      <div style="text-align: center; margin: 2rem 0;">
+        <p style="margin: 0; padding: 0; font-size: 1.1rem; color: #1e293b; font-weight: 500">Workshop Pengoptimalan AI</p>
+        <p style="margin: 8px 0; padding: 4px 16px; font-size: 0.9rem; color: #2563eb; display: inline-block; border: 1px solid #2563eb; border-radius: 20px;">
+          18-21 Februari 2025
+        </p>
+        <p style="margin: 8px 0 0 0; padding: 0; font-size: 0.95rem; color: #64748b;">
+          Nusantara Power Services | Akhmad Guntar
+        </p>
+      </div>
+
+      <div class="concept-box">
+        <h2>Konsep Zero Prompting</h2>
+        <p>
+          Zero prompting adalah teknik meminta AI untuk melakukan tugas tanpa memberikan contoh atau konteks tambahan. Teknik ini efektif untuk:
+        </p>
+        <ul>
+          <li>Tugas-tugas yang relatif sederhana dan jelas</li>
+          <li>Pertanyaan yang spesifik dan terfokus</li>
+          <li>Analisis yang tidak memerlukan format khusus</li>
+          <li>Situasi yang membutuhkan respon cepat</li>
+        </ul>
+      </div>
+
+      <div class="tips-box">
+        <h2>Tips Zero Prompting</h2>
+        <ul>
+          <li>Gunakan bahasa yang jelas dan spesifik</li>
+          <li>Fokus pada satu tugas dalam satu prompt</li>
+          <li>Sebutkan output yang diharapkan</li>
+          <li>Hindari instruksi yang ambigu</li>
+          <li>Verifikasi hasilnya sesuai standar yang berlaku</li>
+        </ul>
+      </div>
+
+      <h2>Contoh Zero Prompting per Departemen</h2>
+
+      <div class="department">
+        <h3>HRD</h3>
+        <div class="prompt-basic">
+          "Evaluasi hasil interview kandidat berikut:
+Teknis: 85/100
+Komunikasi: 78/100
+Problem Solving: 82/100
+Culture Fit: 88/100
+Pengalaman: 5 tahun di bidang yang relevan"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('hrd-answer')">Lihat Contoh</button>
+        <div id="hrd-answer" class="example-answer">
+          <pre><code>Berdasarkan hasil evaluasi:
+
+Kekuatan:
+- Culture fit sangat baik (88/100), menunjukkan potensi adaptasi yang baik dengan tim
+- Kompetensi teknis kuat (85/100), memenuhi kebutuhan posisi
+- Pengalaman 5 tahun memberikan fondasi yang solid
+
+Area Pengembangan:
+- Komunikasi (78/100) perlu ditingkatkan untuk level senior
+- Problem solving (82/100) cukup baik tapi masih ada ruang improvement
+
+Rekomendasi: HIRED
+Justifikasi:
+- Skor total di atas threshold minimum (>80)
+- Pengalaman relevan memadai
+- Kelemahan di area komunikasi dapat ditingkatkan melalui training
+
+Catatan Onboarding:
+- Sertakan dalam program communication skill development
+- Assign mentor untuk akselerasi adaptasi
+- Review progress dalam 3 bulan pertama</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Safety Officer</h3>
+        <div class="prompt-basic">
+          "Klasifikasikan tingkat bahaya (HIGH/MEDIUM/LOW) dari kondisi berikut:
+Ditemukan genangan oli di area walking platform turbine deck, sudah diberi absorbent dan safety cone, tapi belum dibersihkan dalam 2 jam terakhir."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('safety-answer')">Lihat Contoh</button>
+        <div id="safety-answer" class="example-answer">
+          <pre><code>Tingkat Bahaya: HIGH
+
+Alasan Klasifikasi:
+1. Lokasi kritis - turbine deck adalah area vital dengan traffic tinggi
+2. Durasi exposure - 2 jam adalah terlalu lama untuk hazard yang belum diatasi
+3. Potensi bahaya ganda:
+   - Slip and fall hazard dari genangan oli
+   - Fire hazard dari material mudah terbakar
+4. Kontrol eksisting tidak memadai:
+   - Absorbent dan safety cone hanya kontrol sementara
+   - Tidak ada tindak lanjut pembersihan
+
+Tindakan yang Diperlukan:
+1. Immediate Actions:
+   - Isolasi area dengan barrier tape
+   - Lakukan pembersihan segera
+   - Investigasi sumber kebocoran
+
+2. Preventive Measures:
+   - Review prosedur response time
+   - Tingkatkan frekuensi inspeksi
+   - Update SOP housekeeping
+
+Referensi:
+- NFPA 70E Standard
+- OSHA Walking-Working Surfaces
+- Site Safety Procedures</code></pre>
+        </div>
+      </div>
+
+
+            <div class="department">
+        <h3>Pengadaan</h3>
+        <div class="prompt-basic">
+          "Bandingkan tiga penawaran vendor berikut dan rekomendasikan pilihan terbaik:
+
+Vendor A:
+- Harga: 450 juta
+- Delivery: 12 minggu
+- Payment: 30/70
+- OEM Parts
+
+Vendor B:
+- Harga: 380 juta
+- Delivery: 16 minggu
+- Payment: 50/50
+- Compatible Parts
+
+Vendor C:
+- Harga: 520 juta
+- Delivery: 8 minggu
+- Payment: 20/80
+- OEM Parts"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('procurement-answer')">Lihat Contoh</button>
+        <div id="procurement-answer" class="example-answer">
+          <pre><code>Analisis Komparatif:
+
+1. Biaya
+   Vendor A: Moderate (450 juta)
+   Vendor B: Lowest (380 juta, -15.5%)
+   Vendor C: Highest (520 juta, +15.5%)
+
+2. Delivery Time
+   Vendor A: Standard (12 minggu)
+   Vendor B: Longest (16 minggu, +33%)
+   Vendor C: Best (8 minggu, -33%)
+
+3. Payment Terms
+   Vendor A: Favorable (30/70)
+   Vendor B: Least Favorable (50/50)
+   Vendor C: Most Favorable (20/80)
+
+4. Parts Quality
+   Vendor A: High (OEM)
+   Vendor B: Medium (Compatible)
+   Vendor C: High (OEM)
+
+Rekomendasi: Vendor A
+
+Justifikasi:
+1. Balance optimal antara harga dan kualitas
+2. Delivery time masih dalam batas acceptable
+3. Payment terms cukup menguntungkan
+4. Risiko kualitas minimal dengan parts OEM
+
+Catatan:
+- Vendor B terlalu berisiko dengan parts non-OEM
+- Vendor C premium cost tidak sebanding benefit
+- Vendor A menawarkan total value terbaik</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Supply Chain</h3>
+        <div class="prompt-basic">
+          "Tentukan level reorder point dan safety stock untuk spare part dengan data:
+- Monthly usage: 8 units
+- Lead time: 12 weeks
+- Critical part for turbine
+- Stock out cost: >100 juta/hari
+- Current stock: 6 units
+- Unit price: 25 juta"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('supply-answer')">Lihat Contoh</button>
+        <div id="supply-answer" class="example-answer">
+          <pre><code>Analisis Inventory Parameters:
+
+1. Reorder Point Calculation:
+   - Monthly usage = 8 units
+   - Weekly usage = 2 units
+   - Lead time usage = 2 units × 12 weeks = 24 units
+   - Base ROP = 24 units
+
+2. Safety Stock Determination:
+   - Criticality: High (turbine operations)
+   - Stock out impact: Severe (>100 juta/hari)
+   - Recommended safety factor: 2 months
+   - Safety stock = 16 units (2 × monthly usage)
+
+3. Total ROP = 40 units
+   (Base ROP + Safety Stock)
+
+4. Current Status:
+   - Current stock (6 units) BELOW minimum level
+   - Immediate order required
+   - Order quantity recommendation: 40 units
+
+5. Financial Impact:
+   - Order value: 1 milyar (40 × 25 juta)
+   - Holding cost consideration: 2.5% monthly
+   - Risk mitigation value: >3 milyar/month
+
+Rekomendasi:
+1. Place immediate order for 40 units
+2. Review lead time with vendors
+3. Implement VMI program consideration
+4. Develop alternate vendors
+
+Monitoring Requirements:
+- Weekly stock review
+- Monthly usage trend analysis
+- Quarterly parameter review</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Operator Pembangkit</h3>
+        <div class="prompt-basic">
+          "Tentukan tindakan yang harus diambil untuk kondisi operasi berikut:
+- GT exhaust temp naik dari 535°C ke 548°C dalam 30 menit
+- Beban tetap di 150 MW
+- Ambient temp 32°C
+- Compressor inlet pressure normal
+- Vibrasi normal"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('operator-answer')">Lihat Contoh</button>
+        <div id="operator-answer" class="example-answer">
+          <pre><code>Analisis Kondisi:
+
+1. Parameter Kritis:
+   - Exhaust temp rise: +13°C
+   - Rate: 26°C per jam
+   - Trend: Cepat
+   - Severity: WARNING level
+
+2. Status Operasi:
+   - Beban stabil
+   - Ambient normal
+   - Inlet normal
+   - No mechanical issues
+
+3. Kemungkinan Penyebab:
+   - Kompressor fouling
+   - Combustor issue
+   - IGV malfunction
+   - Air/fuel ratio tidak optimal
+
+Tindakan Segera:
+1. Monitor trending setiap 5 menit
+2. Check IGV position & response
+3. Verifikasi fuel gas quality
+4. Review combustor parameters
+5. Prepare load reduction if temp > 550°C
+
+Eskalasi Required:
+- Notify shift supervisor
+- Alert maintenance team
+- Document di log book
+- Prepare contingency plan
+
+Batas Operasi:
+- WARNING: >545°C
+- TRIP: >565°C
+- Trend limit: 30°C/jam</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Engineer Mekanik</h3>
+        <div class="prompt-basic">
+          "Klasifikasikan prioritas perbaikan (IMMEDIATE/PLANNED/ROUTINE) untuk kondisi berikut:
+Feed water pump mengalami kenaikan vibrasi dari 4.5 mm/s ke 6.8 mm/s dalam satu minggu, dominan di 1X running speed, bearing temp normal."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('mechanical-answer')">Lihat Contoh</button>
+        <div id="mechanical-answer" class="example-answer">
+          <pre><code>Klasifikasi: PLANNED
+
+Analisis Kondisi:
+1. Vibrasi Level:
+   - Current: 6.8 mm/s (WARNING)
+   - Baseline: 4.5 mm/s
+   - Rate: +0.33 mm/s per hari
+   - ISO Standard: Alert 7.1 mm/s
+
+2. Karakteristik:
+   - 1X dominant = unbalance/misalignment
+   - Bearing temp OK = no immediate bearing risk
+   - Trend gradual = developing issue
+
+3. Risk Assessment:
+   - Equipment: Medium
+   - Production: Low
+   - Safety: Low
+   - Environmental: Low
+
+Justifikasi PLANNED:
+1. Masih di bawah trip limit
+2. Trend kenaikan moderate
+3. No secondary symptoms
+4. Backup pump available
+
+Rekomendasi:
+1. Schedule repair next weekend
+2. Prepare balancing equipment
+3. Check alignment
+4. Monitor setiap 4 jam
+5. Prepare spare parts
+
+Monitoring Requirements:
+- Vibration: every 4 hours
+- Bearing temp: continuous
+- Performance parameters
+- Noise level changes</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Engineer Listrik</h3>
+        <div class="prompt-basic">
+          "Interpretasikan hasil tes DGA trafo berikut dan tentukan kondisinya:
+H2: 150 ppm
+CH4: 120 ppm
+C2H2: 3 ppm
+C2H4: 150 ppm
+C2H6: 45 ppm
+CO: 500 ppm
+CO2: 3500 ppm
+Baseline 6 bulan lalu normal semua."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('electrical-answer')">Lihat Contoh</button>
+        <div id="electrical-answer" class="example-answer">
+          <pre><code>Analisis DGA:
+
+1. Gas Ratios:
+   CH4/H2 = 0.8 (Normal < 0.1)
+   C2H2/C2H4 = 0.02 (Normal < 0.1)
+   C2H4/C2H6 = 3.33 (High > 3)
+   CO2/CO = 7 (Normal 3-10)
+
+2. Nilai Kritis:
+   - C2H4 (150 ppm) > IEEE limit (100 ppm)
+   - CO (500 ppm) > IEEE limit (350 ppm)
+   - C2H2 masih normal
+   - H2 borderline
+
+3. Pattern Matching:
+   - High C2H4/C2H6: Thermal fault
+   - Low C2H2/C2H4: No arcing
+   - Elevated CO: Paper aging
+
+Diagnosis: Thermal Fault T3 (>700°C)
+Severity: MEDIUM-HIGH
+
+Rekomendasi:
+1. Increase sampling frequency to monthly
+2. Perform IR scan on tank and connections
+3. Check loading history
+4. Review cooling system operation
+5. Plan for oil treatment
+
+Required Actions:
+- Monitor load carefully
+- Check cooling fans/pumps
+- Prepare contingency plan
+- Schedule maintenance window</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Teknisi I&C</h3>
+        <div class="prompt-basic">
+          "Berikan troubleshooting steps untuk kondisi berikut:
+Flow transmitter FT-101 menunjukkan pembacaan 0% konstan, tidak ada alarm pada DCS, loop power OK, pressure tap clear, transmitter baru dikalibrasi bulan lalu."
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('ic-answer')">Lihat Contoh</button>
+        <div id="ic-answer" class="example-answer">
+          <pre><code>Troubleshooting Sequence:
+
+1. Initial Checks:
+   - Verify 24VDC power supply
+   - Check cable continuity
+   - Verify grounding
+   - Inspect physical damage
+   - Check impulse lines
+
+2. Signal Path Testing:
+   Loop Check:
+   - Measure 4-20mA at transmitter
+   - Measure at junction box
+   - Measure at marshalling panel
+   - Check DCS input card
+
+3. Transmitter Diagnostics:
+   - Connect HART communicator
+   - Check configuration
+   - Verify range settings
+   - Read error messages
+   - Check damping value
+
+4. Process Verification:
+   - Compare with parallel measurements
+   - Check upstream/downstream pressures
+   - Verify process conditions
+   - Review recent changes
+
+Likely Causes (Ranked):
+1. Electronics failure (most probable)
+2. Circuit open/short
+3. Configuration error
+4. Process isolation
+5. DCS card issue
+
+Required Tools:
+- Multimeter
+- HART communicator
+- Calibrator
+- Test leads
+- Loop drawing
+
+Documentation:
+- Update maintenance log
+- Record findings
+- Note serial number
+- Document settings
+- Take backup configuration</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Engineer Efisiensi</h3>
+        <div class="prompt-basic">
+          "Analisis penyebab kenaikan heat rate sebesar 250 kJ/kWh dari baseline dengan kondisi:
+- Beban stabil 200 MW
+- Condenser vacuum 0.085 bar
+- HRSG approach temp +5°C
+- Fuel composition normal
+- Make up water meningkat 2 ton/jam"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('efficiency-answer')">Lihat Contoh</button>
+        <div id="efficiency-answer" class="example-answer">
+          <pre><code>Performance Impact Analysis:
+
+1. Heat Rate Deviation:
+   - Current HR increase: 250 kJ/kWh
+   - Percentage: ~3.5% degradation
+   - Impact: ~2.5M/bulan fuel cost
+   
+2. Contributing Factors:
+   a) HRSG Performance:
+      - Approach temp +5°C = 100 kJ/kWh
+      - Potential fouling
+      - Stack temp likely high
+   
+   b) Cycle Losses:
+      - Make up +2 T/h = 75 kJ/kWh
+      - Steam/water leaks likely
+      - Blowdown may be high
+   
+   c) Condenser:
+      - Vacuum normal
+      - Minimal impact
+
+3. Root Causes (Probability):
+   HIGH:
+   - HRSG tube fouling
+   - Steam/water leaks
+   - High blowdown rate
+   
+   MEDIUM:
+   - Combustion issues
+   - Component degradation
+   
+   LOW:
+   - Instrumentation error
+   - Fuel quality
+
+Immediate Actions:
+1. HRSG inspection
+2. Steam leak survey
+3. Review water chemistry
+4. Check blowdown control
+
+Long-term Recommendations:
+1. Schedule HRSG cleaning
+2. Optimize water chemistry
+3. Review maintenance plan
+4. Update monitoring system</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Teknisi Predictive Maintenance</h3>
+        <div class="prompt-basic">
+          "Prediksi remaining useful life berdasarkan data berikut:
+Motor pompa boiler feed:
+- Vibrasi naik 0.2 mm/s per minggu (current 5.5 mm/s)
+- Bearing temp naik 2°C per bulan (current 75°C)
+- Iron content di oil naik 3 ppm per bulan (current 25 ppm)
+- Baseline: vibrasi 3 mm/s, temp 65°C, Fe 15 ppm
+Alarm limits: vibrasi 7 mm/s, temp 85°C, Fe 40 ppm"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('pdm-answer')">Lihat Contoh</button>
+        <div id="pdm-answer" class="example-answer">
+          <pre><code>Remaining Life Analysis:
+
+1. Trend Calculations:
+   Vibrasi:
+   - Current gap to limit: 1.5 mm/s
+   - Rate: 0.2 mm/s per minggu
+   - Time to limit: 7.5 minggu
+   
+   Temperature:
+   - Gap to limit: 10°C
+   - Rate: 2°C per bulan
+   - Time to limit: 5 bulan
+   
+   Iron Content:
+   - Gap to limit: 15 ppm
+   - Rate: 3 ppm per bulan
+   - Time to limit: 5 bulan
+
+2. Failure Mode Analysis:
+   Primary indicators:
+   - Bearing wear (Fe content)
+   - Mechanical looseness (vibrasi)
+   - Friction increase (temp)
+   
+   Most critical: Vibrasi
+
+3. Confidence Level:
+   - Data quality: High
+   - Trend linearity: Good
+   - External factors: Minimal
+   - Prediction confidence: 85%
+
+4. RUL Prediction:
+   Worst case: 7.5 minggu
+   Best case: 5 bulan
+   Most probable: 2 bulan
+
+Rekomendasi:
+1. Schedule replacement dalam 6 minggu
+2. Increase monitoring frequency
+3. Prepare spare parts
+4. Plan production adjustment
+
+Monitoring Plan:
+- Vibrasi: 2x per minggu
+- Temp: continuous
+- Oil analysis: 2 minggu sekali</code></pre>
+        </div>
+      </div>
+
+      <script>
+        function toggleAnswer(id) {
+          const answer = document.getElementById(id);
+          if (answer.style.display === 'none' || answer.style.display === '') {
+            answer.style.display = 'block';
+          } else {
+            answer.style.display = 'none';
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

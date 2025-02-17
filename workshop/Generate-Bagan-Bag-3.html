@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Prompt Mermaid - Bagian 3</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --accent: #06b6d4;
+        --background: #f8fafc;
+        --text: #1e293b;
+        --border: #e2e8f0;
+        --success: #059669;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background);
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: var(--text);
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: white;
+        transition: transform 0.2s;
+      }
+
+      .section:hover {
+        transform: translateY(-2px);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-number {
+        background: var(--primary);
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-weight: bold;
+      }
+
+      h2 {
+        color: var(--secondary);
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .prompt-container {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      .prompt {
+        font-family: 'Consolas', monospace;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        display: block;
+        line-height: 1.5;
+        max-width: 100%;
+      }
+
+      .structure {
+        margin-top: 1rem;
+        padding: 2rem;
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 0.5rem;
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .tip {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #ecfdf5;
+        border-radius: 0.5rem;
+        color: var(--success);
+      }
+
+      .tip::before {
+        content: '💡 Tips: ';
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Bagian 3: Class Diagram dan Pie Chart</h1>
+        <div style="
+          text-align: center;
+          margin: 2rem 0;
+          padding: 1.5rem;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          border-radius: 8px;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          background: white;
+        ">
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+            color: #1e293b;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+          ">Workshop Pengoptimalan AI</p>
+          <p style="
+            margin: 4px 0;
+            padding: 0;
+            font-size: 1rem;
+            color: #2563eb;
+            font-weight: 500;
+          ">18-21 Februari 2025</p>
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 0.95rem;
+            color: #64748b;
+          ">Nusantara Power Services | Akhmad Guntar</p>
+        </div>
+      </header>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <h2>Class Diagram: Sistem Monitoring Pembangkit</h2>
+        </div>
+        <p>Membuat class diagram untuk sistem monitoring yang akan dikembangkan oleh vendor.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan class diagram untuk sistem monitoring pembangkit menggunakan Mermaid dengan spesifikasi berikut:
+
+Classes:
+1. Sensor
+   Attributes:
+   - sensorId: string
+   - type: string
+   - location: string
+   - lastCalibration: date
+   Methods:
+   - readValue()
+   - calibrate()
+   - getStatus()
+
+2. Equipment
+   Attributes:
+   - equipmentId: string
+   - name: string
+   - category: string
+   - installationDate: date
+   Methods:
+   - startOperation()
+   - stopOperation()
+   - getOperatingHours()
+
+3. MonitoringSystem
+   Attributes:
+   - systemId: string
+   - status: string
+   Methods:
+   - collectData()
+   - generateReport()
+   - setAlarmThresholds()
+
+4. Alarm
+   Attributes:
+   - alarmId: string
+   - severity: enum
+   - message: string
+   Methods:
+   - trigger()
+   - acknowledge()
+   - reset()
+
+5. DataLogger
+   Attributes:
+   - loggerId: string
+   - storageCapacity: number
+   Methods:
+   - logData()
+   - exportData()
+   - clearOldData()
+
+Relationships:
+- Equipment "1" *-- "many" Sensor
+- MonitoringSystem "1" *-- "many" Equipment
+- MonitoringSystem "1" *-- "many" Alarm
+- MonitoringSystem "1" -- "1" DataLogger
+
+Gunakan format:
+classDiagram
+dengan:
+- Proper visibility modifiers (+, -, #)
+- Relationship arrows
+- Method parameters
+- Interface definitions if needed</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Definisi classes dengan attributes dan methods</li>
+            <li>Visibility modifiers untuk encapsulation</li>
+            <li>Relasi antar classes</li>
+            <li>Kardinalitas relationships</li>
+            <li>Interface atau abstract classes bila diperlukan</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan dengan kebutuhan spesifik sistem monitoring di fasilitas Anda, termasuk tipe sensor dan equipment yang digunakan.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <h2>Pie Chart: Analisis Distribusi Gangguan</h2>
+        </div>
+        <p>Membuat pie chart untuk visualisasi distribusi jenis gangguan operasional.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan pie chart untuk distribusi gangguan operasional menggunakan Mermaid dengan spesifikasi berikut:
+
+Judul: "Distribusi Gangguan Operasional Q1 2025"
+
+Data:
+- "Gangguan Mekanis" : 35
+- "Gangguan Elektrikal" : 28
+- "Masalah Instrumentasi" : 20
+- "Human Error" : 12
+- "Faktor Eksternal" : 5
+
+Format tampilan:
+- Urutkan dari yang terbesar
+- Tampilkan persentase
+- Tambahkan warna yang kontras
+- Sertakan legenda
+
+Gunakan format:
+pie showData
+dengan:
+- title untuk judul
+- datavalue untuk nilai
+- Pemisahan segmen yang jelas</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Judul yang informatif</li>
+            <li>Data dengan label dan nilai</li>
+            <li>Pengaturan tampilan</li>
+            <li>Format khusus (showData)</li>
+            <li>Spesifikasi visual</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan kategori dan periode waktu dengan kebutuhan analisis Anda. Pertimbangkan untuk membuat multiple charts untuk perbandingan antar periode.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">3</div>
+          <h2>Tips Umum Penggunaan Mermaid</h2>
+        </div>
+        <p>Panduan umum untuk mengoptimalkan penggunaan diagram Mermaid.</p>
+        <div class="prompt-container">
+          <div class="prompt">Untuk semua jenis diagram Mermaid:
+
+1. Persiapan
+   - Tentukan tujuan diagram
+   - Identifikasi audiens
+   - Kumpulkan data/informasi
+   - Pilih jenis diagram yang tepat
+
+2. Struktur Prompt
+   - Mulai dengan deskripsi jelas
+   - Rinci komponen utama
+   - Spesifikkan format
+   - Tambahkan styling
+   - Sertakan keterangan
+
+3. Best Practices
+   - Gunakan penamaan yang konsisten
+   - Jaga kompleksitas tetap manageable
+   - Manfaatkan grouping dan subgraphs
+   - Tambahkan dokumentasi yang cukup
+   - Test dan iterasi
+
+4. Customization
+   - Manfaatkan warna untuk emphasis
+   - Gunakan styles yang sesuai konteks
+   - Tambahkan notes untuk klarifikasi
+   - Sesuaikan ukuran dan layout</div>
+        </div>
+        <div class="tip">
+          Mulai dengan diagram sederhana dan tingkatkan kompleksitas secara bertahap sesuai kebutuhan. Selalu validasi dengan stakeholders untuk memastikan kejelasan dan kegunaan diagram.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

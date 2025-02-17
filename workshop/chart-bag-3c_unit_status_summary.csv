@@ -1,0 +1,4 @@
+status,count,percentage
+running,3,75.0
+maintenance,1,25.0
+standby,0,0.0

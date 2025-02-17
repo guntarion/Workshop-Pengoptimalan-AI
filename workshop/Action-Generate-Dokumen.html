@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh Prompt Claude.ai untuk Industri Energi</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --accent: #06b6d4;
+        --background: #f8fafc;
+        --text: #1e293b;
+        --border: #e2e8f0;
+        --success: #059669;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background);
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: var(--text);
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: white;
+        transition: transform 0.2s;
+      }
+
+      .section:hover {
+        transform: translateY(-2px);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-number {
+        background: var(--primary);
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-weight: bold;
+      }
+
+      h2 {
+        color: var(--secondary);
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .prompt-container {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      .prompt {
+        font-family: 'Consolas', monospace;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        display: block;
+        line-height: 1.5;
+        max-width: 100%;
+      }
+
+      .structure {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 0.5rem;
+      }
+
+      .tip {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #ecfdf5;
+        border-radius: 0.5rem;
+        color: var(--success);
+      }
+
+      .tip::before {
+        content: '💡 Tips: ';
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Contoh Optimalisasi Dokumentasi<br> untuk Industri Energi</h1>
+                <div style="
+                  text-align: center;
+                  margin: 2rem 0;
+                  padding: 1.5rem;
+                  background: linear-gradient(to right, #f8fafc, #ffffff, #f8fafc);
+                  border-radius: 12px;
+                  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+                ">
+                  <p style="
+                    margin: 0;
+                    padding: 0;
+                    font-size: 1.1rem;
+                    color: #1e293b;
+                    font-weight: 500;
+                  ">Workshop Pengoptimalan AI 
+                    <span style="
+                      display: inline-block;
+                      padding: 4px 12px;
+                      background: #2563eb;
+                      color: white;
+                      border-radius: 16px;
+                      font-size: 0.9rem;
+                      margin-left: 8px;
+                    ">18-21 Februari 2025</span>
+                  </p>
+                  <p style="
+                    margin: 8px 0 0 0;
+                    padding: 0;
+                    font-size: 1rem;
+                    color: #64748b;
+                  ">Nusantara Power Services | <span style="color: #2563eb">Akhmad Guntar</span></p>
+                </div>
+      </header>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <h2>Sistem Dokumentasi Pemeliharaan Pembangkit</h2>
+        </div>
+        <p>Prompt ini dirancang untuk menghasilkan dokumentasi pemeliharaan yang komprehensif.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan template dokumentasi pemeliharaan turbin yang mencakup:
+- Checklist inspeksi harian dengan parameter-parameter berikut:
+  * Temperatur bearing
+  * Tekanan minyak pelumas
+  * Vibrasi
+  * Level minyak
+  * Kondisi seal
+- Prosedur pemeliharaan rutin yang meliputi:
+  * Jadwal pemeliharaan berkala
+  * Daftar peralatan yang dibutuhkan
+  * Langkah-langkah detail
+  * Precaution dan safety measures
+- Troubleshooting guide dengan format:
+  * Masalah yang umum terjadi
+  * Kemungkinan penyebab
+  * Langkah diagnosa
+  * Solusi yang disarankan
+- Materi training untuk operator baru mencakup:
+  * Pengenalan sistem
+  * Prosedur operasi normal
+  * Prosedur emergency
+  * Praktik terbaik
+
+Gunakan format Markdown dan sertakan contoh pengisian untuk setiap bagian. Tambahkan penjelasan singkat di setiap bagian untuk memudahkan pemahaman.</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Pernyataan tujuan yang jelas</li>
+            <li>Daftar komponen yang dibutuhkan dengan sub-poin detail</li>
+            <li>Format yang diinginkan (Markdown)</li>
+            <li>Permintaan contoh pengisian</li>
+            <li>Permintaan penjelasan tambahan</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan parameter dan komponen sesuai dengan jenis turbin atau peralatan yang digunakan di fasilitas NP Services.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <h2>Sistem Manajemen Keselamatan Terpadu</h2>
+        </div>
+        <p>Prompt ini menghasilkan dokumentasi keselamatan yang komprehensif dan mudah diimplementasikan.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan sistem dokumentasi keselamatan terpadu yang mencakup:
+- SOP tanggap darurat untuk skenario berikut:
+  * Kebakaran
+  * Kebocoran gas
+  * Kecelakaan kerja
+  * Bencana alam
+  * Gangguan listrik total
+- Format laporan insiden yang memuat:
+  * Informasi dasar (waktu, lokasi, pihak terlibat)
+  * Deskripsi kejadian
+  * Analisis penyebab
+  * Tindakan yang diambil
+  * Rekomendasi pencegahan
+- Materi pelatihan keselamatan dengan topik:
+  * Pengenalan bahaya di tempat kerja
+  * Penggunaan APD
+  * Prosedur evakuasi
+  * Pertolongan pertama
+- Template analisis risiko mencakup:
+  * Identifikasi bahaya
+  * Penilaian risiko
+  * Kontrol yang ada
+  * Rekomendasi perbaikan
+
+Gunakan format yang mudah diupdate dan dipahami semua level karyawan. Sertakan diagram alir untuk prosedur yang kompleks.</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Permintaan utama yang jelas</li>
+            <li>Komponen-komponen dengan detail spesifik</li>
+            <li>Skenario yang perlu dicakup</li>
+            <li>Elemen-elemen yang harus ada di setiap bagian</li>
+            <li>Permintaan format khusus (mudah diupdate, diagram alir)</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan skenario dan prosedur dengan kondisi spesifik di lokasi kerja Anda di NP Services.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">3</div>
+          <h2>Optimalisasi Rantai Pasok</h2>
+        </div>
+        <p>Prompt ini dirancang untuk menghasilkan dokumentasi supply chain yang efektif.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan sistem dokumentasi supply chain yang mencakup:
+- Template evaluasi vendor dengan kriteria:
+  * Kualitas produk/layanan
+  * Ketepatan waktu pengiriman
+  * Harga dan struktur biaya
+  * Responsivitas komunikasi
+  * Kapabilitas teknis
+- SOP pengadaan untuk:
+  * Permintaan penawaran
+  * Evaluasi penawaran
+  * Negosiasi kontrak
+  * Monitoring kinerja
+  * Penanganan masalah
+- Format laporan analisis efisiensi meliputi:
+  * KPI rantai pasok
+  * Analisis bottleneck
+  * Perbandingan biaya
+  * Rekomendasi optimasi
+- Materi training tim pengadaan mencakup:
+  * Prinsip pengadaan
+  * Teknik negosiasi
+  * Manajemen kontrak
+  * Etika pengadaan
+
+Fokus pada metrik kinerja dan optimalisasi proses. Sertakan template Excel untuk tracking dan analisis data.</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Tujuan dokumentasi yang jelas</li>
+            <li>Komponen utama dengan kriteria detail</li>
+            <li>Aspek-aspek yang perlu dicakup setiap komponen</li>
+            <li>Fokus spesifik (metrik dan optimalisasi)</li>
+            <li>Permintaan template tambahan (Excel)</li>
+          </ol>
+        </div>
+        <div class="tip">
+          Sesuaikan metrik dan KPI dengan target dan standar NP Services.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

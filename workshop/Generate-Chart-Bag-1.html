@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Prompt Visualisasi Data - Bagian 1</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --accent: #06b6d4;
+        --background: #f8fafc;
+        --text: #1e293b;
+        --border: #e2e8f0;
+        --success: #059669;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background);
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: var(--text);
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: white;
+        transition: transform 0.2s;
+      }
+
+      .section:hover {
+        transform: translateY(-2px);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-number {
+        background: var(--primary);
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-weight: bold;
+      }
+
+      h2 {
+        color: var(--secondary);
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .prompt-container {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      .prompt {
+        font-family: 'Consolas', monospace;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        display: block;
+        line-height: 1.5;
+        max-width: 100%;
+      }
+
+      .structure {
+        margin-top: 1rem;
+        padding: 2rem;
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 0.5rem;
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .tip {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #ecfdf5;
+        border-radius: 0.5rem;
+        color: var(--success);
+      }
+
+      .tip::before {
+        content: '💡 Tips: ';
+        font-weight: bold;
+      }
+
+      .data-sample {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font-family: 'Consolas', monospace;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Bagian 1: Line Chart dan Bar Chart<br> untuk Industri Energi</h1>
+        <div style="
+          text-align: center;
+          margin: 2rem 0;
+          padding: 1.5rem;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          border-radius: 8px;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          background: white;
+        ">
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+            color: #1e293b;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+          ">Workshop Pengoptimalan AI</p>
+          <p style="
+            margin: 4px 0;
+            padding: 0;
+            font-size: 1rem;
+            color: #2563eb;
+            font-weight: 500;
+          ">18-21 Februari 2025</p>
+          <p style="
+            margin: 0;
+            padding: 0;
+            font-size: 0.95rem;
+            color: #64748b;
+          ">Nusantara Power Services | Akhmad Guntar</p>
+        </div>
+      </header>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <h2>Line Chart: Monitoring Efisiensi Pembangkit</h2>
+        </div>
+        <p>Membuat grafik garis untuk memantau tren efisiensi pembangkit listrik dari waktu ke waktu.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan visualisasi line chart untuk monitoring efisiensi pembangkit dengan spesifikasi berikut:
+
+Data yang ditampilkan:
+- Efisiensi thermal harian (%)
+- Heat rate (kCal/kWh)
+- Target efisiensi
+- Periode: 30 hari terakhir
+
+Elemen visual yang dibutuhkan:
+- Sumbu X: Tanggal
+- Sumbu Y kiri: Efisiensi (%)
+- Sumbu Y kanan: Heat rate
+- Legend untuk setiap line
+- Grid lines untuk memudahkan pembacaan
+- Tooltip yang menampilkan nilai detail
+
+Styling:
+- Warna berbeda untuk setiap line
+- Dashed line untuk target
+- Gradient area di bawah line efisiensi
+- Responsif untuk berbagai ukuran layar
+
+Interaktivitas:
+- Hover effect untuk menampilkan nilai detail
+- Click untuk highlight specific point
+- Zoom untuk range tertentu
+- Pan untuk melihat data historis</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Data requirements yang spesifik</li>
+            <li>Elemen visual yang dibutuhkan</li>
+            <li>Styling preferences</li>
+            <li>Interaktivitas yang diinginkan</li>
+          </ol>
+        </div>
+        <div class="data-sample">
+          <h4>Sample Data (efficiency_data.csv):</h4>
+date,efficiency,heat_rate,target_efficiency
+2025-01-01,32.5,2650,33.0
+2025-01-02,32.8,2645,33.0
+2025-01-03,33.1,2640,33.0
+2025-01-04,32.9,2642,33.0
+2025-01-05,32.7,2648,33.0
+[...lanjutkan untuk 30 hari]</div>
+
+
+<br>
+      <p style="text-align: center; margin-bottom: 2rem">
+        <a href="chart-bag-1a_efficiency_data.csv" download style="
+          display: inline-block;
+          padding: 12px 24px;
+          background: #f8fafc;
+          color: #1e293b;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          transition: all 0.3s ease;
+        ">
+          <span style="color: #2563eb; margin-right: 8px">⬇️</span>
+          Unduh resource studi kasus
+        </a>
+      </p>
+
+        <div class="tip">
+          Sesuaikan range dan target berdasarkan spesifikasi teknis pembangkit Anda.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <h2>Bar Chart: Analisis Konsumsi Bahan Bakar</h2>
+        </div>
+        <p>Membuat grafik batang untuk menganalisis dan membandingkan konsumsi bahan bakar antar unit pembangkit.</p>
+        <div class="prompt-container">
+          <div class="prompt">Tolong buatkan visualisasi bar chart untuk analisis konsumsi bahan bakar dengan spesifikasi berikut:
+
+Data yang ditampilkan:
+- Konsumsi bahan bakar per unit (ton/hari)
+- Produksi listrik (MWh)
+- Specific fuel consumption (kg/kWh)
+- Perbandingan antar unit (Unit 1-4)
+- Data bulanan untuk tahun berjalan
+
+Elemen visual:
+- Grouped bars untuk konsumsi dan produksi
+- Overlay line untuk specific consumption
+- Sumbu X: Unit pembangkit
+- Sumbu Y kiri: Konsumsi & produksi
+- Sumbu Y kanan: Specific consumption
+- Legend untuk setiap metrik
+
+Styling:
+- Warna kontras untuk tiap grup bar
+- Pattern fill untuk membedakan metrik
+- Label nilai di atas setiap bar
+- Grid horizontal untuk pembacaan nilai
+
+Interaktivitas:
+- Tooltip multi-metrik
+- Click untuk filter unit
+- Sort berdasarkan berbagai metrik
+- Toggle visibility per metrik</div>
+        </div>
+        <div class="structure">
+          <h3>Struktur Prompt:</h3>
+          <ol>
+            <li>Spesifikasi data multi-metrik</li>
+            <li>Layout visual yang jelas</li>
+            <li>Styling untuk kemudahan pembandingan</li>
+            <li>Interaktivitas untuk analisis</li>
+          </ol>
+        </div>
+        <div class="data-sample">
+          <h4>Sample Data (fuel_consumption.csv):</h4>
+unit,date,fuel_consumption,power_production,specific_consumption
+Unit 1,2025-01,12500,45000,0.278
+Unit 2,2025-01,13200,47500,0.278
+Unit 3,2025-01,12800,46000,0.278
+Unit 4,2025-01,12900,46500,0.277
+[...lanjutkan untuk 12 bulan]</div>
+
+
+<br>
+      <p style="text-align: center; margin-bottom: 2rem">
+        <a href="chart-bag-1b_fuel_consumption.csv" download style="
+          display: inline-block;
+          padding: 12px 24px;
+          background: #f8fafc;
+          color: #1e293b;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #2563eb;
+          transition: all 0.3s ease;
+        ">
+          <span style="color: #2563eb; margin-right: 8px">⬇️</span>
+          Unduh resource studi kasus
+        </a>
+      </p>
+
+        <div class="tip">
+          Tambahkan threshold dan target values untuk membantu identifikasi deviasi dari standar operasi.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

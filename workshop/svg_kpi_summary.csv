@@ -1,0 +1,7 @@
+metric,current,target
+Efficiency,84.6,90
+Reliability,92.4,95
+Availability,95.0,98
+ResponseTime,136.8,120
+QualityScore,85.9,92
+CostEffect,83.5,85

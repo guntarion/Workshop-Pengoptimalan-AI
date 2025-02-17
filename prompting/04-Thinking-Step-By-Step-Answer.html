@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop AI Prompting - Thinking Step by Step</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      h2 {
+        color: #2980b9;
+        margin-top: 30px;
+      }
+      .concept-box {
+        background-color: #e8f6f3;
+        border-left: 4px solid #1abc9c;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .tips-box {
+        background-color: #fef9e7;
+        border-left: 4px solid #f1c40f;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .department {
+        background-color: #f8f9fa;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .prompt-basic {
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-family: monospace;
+      }
+      .example-answer {
+        display: none;
+        background-color: #e8f6f3;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border-left: 4px solid #2ecc71;
+      }
+      .toggle-btn {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      .toggle-btn:hover {
+        background-color: #2980b9;
+      }
+      pre {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9em;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Workshop AI Prompting: Thinking Step by Step</h1>
+      <div style="text-align: center; margin: 2rem 0;">
+        <p style="margin: 0; padding: 0; font-size: 1.1rem; color: #1e293b; font-weight: 500">Workshop Pengoptimalan AI</p>
+        <p style="margin: 8px 0; padding: 4px 16px; font-size: 0.9rem; color: #2563eb; display: inline-block; border: 1px solid #2563eb; border-radius: 20px;">
+          18-21 Februari 2025
+        </p>
+        <p style="margin: 8px 0 0 0; padding: 0; font-size: 0.95rem; color: #64748b;">
+          Nusantara Power Services | Akhmad Guntar
+        </p>
+      </div>
+
+      <div class="concept-box">
+        <h2>Konsep Berpikir Bertahap</h2>
+        <p>
+          Teknik "Thinking Step by Step" membantu AI menganalisis masalah secara sistematis dengan memecah proses berpikir menjadi tahapan-tahapan
+          yang jelas dan terstruktur.
+        </p>
+        <p>
+          Dengan memberikan tahapan yang eksplisit, kita membantu AI untuk:
+          <ul>
+            <li>Mengorganisir pemikiran secara logis</li>
+            <li>Mempertimbangkan semua aspek penting</li>
+            <li>Menghasilkan analisis yang lebih mendalam</li>
+            <li>Memberikan kesimpulan yang lebih akurat</li>
+          </ul>
+        </p>
+      </div>
+
+      <div class="tips-box">
+        <h2>Tips Membuat Prompt Bertahap</h2>
+        <ul>
+          <li>Gunakan penomoran yang jelas untuk setiap tahap</li>
+          <li>Beri nama deskriptif untuk setiap tahapan dalam tag XML</li>
+          <li>Mulai dari analisis umum ke spesifik</li>
+          <li>Sertakan tahap verifikasi/validasi</li>
+          <li>Akhiri dengan kesimpulan/rekomendasi</li>
+        </ul>
+      </div>
+
+      <h2>Contoh Prompt Bertahap per Departemen</h2>
+
+      <div class="department">
+        <h3>HRD</h3>
+        <div class="prompt-basic">
+          "Evaluasi kinerja karyawan dan susun rencana pengembangan"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('hrd-answer')">Lihat Contoh</button>
+        <div id="hrd-answer" class="example-answer">
+          <pre><code>&lt;employee_data&gt;
+Nama: Budi Santoso
+Posisi: Operator Senior
+Masa Kerja: 5 tahun
+
+Performance Metrics:
+- Technical Skills: 85%
+- Safety Compliance: 90%
+- Team Leadership: 75%
+- Initiative: 80%
+
+Training History:
+- Basic Operations (2020)
+- Advanced Troubleshooting (2022)
+- Leadership Fundamentals (2023)
+&lt;/employee_data&gt;
+
+&lt;analysis_steps&gt;
+1. Evaluasi Kinerja Saat Ini:
+   - Analisis KPI scores
+   - Review historical performance
+   - Identify strength areas
+   - Note improvement needs
+
+2. Gap Analysis:
+   - Compare against job requirements
+   - Assess leadership readiness
+   - Review technical competencies
+   - Evaluate soft skills
+
+3. Development Needs:
+   - List priority areas
+   - Identify skill gaps
+   - Define learning objectives
+   - Consider career path
+
+4. Resource Assessment:
+   - Available training programs
+   - Mentoring opportunities
+   - On-job learning options
+   - External courses
+
+5. Action Plan Development:
+   - Set SMART goals
+   - Define timeline
+   - Allocate resources
+   - Plan evaluation methods
+&lt;/analysis_steps&gt;
+
+&lt;expected_output&gt;
+1. Performance Summary
+2. Development Priorities
+3. Recommended Actions
+4. Timeline & Milestones
+5. Success Metrics
+&lt;/expected_output&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Safety Officer</h3>
+        <div class="prompt-basic">
+          "Investigasi insiden dan buat rekomendasi pencegahan"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('safety-answer')">Lihat Contoh</button>
+        <div id="safety-answer" class="example-answer">
+          <pre><code>&lt;incident_data&gt;
+Tanggal: 15 Feb 2025
+Lokasi: Cooling Tower Area
+Tipe: Near Miss
+Deskripsi: Teknisi hampir terpeleset saat melakukan inspeksi karena genangan air
+
+Initial Actions:
+- Area dibarricade
+- Warning sign dipasang
+- Supervisor dinotifikasi
+&lt;/incident_data&gt;
+
+&lt;investigation_steps&gt;
+1. Data Collection:
+   - Gather witness statements
+   - Review CCTV footage
+   - Check maintenance records
+   - Review weather conditions
+
+2. Root Cause Analysis:
+   - Apply 5-Why method
+   - Identify contributing factors
+   - Review similar incidents
+   - Check existing controls
+
+3. Risk Assessment:
+   - Evaluate potential severity
+   - Calculate probability
+   - Consider exposure level
+   - Assess existing barriers
+
+4. Control Evaluation:
+   - Review current procedures
+   - Check equipment condition
+   - Assess training adequacy
+   - Evaluate supervision
+
+5. Recommendations:
+   - Engineering controls
+   - Administrative measures
+   - PPE requirements
+   - Training needs
+&lt;/investigation_steps&gt;
+
+&lt;deliverables&gt;
+1. Investigation Report
+2. Root Cause Analysis
+3. Corrective Actions
+4. Preventive Measures
+5. Implementation Timeline
+&lt;/deliverables&gt;</code></pre>
+        </div>
+      </div>
+
+            <div class="department">
+        <h3>Pengadaan</h3>
+        <div class="prompt-basic">
+          "Evaluasi dan pilih vendor untuk pengadaan spare part turbin"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('procurement-answer')">Lihat Contoh</button>
+        <div id="procurement-answer" class="example-answer">
+          <pre><code>&lt;vendor_data&gt;
+Kebutuhan: Spare Part Turbin
+Budget: 500 juta
+Timeline: Delivery dalam 3 bulan
+
+Vendor Shortlist:
+1. PT Alpha Engineering
+   - Quote: 480 juta
+   - Delivery: 12 minggu
+   - Payment terms: 30/70
+   - OEM Authorized
+
+2. PT Beta Solutions
+   - Quote: 450 juta
+   - Delivery: 14 minggu
+   - Payment terms: 50/50
+   - Non-OEM, berpengalaman
+
+3. PT Gamma Industries
+   - Quote: 520 juta
+   - Delivery: 10 minggu
+   - Payment terms: 20/80
+   - OEM Authorized
+&lt;/vendor_data&gt;
+
+&lt;evaluation_steps&gt;
+1. Technical Evaluation:
+   - Part specifications
+   - Quality certifications
+   - Manufacturing capability
+   - Track record
+   - After-sales support
+
+2. Commercial Analysis:
+   - Price comparison
+   - Payment terms
+   - Total cost of ownership
+   - Financial stability
+   - Warranty coverage
+
+3. Risk Assessment:
+   - Delivery reliability
+   - Quality assurance
+   - Supply chain risks
+   - Compliance issues
+   - Business continuity
+
+4. Vendor Comparison:
+   - Create scoring matrix
+   - Weight criteria
+   - Calculate total scores
+   - Rank vendors
+   - Document justification
+
+5. Reference Check:
+   - Contact references
+   - Verify performance
+   - Check compliance
+   - Review complaints
+   - Assess reputation
+&lt;/evaluation_steps&gt;
+
+&lt;decision_output&gt;
+1. Vendor Rankings
+2. Selection Justification
+3. Risk Mitigation Plan
+4. Contract Recommendations
+5. Performance Metrics
+&lt;/decision_output&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Supply Chain</h3>
+        <div class="prompt-basic">
+          "Optimasi inventory dan supply chain untuk critical spares"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('supply-answer')">Lihat Contoh</button>
+        <div id="supply-answer" class="example-answer">
+          <pre><code>&lt;inventory_data&gt;
+Kategori: Critical Turbine Spares
+Period: Jan-Dec 2024
+
+Items Analysis:
+1. Bearing Sets
+   - Stock: 3 sets
+   - Usage: 4 sets/year
+   - Lead Time: 16 weeks
+   - Cost: 300 juta/set
+   
+2. Control Valves
+   - Stock: 2 units
+   - Usage: 2 units/year
+   - Lead Time: 20 weeks
+   - Cost: 250 juta/unit
+&lt;/inventory_data&gt;
+
+&lt;optimization_steps&gt;
+1. Demand Analysis:
+   - Historical consumption
+   - Seasonality patterns
+   - Emergency usage
+   - Project requirements
+   - Growth forecast
+
+2. Stock Level Optimization:
+   - Min/max levels
+   - Reorder points
+   - Safety stock
+   - Economic order quantity
+   - Storage capacity
+
+3. Lead Time Management:
+   - Supplier capability
+   - Transportation options
+   - Custom clearance
+   - Internal processes
+   - Buffer periods
+
+4. Cost Optimization:
+   - Carrying costs
+   - Ordering costs
+   - Stock-out costs
+   - Transportation costs
+   - Storage costs
+
+5. Risk Assessment:
+   - Supply chain disruption
+   - Obsolescence risk
+   - Price volatility
+   - Quality issues
+   - Vendor reliability
+&lt;/optimization_steps&gt;
+
+&lt;deliverables&gt;
+1. Inventory Strategy
+2. Order Schedule
+3. Cost Optimization Plan
+4. Risk Mitigation Steps
+5. Performance Metrics
+&lt;/deliverables&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Operator Pembangkit</h3>
+        <div class="prompt-basic">
+          "Analisis performa unit dan optimasi parameter operasi"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('operator-answer')">Lihat Contoh</button>
+        <div id="operator-answer" class="example-answer">
+          <pre><code>&lt;operational_data&gt;
+Unit: Gas Turbine Unit 1
+Time: 15 Feb 2025, 10:00
+
+Current Parameters:
+- Load: 180 MW
+- GT Exhaust Temp: 538°C
+- Compressor Ratio: 15.2
+- Fuel Flow: 45 MMSCFD
+- NOx: 25 ppm
+
+Ambient Conditions:
+- Temperature: 32°C
+- Humidity: 85%
+- Barometric: 1013 mbar
+&lt;/operational_data&gt;
+
+&lt;analysis_steps&gt;
+1. Performance Review:
+   - Compare vs design values
+   - Check operating limits
+   - Monitor trends
+   - Identify deviations
+   - Calculate efficiencies
+
+2. Parameter Analysis:
+   - Temperature relationships
+   - Pressure ratios
+   - Flow characteristics
+   - Heat rate calculation
+   - Emissions levels
+
+3. Constraint Evaluation:
+   - Operating limits
+   - Environmental limits
+   - Grid requirements
+   - Fuel restrictions
+   - Equipment conditions
+
+4. Optimization Analysis:
+   - IGV positioning
+   - Fuel/air ratio
+   - Cooling flows
+   - Steam injection
+   - Combustion tuning
+
+5. Action Planning:
+   - Parameter adjustments
+   - Monitoring points
+   - Control settings
+   - Alarm reviews
+   - Documentation updates
+&lt;/analysis_steps&gt;
+
+&lt;output_required&gt;
+1. Performance Summary
+2. Optimization Steps
+3. Operating Guidelines
+4. Monitoring Plan
+5. Expected Benefits
+&lt;/output_required&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Engineer Mekanik</h3>
+        <div class="prompt-basic">
+          "Analisis vibrasi tinggi pada pompa dan tentukan tindakan korektif"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('mechanical-answer')">Lihat Contoh</button>
+        <div id="mechanical-answer" class="example-answer">
+          <pre><code>&lt;equipment_data&gt;
+Equipment: Boiler Feed Pump
+Type: Horizontal Split Case
+Capacity: 1000 m3/h
+Speed: 2980 rpm
+
+Vibration Readings:
+- Inboard Bearing: 9.2 mm/s
+- Outboard Bearing: 7.8 mm/s
+- Axial: 4.5 mm/s
+- Dominant Freq: 1X
+
+Operating Parameters:
+- Suction Press: 2.1 kg/cm2
+- Discharge Press: 85 kg/cm2
+- Flow: 850 m3/h
+&lt;/equipment_data&gt;
+
+&lt;analysis_steps&gt;
+1. Data Collection:
+   - Vibration spectrum
+   - Phase readings
+   - Operating parameters
+   - Maintenance history
+   - Baseline data
+
+2. Vibration Analysis:
+   - Amplitude evaluation
+   - Frequency analysis
+   - Phase relationship
+   - Trend comparison
+   - Pattern recognition
+
+3. Root Cause Analysis:
+   - Mechanical factors
+   - Hydraulic conditions
+   - Structural issues
+   - Operating conditions
+   - Maintenance factors
+
+4. Failure Mode Assessment:
+   - Bearing conditions
+   - Alignment status
+   - Balance condition
+   - Foundation integrity
+   - Coupling status
+
+5. Solution Development:
+   - Immediate actions
+   - Short-term fixes
+   - Long-term solutions
+   - Preventive measures
+   - Monitoring requirements
+&lt;/analysis_steps&gt;
+
+&lt;recommendations&gt;
+1. Corrective Actions
+2. Implementation Steps
+3. Required Resources
+4. Timeline
+5. Success Criteria
+&lt;/recommendations&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Engineer Listrik</h3>
+        <div class="prompt-basic">
+          "Analisis hasil test trafo utama dan tentukan kondisi peralatan"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('electrical-answer')">Lihat Contoh</button>
+        <div id="electrical-answer" class="example-answer">
+          <pre><code>&lt;transformer_data&gt;
+Equipment: Main Transformer GT-1
+Rating: 500 MVA, 21/525 kV
+Age: 15 years
+Last Major Maintenance: 2022
+
+Test Results:
+1. Dissolved Gas Analysis (DGA):
+   - H2: 150 ppm
+   - CH4: 180 ppm
+   - C2H2: 2 ppm
+   - C2H4: 145 ppm
+   - CO: 450 ppm
+   
+2. Oil Quality:
+   - Moisture: 18 ppm
+   - Acidity: 0.15 mgKOH/g
+   - BDV: 48 kV
+   - IFT: 28 mN/m
+   
+3. Electrical Tests:
+   - Winding Resistance: +2% change
+   - Tan Delta: 0.6%
+   - Core Insulation: 2 GΩ
+&lt;/transformer_data&gt;
+
+&lt;analysis_steps&gt;
+1. DGA Interpretation:
+   - Calculate gas ratios
+   - Compare with IEEE limits
+   - Identify fault patterns
+   - Check generation rates
+   - Assess severity
+
+2. Oil Quality Assessment:
+   - Compare with standards
+   - Evaluate degradation
+   - Check moisture trends
+   - Assess contamination
+   - Review aging indicators
+
+3. Electrical Test Analysis:
+   - Compare with baseline
+   - Check deviation trends
+   - Evaluate insulation
+   - Assess power factor
+   - Review core condition
+
+4. Risk Assessment:
+   - Identify failure modes
+   - Calculate risk levels
+   - Review criticality
+   - Check redundancy
+   - Assess consequences
+
+5. Recommendations Development:
+   - Maintenance actions
+   - Monitoring frequency
+   - Operating restrictions
+   - Spare parts needs
+   - Long-term strategy
+&lt;/analysis_steps&gt;
+
+&lt;deliverables&gt;
+1. Condition Assessment
+2. Risk Evaluation
+3. Maintenance Plan
+4. Operating Guidelines
+5. Monitoring Strategy
+&lt;/deliverables&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Teknisi I&C</h3>
+        <div class="prompt-basic">
+          "Troubleshoot masalah kontrol pada governor turbin"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('ic-answer')">Lihat Contoh</button>
+        <div id="ic-answer" class="example-answer">
+          <pre><code>&lt;control_system_data&gt;
+System: Turbine Governor
+Issue: Speed fluctuation ±2%
+Duration: Last 48 hours
+
+Parameters:
+- Speed Setpoint: 3000 rpm
+- Actual Speed: 2940-3060 rpm
+- Valve Position: 65-75%
+- Load: 160-180 MW
+
+Alarms:
+- Speed deviation high
+- Governor hunting
+- Valve position oscillation
+&lt;/control_system_data&gt;
+
+&lt;troubleshooting_steps&gt;
+1. Initial Data Collection:
+   - Trend analysis
+   - Alarm history
+   - Parameter correlation
+   - System changes
+   - Operating conditions
+
+2. Signal Verification:
+   - Speed sensor inputs
+   - Feedback signals
+   - Control outputs
+   - Valve response
+   - System stability
+
+3. Control Loop Analysis:
+   - PID parameters
+   - Response time
+   - Dead band settings
+   - Gain adjustments
+   - Stability margins
+
+4. Hardware Assessment:
+   - Sensor condition
+   - Valve mechanics
+   - Hydraulic system
+   - Electrical connections
+   - Controller status
+
+5. Root Cause Identification:
+   - Mechanical issues
+   - Control problems
+   - Tuning requirements
+   - System interactions
+   - External factors
+&lt;/troubleshooting_steps&gt;
+
+&lt;action_plan&gt;
+1. Immediate Fixes
+2. Parameter Adjustments
+3. Component Replacements
+4. Testing Procedures
+5. Monitoring Requirements
+&lt;/action_plan&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Engineer Efisiensi</h3>
+        <div class="prompt-basic">
+          "Analisis penurunan performa unit dan identifikasi area optimasi"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('efficiency-answer')">Lihat Contoh</button>
+        <div id="efficiency-answer" class="example-answer">
+          <pre><code>&lt;performance_data&gt;
+Unit: Combined Cycle Block 1
+Period: Last 3 months
+
+Key Parameters:
+- Gross Heat Rate: 7250 kJ/kWh
+- Net Output: 650 MW
+- GT Exhaust Temp: 585°C
+- HRSG Steam Temp: 540°C
+- Condenser Vacuum: 0.085 bar
+
+Design Values:
+- Design Heat Rate: 7000 kJ/kWh
+- Rated Output: 660 MW
+- Reference Conditions at ISO
+&lt;/performance_data&gt;
+
+&lt;analysis_steps&gt;
+1. Performance Calculation:
+   - Heat rate deviation
+   - Output shortfall
+   - Efficiency losses
+   - Correction factors
+   - Baseline comparison
+
+2. Component Analysis:
+   - Gas turbine performance
+   - HRSG effectiveness
+   - Steam cycle efficiency
+   - Auxiliary power
+   - Balance of plant
+
+3. Loss Assessment:
+   - Thermal losses
+   - Mechanical losses
+   - Electrical losses
+   - Auxiliary consumption
+   - Process inefficiencies
+
+4. Impact Quantification:
+   - Fuel cost impact
+   - Revenue loss
+   - Maintenance costs
+   - Environmental impact
+   - Capacity limitations
+
+5. Optimization Planning:
+   - Quick wins
+   - Major improvements
+   - Investment needs
+   - Operational changes
+   - Maintenance requirements
+&lt;/analysis_steps&gt;
+
+&lt;recommendations&gt;
+1. Immediate Actions
+2. Short-term Improvements
+3. Long-term Projects
+4. Performance Targets
+5. Monitoring Plan
+&lt;/recommendations&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="department">
+        <h3>Teknisi Predictive Maintenance</h3>
+        <div class="prompt-basic">
+          "Analisis trend kondisi peralatan dan prediksi kegagalan"
+        </div>
+        <button class="toggle-btn" onclick="toggleAnswer('pdm-answer')">Lihat Contoh</button>
+        <div id="pdm-answer" class="example-answer">
+          <pre><code>&lt;monitoring_data&gt;
+Equipment: Boiler Feed Pump
+Monitoring Period: 6 months
+
+Condition Data:
+1. Vibration Trend:
+   - DE Bearing: 4.2 → 5.8 mm/s
+   - NDE Bearing: 3.8 → 4.5 mm/s
+   - Dominant freq: 1X running speed
+   
+2. Oil Analysis:
+   - Fe content: 15 → 28 ppm
+   - Cu content: 5 → 12 ppm
+   - Viscosity: Within spec
+   
+3. Performance:
+   - Flow: 98% → 95%
+   - Efficiency: 82% → 78%
+   - Power: +5% increase
+&lt;/monitoring_data&gt;
+
+&lt;analysis_steps&gt;
+1. Trend Evaluation:
+   - Rate of change
+   - Pattern recognition
+   - Correlation analysis
+   - Threshold comparison
+   - Historical patterns
+
+2. Failure Mode Analysis:
+   - Symptom matching
+   - Degradation models
+   - Failure mechanisms
+   - Contributing factors
+   - Risk assessment
+
+3. Prediction Modeling:
+   - Statistical analysis
+   - Remaining life
+   - Failure probability
+   - Confidence levels
+   - Risk scenarios
+
+4. Impact Assessment:
+   - Production impact
+   - Safety implications
+   - Environmental risks
+   - Maintenance costs
+   - Replacement timing
+
+5. Action Planning:
+   - Monitoring frequency
+   - Inspection needs
+   - Maintenance timing
+   - Resource requirements
+   - Contingency plans
+&lt;/analysis_steps&gt;
+
+&lt;output_required&gt;
+1. Condition Assessment
+2. Failure Prediction
+3. Risk Evaluation
+4. Maintenance Strategy
+5. Resource Planning
+&lt;/output_required&gt;</code></pre>
+        </div>
+      </div>      
+
+      <script>
+        function toggleAnswer(id) {
+          const answer = document.getElementById(id);
+          if (answer.style.display === 'none' || answer.style.display === '') {
+            answer.style.display = 'block';
+          } else {
+            answer.style.display = 'none';
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>
