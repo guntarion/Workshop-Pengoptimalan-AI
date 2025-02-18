@@ -685,6 +685,396 @@ Material: Air Preheater Element
         </div>
       </div>
 
+      <!-- Operator Section -->
+<div class="department">
+  <h3>Operator Pembangkit</h3>
+  <div class="prompt-basic">
+    "Analisis abnormal condition pada parameter operasi unit dan berikan rekomendasi penanganan."
+  </div>
+  <button class="toggle-btn" onclick="toggleAnswer('operator-answer')">Lihat Contoh</button>
+  <div id="operator-answer" class="example-answer">
+    <pre><code>&lt;system&gt;
+Anda adalah Senior Operator Pembangkit yang berpengalaman dalam troubleshooting dan penanganan abnormal condition.
+&lt;/system&gt;
+
+&lt;context&gt;
+Analisis harus mencakup evaluasi parameter operasi, identifikasi root cause, dan rekomendasi penanganan sesuai SOP dengan mempertimbangkan aspek keselamatan.
+&lt;/context&gt;
+
+&lt;format&gt;
+# Abnormal Condition Analysis Report
+
+## Incident Information
+- Unit        : [unit_name]
+- Time        : [timestamp]
+- Shift       : [shift_period]
+- Parameters  : [affected_parameters]
+
+## Initial Conditions
+- Operating Load  : [load_mw]
+- Unit Status    : [status]
+- Related Systems: [systems_list]
+
+## Parameter Analysis
+### Deviation Details
+- Parameter 1: [name] - [value] ([normal_range])
+- Parameter 2: [name] - [value] ([normal_range])
+...
+
+### Trending Analysis
+[Describe parameter trending patterns]
+
+## Root Cause Analysis
+### Observed Symptoms
+1. [symptom_1]
+2. [symptom_2]
+...
+
+### Potential Causes
+1. Primary: [main_cause]
+2. Contributing: [other_factors]
+
+## Action Items
+### Immediate Actions
+1. [action_1]
+2. [action_2]
+...
+
+### Follow-up Required
+1. [followup_1]
+2. [followup_2]
+...
+
+## Safety Considerations
+- [safety_point_1]
+- [safety_point_2]
+...
+
+## Recommendations
+### Short Term
+1. [recommendation_1]
+2. [recommendation_2]
+...
+
+### Long Term
+1. [recommendation_1]
+2. [recommendation_2]
+...
+&lt;/format&gt;
+
+&lt;example_1&gt;
+Input:
+Unit: PLTU Unit 1
+Kondisi: High Vibration HP Turbine
+Parameter:
+- Vibration: 7.2 mm/s (normal < 5 mm/s)
+- Bearing Temp: 82°C (normal < 75°C)
+- Speed: 3000 rpm
+- Load: 85 MW
+
+Output:
+# Abnormal Condition Analysis Report
+
+## Incident Information
+- Unit        : PLTU Unit 1
+- Time        : 2025-02-18 14:30 WIB
+- Shift       : Shift 2
+- Parameters  : Vibrasi, Temperatur Bearing HP Turbine
+
+## Initial Conditions
+- Operating Load  : 85 MW
+- Unit Status    : Base Load Operation
+- Related Systems: HP Turbine, Lube Oil System, Bearing System
+
+## Parameter Analysis
+### Deviation Details
+- Vibrasi        : 7.2 mm/s (Normal < 5 mm/s)
+- Bearing Temp   : 82°C (Normal < 75°C)
+- Speed          : 3000 rpm (Normal)
+- Lube Oil Press : 1.2 kg/cm² (Normal)
+
+### Trending Analysis
+- Vibrasi meningkat bertahap dalam 2 jam terakhir
+- Temperatur bearing naik seiring kenaikan vibrasi
+- Tidak ada perubahan signifikan pada parameter operasi lain
+
+## Root Cause Analysis
+### Observed Symptoms
+1. Peningkatan vibrasi gradual
+2. Kenaikan temperatur bearing
+3. Tidak ada perubahan beban signifikan
+4. Tidak ada gangguan sistem pelumasan
+
+### Potential Causes
+1. Primary: Potensi unbalance rotor HP Turbine
+2. Contributing:
+   - Deposit/scaling pada blade
+   - Degradasi kondisi bearing
+   - Misalignment setelah maintenance terakhir
+
+## Action Items
+### Immediate Actions
+1. Kurangi beban hingga 60 MW
+2. Monitor trending vibrasi dan temperatur
+3. Cek sistem pelumasan dan cooling bearing
+4. Siapkan unit backup bila diperlukan
+
+### Follow-up Required
+1. Analisis spektrum vibrasi
+2. Inspeksi visual bearing saat shutdown
+3. Review historical maintenance records
+4. Schedule balancing test
+
+## Safety Considerations
+- Monitor metal temperature untuk mencegah wiping
+- Perhatikan batas trip parameter
+- Siapkan emergency response plan
+- Gunakan PPE sesuai standar saat inspeksi
+
+## Recommendations
+### Short Term
+1. Lakukan analisis vibrasi detail
+2. Adjust cooling oil flow
+3. Monitoring 24 jam dengan interval 1 jam
+4. Siapkan spare bearing
+
+### Long Term
+1. Schedule inspeksi turbine
+2. Review maintenance procedure
+3. Update SOP monitoring vibrasi
+4. Training operator untuk analisis vibrasi
+&lt;/example_1&gt;
+
+&lt;tugas&gt;
+Analisis kondisi berikut:
+Unit: PLTU Unit 2
+Kondisi: Low Vacuum Condenser
+Parameter:
+- Vacuum: 0.15 ata (normal < 0.1 ata)
+- CW inlet temp: 32°C
+- CW flow: 85%
+- Load: 100 MW
+&lt;/tugas&gt;</code></pre>
+  </div>
+</div>
+
+<!-- Mechanical Engineer Section -->
+<div class="department">
+  <h3>Engineer Mekanik</h3>
+  <div class="prompt-basic">
+    "Analisis kegagalan komponen mekanik dan berikan rekomendasi perbaikan serta pencegahan."
+  </div>
+  <button class="toggle-btn" onclick="toggleAnswer('mechanical-answer')">Lihat Contoh</button>
+  <div id="mechanical-answer" class="example-answer">
+    <pre><code>&lt;system&gt;
+Anda adalah Senior Mechanical Engineer yang berpengalaman dalam analisis kegagalan dan reliability improvement di pembangkit listrik.
+&lt;/system&gt;
+
+&lt;context&gt;
+Analisis harus mencakup root cause analysis, damage mechanism, rekomendasi perbaikan, dan langkah preventif berdasarkan engineering standard.
+&lt;/context&gt;
+
+&lt;format&gt;
+# Mechanical Failure Analysis Report
+
+## Component Information
+- Equipment     : [equipment_name]
+- Component     : [component_name]
+- Material      : [material_spec]
+- Operating Time: [running_hours]
+
+## Failure Description
+### Visual Inspection
+- [observation_1]
+- [observation_2]
+...
+
+### Operating Conditions
+- Parameter 1: [value] ([normal_range])
+- Parameter 2: [value] ([normal_range])
+...
+
+## Material Analysis
+### Physical Properties
+- [property_1]: [value]
+- [property_2]: [value]
+...
+
+### Chemical Analysis
+- [element_1]: [percentage]
+- [element_2]: [percentage]
+...
+
+## Failure Analysis
+### Damage Mechanism
+1. [mechanism_1]
+   - Evidence: [supporting_data]
+   - Impact: [effect]
+2. [mechanism_2]
+   ...
+
+### Root Causes
+1. Primary: [main_cause]
+2. Contributing:
+   - [factor_1]
+   - [factor_2]
+   ...
+
+## Repair Plan
+### Immediate Actions
+1. [action_1]
+2. [action_2]
+...
+
+### Long-term Solutions
+1. [solution_1]
+2. [solution_2]
+...
+
+## Preventive Measures
+### Design Improvements
+1. [improvement_1]
+2. [improvement_2]
+...
+
+### Maintenance Strategy
+1. [strategy_1]
+2. [strategy_2]
+...
+
+## Recommendations
+### Technical Aspects
+1. [recommendation_1]
+2. [recommendation_2]
+...
+
+### Operational Changes
+1. [change_1]
+2. [change_2]
+...
+&lt;/format&gt;
+
+&lt;example_1&gt;
+Input:
+Equipment: Boiler Feed Pump
+Component: Mechanical Seal
+Failure: Excessive Leakage
+Kondisi:
+- Running hours: 8000 jam
+- Shaft runout: 0.08 mm
+- Seal temp: 85°C
+- Cooling water flow: 80%
+
+Output:
+# Mechanical Failure Analysis Report
+
+## Component Information
+- Equipment     : Boiler Feed Pump A
+- Component     : Mechanical Seal (John Crane Type 5615)
+- Material      : Carbon/Tungsten Carbide Face
+- Operating Time: 8000 hours
+
+## Failure Description
+### Visual Inspection
+- Excessive leakage dari seal face
+- Scoring marks pada seal face
+- Deposit pada seal housing
+- Normal wear pada O-rings
+
+### Operating Conditions
+- Shaft runout      : 0.08 mm (Max 0.05 mm)
+- Seal temperature  : 85°C (Normal < 75°C)
+- Cooling water flow: 80% (Normal 100%)
+- Suction pressure  : 12 kg/cm²
+- Discharge pressure: 120 kg/cm²
+
+## Material Analysis
+### Physical Properties
+- Face flatness    : 3 light bands
+- Surface finish   : 0.5 micron
+- Spring tension   : 85% of spec
+- O-ring hardness : 75 Shore A
+
+### Chemical Analysis
+- Carbon content  : 98.5%
+- Tungsten Carbide: 93.2%
+- Contaminants    : Silica 0.8%
+- Deposit analysis: Calcium carbonate dominant
+
+## Failure Analysis
+### Damage Mechanism
+1. Thermal distortion
+   - Evidence: Uneven wear pattern
+   - Impact: Face deformation
+2. Mechanical deformation
+   - Evidence: High runout
+   - Impact: Dynamic face loading
+3. Insufficient cooling
+   - Evidence: High temperature
+   - Impact: Thermal stress
+
+### Root Causes
+1. Primary: Excessive shaft movement
+2. Contributing:
+   - Degraded cooling system
+   - Improper installation
+   - Bearing wear
+   - Operating beyond design point
+
+## Repair Plan
+### Immediate Actions
+1. Replace mechanical seal assembly
+2. Check shaft alignment
+3. Clean cooling water system
+4. Inspect bearing condition
+
+### Long-term Solutions
+1. Upgrade to balanced seal design
+2. Install continuous monitoring
+3. Modify cooling water system
+4. Implement precision alignment
+
+## Preventive Measures
+### Design Improvements
+1. Upgrade to cartridge seal
+2. Install throat bushing
+3. Add temperature monitoring
+4. Improve cooling design
+
+### Maintenance Strategy
+1. Reduce PM interval
+2. Implement vibration monitoring
+3. Regular alignment check
+4. Cooling system maintenance
+
+## Recommendations
+### Technical Aspects
+1. Upgrade to API 682 Category 2 seal
+2. Install dual monitoring system
+3. Modify flush plan
+4. Implement bearing housing cooling
+
+### Operational Changes
+1. Review operating parameters
+2. Update installation procedure
+3. Train maintenance crew
+4. Improve monitoring program
+&lt;/example_1&gt;
+
+&lt;tugas&gt;
+Analisis kegagalan berikut:
+Equipment: ID Fan
+Component: Shaft Bearing
+Failure: High Temperature
+Kondisi:
+- Running hours: 12000 jam
+- Vibrasi: 12 mm/s
+- Bearing temp: 95°C
+- Oil level: 60%
+&lt;/tugas&gt;</code></pre>
+  </div>
+</div>
+
       <!-- Accounting Section -->
       <div class="department">
         <h3>Akuntansi</h3>
