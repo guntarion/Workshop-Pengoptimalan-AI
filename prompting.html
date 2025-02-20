@@ -39,20 +39,21 @@
         }
 
         .card {
-            background: white;
+            background: #f0fff4;
             border-radius: 10px;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #48bb78;
+            box-shadow: 0 4px 6px rgba(72, 187, 120, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 12px rgba(72, 187, 120, 0.15);
         }
 
         .card a {
-            color: #4a5568;
+            color: #2f855a;
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: 500;
@@ -63,8 +64,8 @@
         }
 
         .card a:hover {
-            background-color: #edf2f7;
-            color: #2b6cb0;
+            background-color: #c6f6d5;
+            color: #276749;
         }
 
         @media (max-width: 768px) {
@@ -75,6 +76,27 @@
             h1 {
                 font-size: 2rem;
             }
+        }
+
+        /* Special styling for innovation-related cards */
+        .card.innovation {
+            background: linear-gradient(to right, #f6e05e, #faf089);
+            border-left: 4px solid #d69e2e;
+        }
+
+        .card.innovation a {
+            color: #744210;
+            font-weight: 600;
+        }
+
+        .card.innovation:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(214, 158, 46, 0.2);
+        }
+
+        .card.innovation a:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #975a16;
         }
     </style>
 </head>
@@ -119,6 +141,14 @@
             </div>
             <div class="card">
                 <a href="prompting/04-Thinking-Step-By-Step-Answer.html">Thinking Step By Step</a>
+            </div>
+            
+            <!-- Innovation-related cards with special styling -->
+            <div class="card innovation">
+                <a href="prompting/prompt_inovasi_judul.html">Prompting Inovasi Judul</a>
+            </div>
+            <div class="card innovation">
+                <a href="prompting/prompt_inovasi_manfaatfinansial.html">Prompting Inovasi Manfaat Finansial</a>
             </div>
         </div>
     </div>

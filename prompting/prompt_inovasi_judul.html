@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Prompt Judul Inovasi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        .prompt-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .copy-button:hover {
+            background-color: #2980b9;
+        }
+        .copy-button.copied {
+            background-color: #27ae60;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            padding-top: 40px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: 'Consolas', monospace;
+            margin: 0;
+        }
+        .input-section {
+            background-color: #fff3e0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #ff9800;
+        }
+        .input-form {
+            margin-top: 15px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+        }
+        .generate-button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .generate-button:hover {
+            background-color: #219a52;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Panduan Prompt Judul Inovasi</h1>
+
+              <!-- Workshop Header -->
+      <div style="text-align: center; margin: 2rem 0; font-family: 'Inter', system-ui, -apple-system, sans-serif">
+        <p style="margin: 0; padding: 0; font-size: 1.1rem; color: #1e293b; font-weight: 500">Workshop Pengoptimalan AI</p>
+        <p style="margin: 8px 0; padding: 4px 16px; font-size: 0.9rem; color: #2563eb; display: inline-block; border: 1px solid #2563eb; border-radius: 20px;">
+          18-21 Februari 2025
+        </p>
+        <p style="margin: 8px 0 0 0; padding: 0; font-size: 0.95rem; color: #64748b; letter-spacing: 0.5px">
+          Nusantara Power Services | Akhmad Guntar
+        </p>
+      </div>
+        
+        <div class="section">
+            <h2>Penjelasan Umum</h2>
+            <p>Prompt ini dirancang untuk menghasilkan judul karya inovasi yang efektif untuk kompetisi di lingkungan PLN Indonesia, khususnya terkait optimasi pembangkit listrik. Judul yang dihasilkan akan terdiri dari dua bagian: nama julukan yang catchy dan deskripsi fungsi utama.</p>
+        </div>
+
+        <div class="input-section">
+            <h2>Input Generator</h2>
+            <p>Masukkan informasi berikut untuk menghasilkan prompt lengkap:</p>
+            <div class="input-form">
+                <label for="background">Latar Belakang:</label>
+                <textarea id="background" placeholder="Masukkan latar belakang masalah yang mendasari inovasi..."></textarea>
+
+                <label for="innovation">Karya Inovasi:</label>
+                <textarea id="innovation" placeholder="Jelaskan solusi inovasi yang dikembangkan..."></textarea>
+
+                <button class="generate-button" onclick="generatePrompt()">Generate Prompt</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Template Prompt</h2>
+            <div class="prompt-container">
+                <button class="copy-button" onclick="copyPrompt(this, 'promptTemplate')">Copy Prompt</button>
+                <pre id="promptTemplate">
+&lt;system&gt;
+Anda adalah pakar penamaan karya inovasi dengan pengalaman luas dalam kompetisi inovasi sektor ketenagalistrikan. Anda memahami pentingnya judul yang menarik, mudah diingat, dan menggambarkan value proposition dengan tepat.
+&lt;/system&gt;
+
+&lt;context&gt;
+Karya inovasi ini dikembangkan dalam konteks optimasi pembangkit listrik di lingkungan PLN Indonesia. Judul akan digunakan untuk kompetisi internal PLN.
+&lt;/context&gt;
+
+&lt;input&gt;
+&lt;latar_belakang&gt;
+<span id="backgroundPlaceholder">{masukkan latar belakang}</span>
+&lt;/latar_belakang&gt;
+
+&lt;karya_inovasi&gt;
+<span id="innovationPlaceholder">{masukkan deskripsi karya inovasi}</span>
+&lt;/karya_inovasi&gt;
+&lt;/input&gt;
+
+&lt;format&gt;
+Judul harus terdiri dari dua bagian:
+
+1. Nama Julukan (Catchphrase):
+   - Singkatan atau istilah gabungan yang menarik
+   - Dapat menggunakan Bahasa Inggris
+   - Mudah diingat dan diucapkan
+   - Terkait dengan esensi inovasi
+
+2. Deskripsi Fungsi/Value Proposition:
+   - Menggunakan Bahasa Indonesia
+   - Menjelaskan manfaat utama/tujuan inovasi
+   - Spesifik dan terukur
+   - Maksimal 15 kata
+&lt;/format&gt;
+
+&lt;instructions&gt;
+1. Analisis latar belakang dan deskripsi inovasi
+2. Identifikasi kata kunci dan manfaat utama
+3. Buat 3 alternatif judul yang berbeda
+4. Untuk setiap alternatif, berikan:
+   - Penjelasan pemilihan nama julukan
+   - Alasan pemilihan deskripsi fungsi
+   - Kelebihan dan kekurangan judul
+5. Rekomendasikan judul terbaik dengan alasannya
+&lt;/instructions&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Hasil Generate</h2>
+            <div class="prompt-container">
+                <button class="copy-button" onclick="copyPrompt(this, 'generatedPrompt')">Copy Prompt</button>
+                <pre id="generatedPrompt">
+Prompt akan muncul di sini setelah Anda mengisi form dan menekan tombol Generate.</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyPrompt(button, elementId) {
+            const prompt = document.getElementById(elementId);
+            navigator.clipboard.writeText(prompt.textContent).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy Prompt';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function generatePrompt() {
+            const background = document.getElementById('background').value;
+            const innovation = document.getElementById('innovation').value;
+            
+            // Get the template
+            const template = document.getElementById('promptTemplate').textContent;
+            
+            // Replace placeholders with actual content
+            const generatedPrompt = template
+                .replace('{masukkan latar belakang}', background)
+                .replace('{masukkan deskripsi}', innovation);
+            
+            // Update the generated prompt section
+            document.getElementById('generatedPrompt').textContent = generatedPrompt;
+        }
+    </script>
+</body>
+</html>

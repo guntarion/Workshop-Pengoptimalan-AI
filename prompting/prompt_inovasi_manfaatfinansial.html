@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Prompt Analisis Manfaat Finansial</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        .prompt-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .copy-button:hover {
+            background-color: #2980b9;
+        }
+        .copy-button.copied {
+            background-color: #27ae60;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            padding-top: 40px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: 'Consolas', monospace;
+            margin: 0;
+        }
+        .input-section {
+            background-color: #fff3e0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #ff9800;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+        }
+        .generate-button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .generate-button:hover {
+            background-color: #219a52;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Panduan Prompt Analisis Manfaat Finansial</h1>
+
+              <!-- Workshop Header -->
+      <div style="text-align: center; margin: 2rem 0; font-family: 'Inter', system-ui, -apple-system, sans-serif">
+        <p style="margin: 0; padding: 0; font-size: 1.1rem; color: #1e293b; font-weight: 500">Workshop Pengoptimalan AI</p>
+        <p style="margin: 8px 0; padding: 4px 16px; font-size: 0.9rem; color: #2563eb; display: inline-block; border: 1px solid #2563eb; border-radius: 20px;">
+          18-21 Februari 2025
+        </p>
+        <p style="margin: 8px 0 0 0; padding: 0; font-size: 0.95rem; color: #64748b; letter-spacing: 0.5px">
+          Nusantara Power Services | Akhmad Guntar
+        </p>
+      </div>
+        
+        <div class="section">
+            <h2>Penjelasan Umum</h2>
+            <p>Prompt ini dirancang untuk menghasilkan analisis manfaat finansial yang komprehensif untuk Makalah Karya Inovasi di lingkungan PLN Nusantara Power Services. Analisis akan mencakup berbagai aspek penghematan dan metodologi perhitungan yang detail.</p>
+        </div>
+
+        <div class="input-section">
+            <h2>Input Generator</h2>
+            <div class="input-form">
+                <label for="background">Latar Belakang:</label>
+                <textarea id="background" placeholder="Masukkan latar belakang masalah yang mendasari inovasi..."></textarea>
+
+                <label for="innovation">Karya Inovasi:</label>
+                <textarea id="innovation" placeholder="Jelaskan solusi inovasi yang dikembangkan..."></textarea>
+
+                <button class="generate-button" onclick="generatePrompt()">Generate Prompt</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Template Prompt</h2>
+            <div class="prompt-container">
+                <button class="copy-button" onclick="copyPrompt(this, 'promptTemplate')">Copy Prompt</button>
+                <pre id="promptTemplate">
+&lt;system&gt;
+Anda adalah Pakar Analisis Finansial untuk Karya Inovasi dengan pengalaman 15 tahun di sektor pembangkit listrik. Anda telah membimbing lebih dari 50 tim inovasi yang berhasil memenangkan kompetisi inovasi tingkat nasional, dengan keunggulan di bidang analisis manfaat finansial. Keahlian Anda mencakup metodologi perhitungan dampak finansial, valuasi penghematan, dan penyusunan justifikasi bisnis untuk proyek inovasi. Tim-tim binaan Anda dikenal selalu mendapatkan nilai tertinggi dalam aspek perhitungan manfaat finansial di berbagai kompetisi inovasi PLN dan sektor ketenagalistrikan.
+&lt;/system&gt;
+
+&lt;input&gt;
+&lt;latar_belakang&gt;
+<span id="backgroundPlaceholder">{masukkan latar belakang}</span>
+&lt;/latar_belakang&gt;
+
+&lt;karya_inovasi&gt;
+<span id="innovationPlaceholder">{masukkan deskripsi karya inovasi}</span>
+&lt;/karya_inovasi&gt;
+&lt;/input&gt;
+
+&lt;format&gt;
+# Manfaat Finansial Inovasi
+
+## I. Pendahuluan
+   [Penjelasan singkat tentang aspek finansial dari inovasi dan metodologi perhitungan]
+
+## II. Komponen Manfaat Finansial
+    A. Penghematan Langsung
+       - Perhitungan penghematan sebelum dan sesudah inovasi
+       - Opportunity cost yang dapat dihindari
+       - Metode perhitungan yang digunakan
+       - Contoh perhitungan berdasarkan asumsi
+
+    B. Penghematan Biaya Produksi
+       - Analisis komponen biaya yang terpengaruh
+       - Perhitungan penghematan per komponen
+       - Proyeksi penghematan tahunan
+
+    C. Penghematan Biaya Pemeliharaan
+       - Analisis pengurangan frekuensi pemeliharaan
+       - Perhitungan pengurangan biaya suku cadang
+       - Estimasi penghematan jangka panjang
+
+    D. Potential Savings Lainnya
+       - Identifikasi area penghematan tambahan
+       - Perhitungan potensi penghematan
+       - Analisis dampak tidak langsung
+
+## III. Metodologi Perhitungan
+     A. Panduan Perhitungan
+        - Langkah-langkah perhitungan detail
+        - Formula yang digunakan
+        - Asumsi yang dipertimbangkan
+
+     B. Rekomendasi Monitoring
+        - Indikator kinerja kunci
+        - Periode evaluasi
+        - Metode validasi penghematan
+
+## IV. Proyeksi Kumulatif
+    A. Perhitungan Tahunan
+       - Breakdown penghematan per periode
+       - Total potensi penghematan
+       - Analisis trend
+
+    B. Faktor Pertimbangan
+       - Asumsi yang digunakan
+       - Variabel yang mempengaruhi
+       - Rekomendasi penyesuaian
+
+## V. Kesimpulan dan Rekomendasi
+   [Ringkasan manfaat finansial utama dan rekomendasi untuk optimalisasi]
+&lt;/format&gt;
+
+&lt;instructions&gt;
+1. Berikan contoh perhitungan yang jelas dan dapat diikuti
+2. Jelaskan metodologi perhitungan secara detail
+3. Sertakan asumsi-asumsi yang digunakan
+4. Berikan rekomendasi untuk monitoring dan evaluasi
+5. Tunjukkan potensi penghematan kumulatif
+6. Pertimbangkan berbagai aspek penghematan
+7. Gunakan angka-angka yang realistis namun perlu disesuaikan dengan kondisi aktual
+&lt;/instructions&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Hasil Generate</h2>
+            <div class="prompt-container">
+                <button class="copy-button" onclick="copyPrompt(this, 'generatedPrompt')">Copy Prompt</button>
+                <pre id="generatedPrompt">
+Prompt akan muncul di sini setelah Anda mengisi form dan menekan tombol Generate.</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyPrompt(button, elementId) {
+            const prompt = document.getElementById(elementId);
+            navigator.clipboard.writeText(prompt.textContent).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy Prompt';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function generatePrompt() {
+            const background = document.getElementById('background').value;
+            const innovation = document.getElementById('innovation').value;
+            
+            // Get the template
+            const template = document.getElementById('promptTemplate').textContent;
+            
+            // Replace placeholders with actual content
+            const generatedPrompt = template
+                .replace('{masukkan latar belakang}', background)
+                .replace('{masukkan deskripsi karya inovasi}', innovation);
+            
+            // Update the generated prompt section
+            document.getElementById('generatedPrompt').textContent = generatedPrompt;
+        }
+    </script>
+</body>
+</html>
